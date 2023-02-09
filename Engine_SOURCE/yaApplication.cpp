@@ -1,5 +1,7 @@
 #include "yaApplication.h"
 #include "yaRenderer.h"
+#include "yaTime.h"
+#include "yaInput.h"
 
 namespace ya
 {
@@ -22,11 +24,16 @@ namespace ya
 
 	void Application::Initialize()
 	{
+		Time::Initialize();
+		Input::Initialize();
+
 		renderer::Initialize();
 	}
 
 	void Application::Update()
 	{
+		Time::Update();
+		Input::Update();
 	}
 
 	void Application::FixedUpdate()
@@ -35,6 +42,7 @@ namespace ya
 
 	void Application::Render()
 	{
+		Time::Render(mHdc);
 		graphicDevice->Draw();
 	}
 
@@ -43,6 +51,7 @@ namespace ya
 		if (graphicDevice == nullptr)
 		{
 			mHwnd = hwnd;
+			mHdc = GetDC(mHwnd);
 			mWidth = width;
 			mHeight = height;
 
