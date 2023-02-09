@@ -22,6 +22,9 @@
     <Filter Include="Time">
       <UniqueIdentifier>{0d32bba9-3e5b-4cad-9d55-29ba9e6d2a73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{b57b8e83-b769-47c4-b56d-420669a30d6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -49,7 +52,7 @@
       <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="yaRenderer.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,14 +86,14 @@
     <ClInclude Include="yaGraphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="yaRenderer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="yaEnums.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="yaEngine.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRenderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

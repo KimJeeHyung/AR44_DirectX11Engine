@@ -1,4 +1,5 @@
 #pragma once
+#include "CommonInclude.h"
 #include <wrl.h>
 #include "yaMath.h"
 

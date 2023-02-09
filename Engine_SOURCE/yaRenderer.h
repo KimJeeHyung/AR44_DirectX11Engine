@@ -14,6 +14,24 @@ namespace ya::renderer
 		Vector4 color;
 	};
 
+	// 정점 데이터
+	extern Vertex vertexes[3];
+
+	// 버텍스 버퍼
+	extern ID3D11Buffer* triangleBuffer;
+	extern ID3DBlob* errorBlob;
+
+	// 버텍스 셰이더
+	extern ID3DBlob* triangleVSBlob;
+	extern ID3D11VertexShader* triangleVS;
+
+	// 픽셀 셰이더
+	extern ID3DBlob* trianglePSBlob;
+	extern ID3D11PixelShader* trianglePS;
+
+	// input layout
+	extern ID3D11InputLayout* triangleLayout;
+
 	void Initialize();
 	void Release();
 }

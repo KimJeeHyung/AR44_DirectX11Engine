@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <limits>
 #include <memory>
+#include <filesystem>
 
 #include "CommonInclude.h"
 #include "yaEnums.h"
