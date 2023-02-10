@@ -16,42 +16,90 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{d65a4a05-132f-421a-8a8d-84bab78c506f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
-      <UniqueIdentifier>{7e48d1f7-4bb7-4125-b7a3-9a42eb6977cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Time">
       <UniqueIdentifier>{0d32bba9-3e5b-4cad-9d55-29ba9e6d2a73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{b57b8e83-b769-47c4-b56d-420669a30d6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Manager">
+      <UniqueIdentifier>{7fb06c4e-dbd4-495f-9dfd-d6927f0f488e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Material">
+      <UniqueIdentifier>{4b9fedcd-e3cb-4315-bde1-11937144e007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Mesh">
+      <UniqueIdentifier>{3e8e5ff6-fd5b-4969-8d94-523723dfa318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader">
+      <UniqueIdentifier>{902849b8-05e5-42dd-b362-e03e48d430da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{7e48d1f7-4bb7-4125-b7a3-9a42eb6977cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{890f75ac-d437-45d4-9e20-5ffe38f82f66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{a896b1b3-bb2d-43f2-91fe-a4b24d4f7091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{88b83a3b-370a-48ca-8254-a954a9842c32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="yaApplication.cpp">
+    <ClCompile Include="jhApplication.cpp">
       <Filter>High Level Interface</Filter>
     </ClCompile>
-    <ClCompile Include="yaGraphicDevice_DX11.cpp">
+    <ClCompile Include="jhGraphicDevice_DX11.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="yaMath.cpp">
+    <ClCompile Include="jhMath.cpp">
       <Filter>Common\Math</Filter>
     </ClCompile>
-    <ClCompile Include="yaResource.cpp">
+    <ClCompile Include="jhResource.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="yaResources.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="yaTime.cpp">
+    <ClCompile Include="jhTime.cpp">
       <Filter>Time</Filter>
     </ClCompile>
-    <ClCompile Include="yaInput.cpp">
+    <ClCompile Include="jhInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="yaEntity.cpp">
+    <ClCompile Include="jhEntity.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="yaRenderer.cpp">
+    <ClCompile Include="jhRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="jhResources.cpp">
+      <Filter>Resource\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="jhMesh.cpp">
+      <Filter>Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="jhShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="jhComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTransform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="jhSceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhLayer.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhGameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="jhMeshRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,45 +107,72 @@
     <ClInclude Include="CommonInclude.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="yaApplication.h">
+    <ClInclude Include="jhApplication.h">
       <Filter>High Level Interface</Filter>
     </ClInclude>
-    <ClInclude Include="yaGraphicDevice_DX11.h">
+    <ClInclude Include="jhGraphicDevice_DX11.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="yaMath.h">
+    <ClInclude Include="jhMath.h">
       <Filter>Common\Math</Filter>
     </ClInclude>
-    <ClInclude Include="yaResource.h">
+    <ClInclude Include="jhResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="yaResources.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="yaTime.h">
+    <ClInclude Include="jhTime.h">
       <Filter>Time</Filter>
     </ClInclude>
-    <ClInclude Include="yaInput.h">
+    <ClInclude Include="jhInput.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="yaEntity.h">
+    <ClInclude Include="jhEntity.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="yaGraphics.h">
+    <ClInclude Include="jhGraphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="yaEnums.h">
+    <ClInclude Include="jhEnums.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="yaEngine.h">
+    <ClInclude Include="jhEngine.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="yaRenderer.h">
+    <ClInclude Include="jhRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="jhResources.h">
+      <Filter>Resource\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMesh.h">
+      <Filter>Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="jhShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="jhComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTransform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="jhSceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhLayer.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhGameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMeshRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="yaMath.inl">
+    <None Include="jhMath.inl">
       <Filter>Common\Math</Filter>
     </None>
   </ItemGroup>

@@ -3,7 +3,7 @@
 
 #include "framework.h"
 #include "44Engine.h"
-#include "Engine_SOURCE/yaApplication.h"
+#include "Engine_SOURCE/jhApplication.h"
 
 #pragma comment(lib, "..\\x64\\Debug\\Lib\\Engine_SOURCE.lib")
 
@@ -17,7 +17,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 
-ya::Application application;
+jh::Application application;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);

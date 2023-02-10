@@ -154,32 +154,50 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
-    <ClInclude Include="yaApplication.h" />
-    <ClInclude Include="yaEngine.h" />
-    <ClInclude Include="yaEntity.h" />
-    <ClInclude Include="yaEnums.h" />
-    <ClInclude Include="yaGraphicDevice_DX11.h" />
-    <ClInclude Include="yaGraphics.h" />
-    <ClInclude Include="yaInput.h" />
-    <ClInclude Include="yaMath.h" />
-    <ClInclude Include="yaRenderer.h" />
-    <ClInclude Include="yaResource.h" />
-    <ClInclude Include="yaResources.h" />
-    <ClInclude Include="yaTime.h" />
+    <ClInclude Include="jhApplication.h" />
+    <ClInclude Include="jhComponent.h" />
+    <ClInclude Include="jhEngine.h" />
+    <ClInclude Include="jhEntity.h" />
+    <ClInclude Include="jhEnums.h" />
+    <ClInclude Include="jhGameObject.h" />
+    <ClInclude Include="jhGraphicDevice_DX11.h" />
+    <ClInclude Include="jhGraphics.h" />
+    <ClInclude Include="jhInput.h" />
+    <ClInclude Include="jhLayer.h" />
+    <ClInclude Include="jhMath.h" />
+    <ClInclude Include="jhMesh.h" />
+    <ClInclude Include="jhMeshRenderer.h" />
+    <ClInclude Include="jhRenderer.h" />
+    <ClInclude Include="jhResource.h" />
+    <ClInclude Include="jhResources.h" />
+    <ClInclude Include="jhScene.h" />
+    <ClInclude Include="jhSceneManager.h" />
+    <ClInclude Include="jhShader.h" />
+    <ClInclude Include="jhTransform.h" />
+    <ClInclude Include="jhTime.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="yaApplication.cpp" />
-    <ClCompile Include="yaEntity.cpp" />
-    <ClCompile Include="yaGraphicDevice_DX11.cpp" />
-    <ClCompile Include="yaInput.cpp" />
-    <ClCompile Include="yaMath.cpp" />
-    <ClCompile Include="yaRenderer.cpp" />
-    <ClCompile Include="yaResource.cpp" />
-    <ClCompile Include="yaResources.cpp" />
-    <ClCompile Include="yaTime.cpp" />
+    <ClCompile Include="jhApplication.cpp" />
+    <ClCompile Include="jhComponent.cpp" />
+    <ClCompile Include="jhEntity.cpp" />
+    <ClCompile Include="jhGameObject.cpp" />
+    <ClCompile Include="jhGraphicDevice_DX11.cpp" />
+    <ClCompile Include="jhInput.cpp" />
+    <ClCompile Include="jhLayer.cpp" />
+    <ClCompile Include="jhMath.cpp" />
+    <ClCompile Include="jhMesh.cpp" />
+    <ClCompile Include="jhMeshRenderer.cpp" />
+    <ClCompile Include="jhRenderer.cpp" />
+    <ClCompile Include="jhResource.cpp" />
+    <ClCompile Include="jhResources.cpp" />
+    <ClCompile Include="jhScene.cpp" />
+    <ClCompile Include="jhSceneManager.cpp" />
+    <ClCompile Include="jhShader.cpp" />
+    <ClCompile Include="jhTransform.cpp" />
+    <ClCompile Include="jhTime.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="yaMath.inl" />
+    <None Include="jhMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
