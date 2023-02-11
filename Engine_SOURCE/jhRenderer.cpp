@@ -5,24 +5,12 @@ namespace jh::renderer
 {
 	// 정점 데이터
 	Vertex vertexes[4] = {};
-
-	// 버퍼
+	// 메쉬
 	Mesh* mesh = nullptr;
-	//Microsoft::WRL::ComPtr<ID3DBlob> errorBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> triangleConstantBuffer = nullptr;
-
+	// 셰이더
 	Shader* shader = nullptr;
-
-	//// 버텍스 셰이더
-	//Microsoft::WRL::ComPtr<ID3DBlob> triangleVSBlob = nullptr;
-	//Microsoft::WRL::ComPtr<ID3D11VertexShader> triangleVS = nullptr;
-
-	//// 픽셀 셰이더
-	//Microsoft::WRL::ComPtr<ID3DBlob> trianglePSBlob = nullptr;
-	//Microsoft::WRL::ComPtr<ID3D11PixelShader> trianglePS = nullptr;
-
-	//// 인풋 레이아웃(정점 정보)
-	//Microsoft::WRL::ComPtr<ID3D11InputLayout> triangleLayout = nullptr;
+	// 상수버퍼
+	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
 
 	void SetUpState()
 	{
@@ -64,26 +52,17 @@ namespace jh::renderer
 		indexes.push_back(0);
 		indexes.push_back(2);
 		indexes.push_back(3);
-
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
 		// 상수 버퍼
-		D3D11_BUFFER_DESC csDesc = {};
-		csDesc.ByteWidth = sizeof(Vector4);
-		csDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		csDesc.Usage = D3D11_USAGE_DYNAMIC;
-		csDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
-		GetDevice()->CreateBuffer(&csDesc, nullptr, &triangleConstantBuffer);
-
 		Vector4 pos(0.2f, 0.2f, 0.f, 0.f);
-		GetDevice()->BindConstantBuffer(triangleConstantBuffer.Get(), &pos, sizeof(Vector4));
+		constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer();
+		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
+		constantBuffers[(UINT)eCBType::Transform]->Bind(&pos);
 	}
 
 	void LoadShader()
 	{
-		//GetDevice()->CreateShader();
-
 		shader = new Shader();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "VS_Test");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "PS_Test");
@@ -116,5 +95,11 @@ namespace jh::renderer
 
 		delete shader;
 		shader = nullptr;
+
+		for (size_t i = 0; i < (UINT)eCBType::End; i++)
+		{
+			delete constantBuffers[i];
+			constantBuffers[i] = nullptr;
+		}
 	}
 }

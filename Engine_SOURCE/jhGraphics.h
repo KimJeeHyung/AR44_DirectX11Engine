@@ -1,5 +1,4 @@
 #pragma once
-#include "CommonInclude.h"
 #include <wrl.h>
 #include "jhMath.h"
 
@@ -27,5 +26,21 @@ namespace jh::graphics
 		PS,
 		CS,
 		Count,
+	};
+
+	struct GpuBuffer
+	{
+		enum class eType
+		{
+			Buffer,
+			Texture,
+			UnknownType,
+		} type = eType::UnknownType;
+
+		D3D11_BUFFER_DESC desc;
+		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;
+
+		GpuBuffer() = default;
+		virtual ~GpuBuffer() = default;
 	};
 }

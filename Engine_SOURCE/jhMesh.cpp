@@ -23,11 +23,10 @@ namespace jh
     bool Mesh::CreateVertexBuffer(void* data, UINT count)
     {
         // 버텍스 버퍼 생성
-        D3D11_BUFFER_DESC triangleDesc = {};
-
         mVBDesc.ByteWidth = sizeof(renderer::Vertex) * count;
         mVBDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
         mVBDesc.Usage = D3D11_USAGE_DEFAULT;
+        mVBDesc.CPUAccessFlags = 0;
 
         D3D11_SUBRESOURCE_DATA subData = {};
         subData.pSysMem = data;

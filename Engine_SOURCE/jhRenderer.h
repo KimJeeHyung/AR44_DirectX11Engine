@@ -5,6 +5,7 @@
 
 #include "jhMesh.h"
 #include "jhShader.h"
+#include "jhConstantBuffer.h"
 
 using namespace jh::math;
 using namespace jh::graphics;
@@ -19,26 +20,12 @@ namespace jh::renderer
 
 	// 정점 데이터
 	extern Vertex vertexes[4];
-
 	// 메쉬
 	extern Mesh* mesh;
-
-	// 버퍼
-	//extern Microsoft::WRL::ComPtr<ID3DBlob> errorBlob;
-	extern Microsoft::WRL::ComPtr<ID3D11Buffer> triangleConstantBuffer;
-
+	// 셰이더
 	extern Shader* shader;
-
-	//// 버텍스 셰이더
-	//extern Microsoft::WRL::ComPtr<ID3DBlob> triangleVSBlob;
-	//extern Microsoft::WRL::ComPtr<ID3D11VertexShader> triangleVS;
-
-	//// 픽셀 셰이더
-	//extern Microsoft::WRL::ComPtr<ID3DBlob> trianglePSBlob;
-	//extern Microsoft::WRL::ComPtr<ID3D11PixelShader> trianglePS;
-
-	//// input layout
-	//extern Microsoft::WRL::ComPtr<ID3D11InputLayout> triangleLayout;
+	// 상수버퍼
+	extern ConstantBuffer* constantBuffers[];
 
 	void Initialize();
 	void Release();

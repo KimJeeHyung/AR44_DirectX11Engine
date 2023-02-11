@@ -2,6 +2,7 @@
 #include "jhRenderer.h"
 #include "jhTime.h"
 #include "jhInput.h"
+#include "jhSceneManager.h"
 
 namespace jh
 {
@@ -28,21 +29,27 @@ namespace jh
 		Input::Initialize();
 
 		renderer::Initialize();
+		SceneManager::Initialize();
 	}
 
 	void Application::Update()
 	{
 		Time::Update();
 		Input::Update();
+
+		SceneManager::Update();
 	}
 
 	void Application::FixedUpdate()
 	{
+		SceneManager::FixedUpdate();
 	}
 
 	void Application::Render()
 	{
 		Time::Render(mHdc);
+		SceneManager::Render();
+
 		graphicDevice->Render();
 	}
 

@@ -4,6 +4,8 @@
 
 namespace jh
 {
+	Scene* SceneManager::mPlayScene = nullptr;
+
 	void SceneManager::Initialize()
 	{
 		mPlayScene = new Scene();
@@ -11,12 +13,13 @@ namespace jh
 
 		GameObject* obj = new GameObject();
 		Transform* tr = new Transform();
+		tr->SetPosition(Vector3(-0.2f, 0.2f, 0.f));
 		obj->AddComponent(tr);
 
-		MeshRenderer* meshRenderer = new MeshRenderer();
-		obj->AddComponent(meshRenderer);
+		//MeshRenderer* meshRenderer = new MeshRenderer();
+		//obj->AddComponent(meshRenderer);
 
-		//mPlayScene->AddGameObject(obj);
+		mPlayScene->AddGameObject(obj, eLayerType::Player);
 	}
 
 	void SceneManager::Update()

@@ -1,6 +1,8 @@
 #include "jhGraphicDevice_DX11.h"
 #include "jhApplication.h"
 #include "jhRenderer.h"
+#include "jhConstantBuffer.h"
+#include "jhMesh.h"
 
 extern jh::Application application;
 
@@ -138,47 +140,6 @@ namespace jh::graphics
         return true;
     }
 
-    //bool GraphicDevice_DX11::CreateShader()
-    //{
-    //    ID3DBlob* errorBlob = nullptr;
-
-    //    // Vertex Shader
-    //    std::filesystem::path shaderPath = std::filesystem::current_path().parent_path();
-    //    shaderPath += "\\SHADER_SOURCE\\";
-
-    //    std::wstring vsPath(shaderPath.c_str());
-    //    vsPath += L"TriangleVS.hlsl";
-    //    D3DCompileFromFile(vsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
-    //        "VS_Test", "vs_5_0", 0, 0, &renderer::triangleVSBlob, &errorBlob);
-
-    //    mDevice->CreateVertexShader(renderer::triangleVSBlob->GetBufferPointer(),
-    //        renderer::triangleVSBlob->GetBufferSize(), nullptr, &renderer::triangleVS);
-
-    //    if (errorBlob)
-    //    {
-    //        OutputDebugStringA((char*)errorBlob->GetBufferPointer());
-    //        errorBlob->Release();
-    //        errorBlob = nullptr;
-    //    }
-
-    //    std::wstring psPath(shaderPath.c_str());
-    //    psPath += L"TrianglePS.hlsl";
-    //    D3DCompileFromFile(psPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
-    //        "PS_Test", "ps_5_0", 0, 0, &renderer::trianglePSBlob, &errorBlob);
-
-    //    if (errorBlob)
-    //    {
-    //        OutputDebugStringA((char*)errorBlob->GetBufferPointer());
-    //        errorBlob->Release();
-    //        errorBlob = nullptr;
-    //    }
-
-    //    mDevice->CreatePixelShader(renderer::trianglePSBlob->GetBufferPointer(),
-    //        renderer::trianglePSBlob->GetBufferSize(), nullptr, &renderer::trianglePS);
-
-    //    return true;
-    //}
-
     bool GraphicDevice_DX11::CreateVertexShader(const void* pShaderBytecode,
         SIZE_T BytecodeLength, ID3D11ClassLinkage* pClassLinkage,
         ID3D11VertexShader** ppVertexShader)
@@ -312,16 +273,12 @@ namespace jh::graphics
     {
         Clear();
 
-        // 상수버퍼를 셰이더에 세팅
-        SetConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::triangleConstantBuffer.Get());
-
         AdjustViewPorts();
 
         renderer::mesh->BindBuffer();
-
         renderer::shader->Binds();
-
         renderer::mesh->Render();
+
         Present();
     }
 }

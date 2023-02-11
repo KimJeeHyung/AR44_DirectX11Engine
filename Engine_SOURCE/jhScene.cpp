@@ -4,6 +4,7 @@ namespace jh
 {
 	Scene::Scene()
 	{
+		mLayers.resize((UINT)eLayerType::End);
 	}
 
 	Scene::~Scene()
@@ -42,7 +43,7 @@ namespace jh
 		}
 	}
 
-	void Scene::AddGameObject(const GameObject* gameObj, const eLayerType type)
+	void Scene::AddGameObject(GameObject* gameObj, const eLayerType type)
 	{
 		mLayers[(UINT)type].AddGameObject(gameObj);
 	}

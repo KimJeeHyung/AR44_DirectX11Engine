@@ -156,6 +156,7 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="jhApplication.h" />
     <ClInclude Include="jhComponent.h" />
+    <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhEngine.h" />
     <ClInclude Include="jhEntity.h" />
     <ClInclude Include="jhEnums.h" />
@@ -179,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp" />
     <ClCompile Include="jhComponent.cpp" />
+    <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhEntity.cpp" />
     <ClCompile Include="jhGameObject.cpp" />
     <ClCompile Include="jhGraphicDevice_DX11.cpp" />

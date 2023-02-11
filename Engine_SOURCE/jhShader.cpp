@@ -5,7 +5,8 @@ using namespace jh::graphics;
 
 namespace jh
 {
-	Shader::Shader()
+	Shader::Shader() :
+		mTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 	}
 	
