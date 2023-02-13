@@ -46,6 +46,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{88b83a3b-370a-48ca-8254-a954a9842c32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{3cece704-c72f-4512-94c2-4f50d4936821}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -99,10 +102,13 @@
     <ClCompile Include="jhGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="jhMeshRenderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="jhConstantBuffer.cpp" />
+    <ClCompile Include="jhMeshRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTexture.cpp">
+      <Filter>Resource\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -168,10 +174,13 @@
     <ClInclude Include="jhGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="jhMeshRenderer.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="jhConstantBuffer.h" />
+    <ClInclude Include="jhMeshRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTexture.h">
+      <Filter>Resource\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">

@@ -1,7 +1,6 @@
 #pragma once
 #include "jhGraphics.h"
 
-
 using namespace jh::enums;
 namespace jh::graphics
 {
@@ -28,6 +27,7 @@ namespace jh::graphics
 		void BindViewports(D3D11_VIEWPORT* viewPort);
 		void BindConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size);
 		void SetConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
+		void SetShaderResource(eShaderStage stage, UINT slot, ID3D11ShaderResourceView* const* ppShaderResourceViews);
 
 		void Clear();
 		void AdjustViewPorts();
@@ -37,6 +37,8 @@ namespace jh::graphics
 
 		void Present();
 		void Render();
+
+		ID3D11Device* GetID3D11Device() { return mDevice.Get(); }
 
 	private:
 		// GPU 객체 생성 그래픽카드와 연결되는 기본적인 객체

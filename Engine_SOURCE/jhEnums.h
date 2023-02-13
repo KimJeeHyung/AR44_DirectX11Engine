@@ -27,4 +27,19 @@ namespace jh::enums
 		Script,
 		End,
 	};
+
+	enum class eResourceType
+	{
+		Mesh,
+		Texture,
+		Material,
+		Sound,
+		//Font,
+		Prefab,
+		MeshData,
+		GraphicShader,
+		ComputeShader,
+		Script,
+		End,
+	};
 }

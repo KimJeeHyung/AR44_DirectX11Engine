@@ -1,12 +1,13 @@
 #pragma once
 #include "jhEntity.h"
 
+using namespace jh::enums;
 namespace jh
 {
 	class Resource : public Entity
 	{
 	public:
-		Resource();
+		Resource(eResourceType type);
 		virtual ~Resource();
 
 		virtual HRESULT Load(const std::wstring& path) = 0;
@@ -20,5 +21,6 @@ namespace jh
 	private:
 		std::wstring mKey;
 		std::wstring mPath;
+		eResourceType mType;
 	};
 }

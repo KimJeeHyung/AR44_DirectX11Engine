@@ -5,12 +5,12 @@ namespace jh::renderer
 {
 	// 정점 데이터
 	Vertex vertexes[4] = {};
-	// 메쉬
-	Mesh* mesh = nullptr;
-	// 셰이더
-	Shader* shader = nullptr;
 	// 상수버퍼
 	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
+
+	// 리소스
+	Mesh* mesh = nullptr;
+	Shader* shader = nullptr;
 
 	void SetUpState()
 	{

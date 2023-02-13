@@ -6,6 +6,7 @@ using namespace jh::graphics;
 namespace jh
 {
 	Shader::Shader() :
+		Resource(eResourceType::GraphicShader),
 		mTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	{
 	}
@@ -24,7 +25,6 @@ namespace jh
 	{
 		mErrorBlob = nullptr;
 
-        // Vertex Shader
         std::filesystem::path path = std::filesystem::current_path().parent_path();
         path += "\\SHADER_SOURCE\\";
 

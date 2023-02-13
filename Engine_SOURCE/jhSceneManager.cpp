@@ -1,6 +1,7 @@
 #include "jhSceneManager.h"
 #include "jhTransform.h"
 #include "jhMeshRenderer.h"
+#include "jhRenderer.h"
 
 namespace jh
 {
@@ -16,8 +17,11 @@ namespace jh
 		tr->SetPosition(Vector3(-0.2f, 0.2f, 0.f));
 		obj->AddComponent(tr);
 
-		//MeshRenderer* meshRenderer = new MeshRenderer();
-		//obj->AddComponent(meshRenderer);
+		MeshRenderer* mr = new MeshRenderer();
+		obj->AddComponent(mr);
+
+		mr->SetShader(renderer::shader);
+		mr->SetMesh(renderer::mesh);
 
 		mPlayScene->AddGameObject(obj, eLayerType::Player);
 	}

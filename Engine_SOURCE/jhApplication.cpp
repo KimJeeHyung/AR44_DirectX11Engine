@@ -48,9 +48,13 @@ namespace jh
 	void Application::Render()
 	{
 		Time::Render(mHdc);
+
+		graphicDevice->Clear();
+		graphicDevice->AdjustViewPorts();
+
 		SceneManager::Render();
 
-		graphicDevice->Render();
+		graphicDevice->Present();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

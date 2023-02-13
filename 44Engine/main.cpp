@@ -5,9 +5,11 @@
 #include "44Engine.h"
 #include "Engine_SOURCE/jhApplication.h"
 
-#pragma comment(lib, "..\\x64\\Debug\\Lib\\Engine_SOURCE.lib")
-
-
+#ifdef _DEBUG
+#pragma comment(lib, "..\\x64\\Debug\\Lib\\Engine_SOURCE.lib") 
+#else 
+#pragma comment(lib, "..\\x64\\Release\\Lib\\Engine_SOURCE.lib") 
+#endif
 
 #define MAX_LOADSTRING 100
 
