@@ -3,6 +3,7 @@
 #include "jhTime.h"
 #include "jhInput.h"
 #include "jhSceneManager.h"
+#include "jhResources.h"
 
 namespace jh
 {
@@ -14,13 +15,6 @@ namespace jh
 
 	Application::~Application()
 	{
-	}
-
-	void Application::Run()
-	{
-		Update();
-		FixedUpdate();
-		Render();
 	}
 
 	void Application::Initialize()
@@ -55,6 +49,18 @@ namespace jh
 		SceneManager::Render();
 
 		graphicDevice->Present();
+	}
+
+	void Application::Run()
+	{
+		Update();
+		FixedUpdate();
+		Render();
+	}
+
+	void Application::Release()
+	{
+		Resources::Release();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

@@ -16,16 +16,14 @@ namespace jh::renderer
 	{
 		Vector3 pos;
 		Vector4 color;
+		Vector2 uv;
 	};
 
 	// 정점 데이터
 	extern Vertex vertexes[4];
-	// 메쉬
-	extern Mesh* mesh;
-	// 셰이더
-	extern Shader* shader;
 	// 상수버퍼
 	extern ConstantBuffer* constantBuffers[];
+	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[];
 
 	void Initialize();
 	void Release();

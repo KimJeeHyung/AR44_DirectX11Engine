@@ -160,6 +160,15 @@ namespace jh::graphics
         return true;
     }
 
+    bool GraphicDevice_DX11::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc,
+        ID3D11SamplerState** ppSamplerState)
+    {
+        if (FAILED(mDevice->CreateSamplerState(pSamplerDesc, ppSamplerState)))
+            return false;
+
+        return true;
+    }
+
     void GraphicDevice_DX11::BindPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY topology)
     {
         mContext->IASetPrimitiveTopology(topology);
@@ -262,6 +271,44 @@ namespace jh::graphics
         }
     }
 
+    void GraphicDevice_DX11::BindSamplers(eShaderStage stage, UINT slot, UINT NumSamplers,
+        ID3D11SamplerState* const* ppSamplers)
+    {
+        switch (stage)
+        {
+        case jh::graphics::eShaderStage::VS:
+            mContext->VSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        case jh::graphics::eShaderStage::HS:
+            mContext->HSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        case jh::graphics::eShaderStage::DS:
+            mContext->DSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        case jh::graphics::eShaderStage::GS:
+            mContext->GSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        case jh::graphics::eShaderStage::PS:
+            mContext->PSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        case jh::graphics::eShaderStage::CS:
+            mContext->CSSetSamplers(slot, NumSamplers, ppSamplers);
+            break;
+        default:
+            break;
+        }
+    }
+
+    void GraphicDevice_DX11::BindsSamplers(UINT slot, UINT NumSamplers,
+        ID3D11SamplerState* const* ppSamplers)
+    {
+        mContext->VSSetSamplers(slot, NumSamplers, ppSamplers);
+        mContext->HSSetSamplers(slot, NumSamplers, ppSamplers);
+        mContext->DSSetSamplers(slot, NumSamplers, ppSamplers);
+        mContext->GSSetSamplers(slot, NumSamplers, ppSamplers);
+        mContext->PSSetSamplers(slot, NumSamplers, ppSamplers);
+    }
+
     void GraphicDevice_DX11::Clear()
     {
         // 화면 지워주기
@@ -295,18 +342,5 @@ namespace jh::graphics
     void GraphicDevice_DX11::Present()
     {
         mSwapChain->Present(0, 0);
-    }
-
-    void GraphicDevice_DX11::Render()
-    {
-        Clear();
-
-        AdjustViewPorts();
-
-        renderer::mesh->BindBuffer();
-        renderer::shader->Binds();
-        renderer::mesh->Render();
-
-        Present();
     }
 }

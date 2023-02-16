@@ -2,6 +2,8 @@
 #include "jhTransform.h"
 #include "jhMeshRenderer.h"
 #include "jhRenderer.h"
+#include "jhResources.h"
+#include "jhTexture.h"
 
 namespace jh
 {
@@ -20,8 +22,14 @@ namespace jh
 		MeshRenderer* mr = new MeshRenderer();
 		obj->AddComponent(mr);
 
-		mr->SetShader(renderer::shader);
-		mr->SetMesh(renderer::mesh);
+		Shader* shader = Resources::Find<Shader>(L"RectShader");
+		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+
+		mr->SetShader(shader);
+		mr->SetMesh(mesh);
+
+		Texture* texture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
+		texture->BindShader(eShaderStage::PS, 0);
 
 		mPlayScene->AddGameObject(obj, eLayerType::Player);
 	}
