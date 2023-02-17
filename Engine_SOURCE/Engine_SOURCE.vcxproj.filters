@@ -109,6 +109,9 @@
     <ClCompile Include="jhTexture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="jhMaterial.cpp">
+      <Filter>Resource\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -180,6 +183,9 @@
     </ClInclude>
     <ClInclude Include="jhTexture.h">
       <Filter>Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMaterial.h">
+      <Filter>Resource\Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

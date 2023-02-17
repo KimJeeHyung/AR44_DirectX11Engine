@@ -3,8 +3,8 @@
 
 namespace jh::graphics
 {
-	ConstantBuffer::ConstantBuffer() :
-		mType(eCBType::Transform)
+	ConstantBuffer::ConstantBuffer(eCBType type) :
+		mType(type)
 	{
 	}
 

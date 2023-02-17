@@ -14,15 +14,31 @@ namespace jh::renderer
 {
 	struct Vertex
 	{
-		Vector3 pos;
+		Vector4 pos;
 		Vector4 color;
 		Vector2 uv;
+	};
+
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
+	{
+		Vector4 pos;
+	};
+
+	CBUFFER(MaterialCB, CBSLOT_MATERIAL)
+	{
+		int iData;
+		float fData;
+		Vector2 xy;
+		Vector3 xyz;
+		Vector4 xyzw;
+		Matrix matrix;
 	};
 
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼
 	extern ConstantBuffer* constantBuffers[];
+	// 샘플러
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[];
 
 	void Initialize();

@@ -16,16 +16,19 @@ namespace jh
 
 		GameObject* obj = new GameObject();
 		Transform* tr = new Transform();
-		tr->SetPosition(Vector3(-0.2f, 0.2f, 0.f));
+		tr->SetPosition(Vector3(0.f, 0.f, 0.f));
 		obj->AddComponent(tr);
 
 		MeshRenderer* mr = new MeshRenderer();
 		obj->AddComponent(mr);
 
-		Shader* shader = Resources::Find<Shader>(L"RectShader");
 		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+		Material* material = Resources::Find<Material>(L"RectMaterial");
 
-		mr->SetShader(shader);
+		Vector2 vec2(1.f, 1.f);
+		material->SetData(eGPUParam::Vector2, &vec2);
+
+		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
 		Texture* texture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");

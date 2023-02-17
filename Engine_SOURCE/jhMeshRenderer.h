@@ -1,7 +1,7 @@
 #pragma once
 #include "jhComponent.h"
 #include "jhMesh.h"
-#include "jhShader.h"
+#include "jhMaterial.h"
 
 using namespace jh::graphics;
 namespace jh
@@ -18,10 +18,10 @@ namespace jh
 		virtual void Render() override;
 
 		void SetMesh(Mesh* mesh) { mMesh = mesh; }
-		void SetShader(Shader* shader) { mShader = shader; }
+		void SetMaterial(Material* material) { mMaterial = material; }
 
 	private:
 		Mesh* mMesh;
-		Shader* mShader;
+		Material* mMaterial;
 	};
 }
