@@ -4,6 +4,7 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
+#include "jhPlayerScript.h"
 
 namespace jh
 {
@@ -22,16 +23,19 @@ namespace jh
 		MeshRenderer* mr = new MeshRenderer();
 		obj->AddComponent(mr);
 
-		Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
-		Material* material = Resources::Find<Material>(L"RectMaterial");
+		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
 
-		Vector2 vec2(1.f, 1.f);
-		material->SetData(eGPUParam::Vector2, &vec2);
+		//Vector2 vec2(1.f, 1.f);
+		//material->SetData(eGPUParam::Vector2, &vec2);
 
-		mr->SetMaterial(material);
-		mr->SetMesh(mesh);
+		mr->SetMaterial(material.get());
+		mr->SetMesh(mesh.get());
 
-		Texture* texture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
+		PlayerScript* script = new PlayerScript();
+		obj->AddComponent(script);
+
+		std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
 		texture->BindShader(eShaderStage::PS, 0);
 
 		mPlayScene->AddGameObject(obj, eLayerType::Player);

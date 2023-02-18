@@ -169,11 +169,13 @@
     <ClInclude Include="jhMath.h" />
     <ClInclude Include="jhMesh.h" />
     <ClInclude Include="jhMeshRenderer.h" />
+    <ClInclude Include="jhPlayerScript.h" />
     <ClInclude Include="jhRenderer.h" />
     <ClInclude Include="jhResource.h" />
     <ClInclude Include="jhResources.h" />
     <ClInclude Include="jhScene.h" />
     <ClInclude Include="jhSceneManager.h" />
+    <ClInclude Include="jhScript.h" />
     <ClInclude Include="jhShader.h" />
     <ClInclude Include="jhTexture.h" />
     <ClInclude Include="jhTransform.h" />
@@ -192,11 +194,13 @@
     <ClCompile Include="jhMath.cpp" />
     <ClCompile Include="jhMesh.cpp" />
     <ClCompile Include="jhMeshRenderer.cpp" />
+    <ClCompile Include="jhPlayerScript.cpp" />
     <ClCompile Include="jhRenderer.cpp" />
     <ClCompile Include="jhResource.cpp" />
     <ClCompile Include="jhResources.cpp" />
     <ClCompile Include="jhScene.cpp" />
     <ClCompile Include="jhSceneManager.cpp" />
+    <ClCompile Include="jhScript.cpp" />
     <ClCompile Include="jhShader.cpp" />
     <ClCompile Include="jhTexture.cpp" />
     <ClCompile Include="jhTransform.cpp" />

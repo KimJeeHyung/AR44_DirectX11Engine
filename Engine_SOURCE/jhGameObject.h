@@ -1,5 +1,6 @@
 #pragma once
 #include "jhComponent.h"
+#include "jhScript.h"
 
 namespace jh
 {
@@ -41,5 +42,6 @@ namespace jh
 	private:
 		eState mState;
 		std::vector<Component*> mComponents;
+		std::vector<Component*> mScripts;
 	};
 }

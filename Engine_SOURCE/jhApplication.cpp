@@ -60,7 +60,7 @@ namespace jh
 
 	void Application::Release()
 	{
-		Resources::Release();
+		//Resources::Release();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)
