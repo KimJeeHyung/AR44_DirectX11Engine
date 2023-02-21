@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="jhApplication.h" />
+    <ClInclude Include="jhCamera.h" />
     <ClInclude Include="jhComponent.h" />
     <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhEngine.h" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp" />
+    <ClCompile Include="jhCamera.cpp" />
     <ClCompile Include="jhComponent.cpp" />
     <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhEntity.cpp" />
