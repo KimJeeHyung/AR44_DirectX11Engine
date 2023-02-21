@@ -136,6 +136,12 @@
     <ClCompile Include="jhCamera.cpp">
       <Filter>Component\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="jhCameraScript.cpp">
+      <Filter>Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="jhSpriteRenderer.cpp">
+      <Filter>Component\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -219,6 +225,12 @@
     </ClInclude>
     <ClInclude Include="jhCamera.h">
       <Filter>Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCameraScript.h">
+      <Filter>Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="jhSpriteRenderer.h">
+      <Filter>Component\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

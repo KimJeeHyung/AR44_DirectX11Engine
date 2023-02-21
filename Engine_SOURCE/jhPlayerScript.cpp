@@ -21,7 +21,7 @@ namespace jh
 
 	void PlayerScript::Update()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
 		Vector3 pos = tr->GetPosition();
 
@@ -41,8 +41,16 @@ namespace jh
 		{
 			pos.y -= 3.f * Time::DeltaTime();
 		}
+		else if (Input::GetKeyState(eKeyCode::Q) == PRESSED)
+		{
+			pos.z += 3.f * Time::DeltaTime();
+		}
+		else if (Input::GetKeyState(eKeyCode::E) == PRESSED)
+		{
+			pos.z -= 3.f * Time::DeltaTime();
+		}
 
-		tr->SetPosition(pos);
+		tr->SetPosition(pos);*/
 	}
 
 	void PlayerScript::Render()

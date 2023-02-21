@@ -1,16 +1,16 @@
 #include "globals.hlsli"
 
-VTX_OUT VS_Test(VTX_IN _in)
+VSOut main(VSIn In)
 {
-    VTX_OUT output = (VTX_OUT) 0.f;
+    VSOut Out = (VSOut) 0.f;
     
-    float4 worldPosition = mul(_in.vPos, world);
+    float4 worldPosition = mul(In.Pos, world);
     float4 viewPosition = mul(worldPosition, view);
     float4 projPosition = mul(viewPosition, projection);
 	
-    output.vPos = projPosition;
-    output.vColor = _in.vColor;
-    output.vUV = _in.vUV;
+    Out.Pos = projPosition;
+    Out.Color = In.Color;
+    Out.UV = In.UV;
 	
-    return output;
+    return Out;
 }

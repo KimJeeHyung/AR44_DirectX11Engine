@@ -11,6 +11,7 @@ namespace jh::renderer
 	void SetUpState()
 	{
 		// Input Layout (정점 구조 정보)
+#pragma region Input Layout
 		D3D11_INPUT_ELEMENT_DESC arrLayoutDesc[3] = {};
 
 		arrLayoutDesc[0].AlignedByteOffset = 0;
@@ -34,11 +35,15 @@ namespace jh::renderer
 		arrLayoutDesc[2].SemanticName = "TEXCOORD";
 		arrLayoutDesc[2].SemanticIndex = 0;
 
-		std::shared_ptr<Shader> shader = Resources::Find<Shader>(L"RectShader");
-		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, shader->GetVSBlobBufferPointer(),
-			shader->GetVSBlobBufferSize(), shader->GetInputLayoutAddressOf());
+		std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
+		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, defaultShader->GetVSBlobBufferPointer(),
+			defaultShader->GetVSBlobBufferSize(), defaultShader->GetInputLayoutAddressOf());
 
-		// SamplerState
+		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
+		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, spriteShader->GetVSBlobBufferPointer(),
+			spriteShader->GetVSBlobBufferSize(), spriteShader->GetInputLayoutAddressOf());
+#pragma endregion
+#pragma region SamplerState
 		D3D11_SAMPLER_DESC samplerDesc = {};
 		samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -62,6 +67,7 @@ namespace jh::renderer
 			samplerStates[(UINT)eSamplerType::Linear].GetAddressOf());
 		GetDevice()->BindsSamplers((UINT)eSamplerType::Anisotropic, 1,
 			samplerStates[(UINT)eSamplerType::Anisotropic].GetAddressOf());
+#pragma endregion
 	}
 
 	void LoadBuffer()
@@ -93,21 +99,38 @@ namespace jh::renderer
 
 	void LoadShader()
 	{
-		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
-		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "VS_Test");
-		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "PS_Test");
+		// Default
+		std::shared_ptr<Shader> defaultShader = std::make_shared<Shader>();
+		defaultShader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
+		defaultShader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 
-		Resources::Insert<Shader>(L"RectShader", shader);
+		Resources::Insert<Shader>(L"RectShader", defaultShader);
+
+		// Sprite
+		std::shared_ptr<Shader> spriteShader = std::make_shared<Shader>();
+		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+
+		Resources::Insert<Shader>(L"SpriteShader", spriteShader);
 	}
 
 	void LoadMaterial()
 	{
-		std::shared_ptr<Shader> shader = Resources::Find<Shader>(L"RectShader");
+		// Default
+		std::shared_ptr<Texture> defaultTexture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
+		std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
+		std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
+		defaultMaterial->SetShader(defaultShader);
+		defaultMaterial->SetTexture(defaultTexture);
+		Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
 
-		std::shared_ptr<Material> material = std::make_shared<Material>();
-		material->SetShader(shader.get());
-
-		Resources::Insert<Material>(L"RectMaterial", material);
+		//Sprite
+		std::shared_ptr<Texture> spriteTexture = Resources::Load<Texture>(L"DefaultSprite", L"DefaultSprite.png");
+		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+		spriteMaterial->SetShader(spriteShader);
+		spriteMaterial->SetTexture(spriteTexture);
+		Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
 	}
 
 	void Initialize()

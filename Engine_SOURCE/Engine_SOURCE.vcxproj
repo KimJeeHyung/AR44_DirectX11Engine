@@ -156,6 +156,7 @@
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="jhApplication.h" />
     <ClInclude Include="jhCamera.h" />
+    <ClInclude Include="jhCameraScript.h" />
     <ClInclude Include="jhComponent.h" />
     <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhEngine.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="jhSceneManager.h" />
     <ClInclude Include="jhScript.h" />
     <ClInclude Include="jhShader.h" />
+    <ClInclude Include="jhSpriteRenderer.h" />
     <ClInclude Include="jhTexture.h" />
     <ClInclude Include="jhTransform.h" />
     <ClInclude Include="jhTime.h" />
@@ -185,6 +187,7 @@
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp" />
     <ClCompile Include="jhCamera.cpp" />
+    <ClCompile Include="jhCameraScript.cpp" />
     <ClCompile Include="jhComponent.cpp" />
     <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhEntity.cpp" />
@@ -204,6 +207,7 @@
     <ClCompile Include="jhSceneManager.cpp" />
     <ClCompile Include="jhScript.cpp" />
     <ClCompile Include="jhShader.cpp" />
+    <ClCompile Include="jhSpriteRenderer.cpp" />
     <ClCompile Include="jhTexture.cpp" />
     <ClCompile Include="jhTransform.cpp" />
     <ClCompile Include="jhTime.cpp" />
