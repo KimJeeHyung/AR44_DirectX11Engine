@@ -21,6 +21,15 @@ namespace jh
 
 	void PlayerScript::Update()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		
+		if (Input::GetKeyState(eKeyCode::R) == PRESSED)
+		{
+			Vector3 rot = tr->GetRotation();
+			rot.z += 10.f * Time::DeltaTime();
+			tr->SetRotation(rot);
+		}
+		
 		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
 		Vector3 pos = tr->GetPosition();

@@ -47,7 +47,8 @@ namespace jh
 		graphicDevice->Clear();
 		graphicDevice->AdjustViewPorts();
 
-		SceneManager::Render();
+		//SceneManager::Render();
+		renderer::Render();
 
 		graphicDevice->Present();
 	}

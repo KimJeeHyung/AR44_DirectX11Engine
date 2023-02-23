@@ -11,6 +11,8 @@ namespace jh::renderer
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDSType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
+	std::vector<Camera*> cameras;
+
 	void SetUpState()
 	{
 		// Input Layout (정점 구조 정보)
@@ -45,6 +47,10 @@ namespace jh::renderer
 		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
 		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, spriteShader->GetVSBlobBufferPointer(),
 			spriteShader->GetVSBlobBufferSize(), spriteShader->GetInputLayoutAddressOf());
+
+		std::shared_ptr<Shader> uiShader = Resources::Find<Shader>(L"UIShader");
+		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, uiShader->GetVSBlobBufferPointer(),
+			uiShader->GetVSBlobBufferSize(), uiShader->GetInputLayoutAddressOf());
 #pragma endregion
 
 #pragma region SamplerState
@@ -210,12 +216,26 @@ namespace jh::renderer
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 
 		Resources::Insert<Shader>(L"SpriteShader", spriteShader);
+
+		// UI
+		std::shared_ptr<Shader> uiShader = std::make_shared<Shader>();
+		uiShader->Create(eShaderStage::VS, L"UserInterfaceVS.hlsl", "main");
+		uiShader->Create(eShaderStage::PS, L"UserInterfacePS.hlsl", "main");
+
+		Resources::Insert<Shader>(L"UIShader", uiShader);
+	}
+
+	void LoadTexture()
+	{
+		Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
+		Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
+		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
 	}
 
 	void LoadMaterial()
 	{
 		// Default
-		std::shared_ptr<Texture> defaultTexture = Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
+		std::shared_ptr<Texture> defaultTexture = Resources::Find<Texture>(L"SmileTexture");
 		std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
 		std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
 		defaultMaterial->SetShader(defaultShader);
@@ -223,12 +243,22 @@ namespace jh::renderer
 		Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
 
 		//Sprite
-		std::shared_ptr<Texture> spriteTexture = Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
+		std::shared_ptr<Texture> spriteTexture = Resources::Find<Texture>(L"DefaultSprite");
 		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
 		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+		spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 		spriteMaterial->SetShader(spriteShader);
 		spriteMaterial->SetTexture(spriteTexture);
 		Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
+
+		// UI
+		std::shared_ptr<Texture> uiTexture = Resources::Find<Texture>(L"HPBarTexture");
+		std::shared_ptr<Shader> uiShader = Resources::Find<Shader>(L"UIShader");
+		std::shared_ptr<Material> uiMaterial = std::make_shared<Material>();
+		uiMaterial->SetRenderingMode(eRenderingMode::Transparent);
+		uiMaterial->SetShader(uiShader);
+		uiMaterial->SetTexture(uiTexture);
+		Resources::Insert<Material>(L"UIMaterial", uiMaterial);
 	}
 
 	void Initialize()
@@ -253,7 +283,21 @@ namespace jh::renderer
 		LoadShader();
 		SetUpState();
 		LoadBuffer();
+		LoadTexture();
 		LoadMaterial();
+	}
+
+	void Render()
+	{
+		for (Camera* cam : cameras)
+		{
+			if (cam == nullptr)
+				continue;
+
+			cam->Render();
+		}
+
+		cameras.clear();
 	}
 
 	void Release()

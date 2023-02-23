@@ -24,9 +24,13 @@ namespace jh::graphics
 		void SetTexture(std::shared_ptr<Texture> texture) { mTexture = texture; }
 		std::shared_ptr<Texture> GetTexture() { return mTexture; }
 
+		eRenderingMode GetRenderingMode() { return mMode; }
+		void SetRenderingMode(eRenderingMode mode) { mMode = mode; }
+
 	private:
 		std::shared_ptr<Shader> mShader;
 		std::shared_ptr<Texture> mTexture;
 		MaterialCB mCB;
+		eRenderingMode mMode;
 	};
 }

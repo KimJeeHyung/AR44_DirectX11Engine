@@ -26,6 +26,20 @@ namespace jh
 
 		void CreateViewMatrix();
 		void CreateProjectionMatrix();
+		void RegisterCameraInRenderer();
+
+		void TurnLayerMask(eLayerType layer, bool enable = true);
+		void EnableLayerMasks() { mLayerMasks.set(); }
+		void DisableLayerMasks() { mLayerMasks.reset(); }
+
+		void SetProjectionType(eProjectionType type) { mProjectionType = type; }
+
+	private:
+		void sortGameObjects();
+		void renderOpaque();
+		void renderCutOut();
+		void renderTransparent();
+		void pushGameObjectToRenderingModes(GameObject* gameObj);
 
 	private:
 		static Matrix View;
@@ -34,11 +48,16 @@ namespace jh
 		Matrix mView;
 		Matrix mProjection;
 
-		eProjectionType mType;
+		eProjectionType mProjectionType;
 		float mAspectRatio;
 
 		float mNear;
 		float mFar;
 		float mScale;
+
+		std::bitset<(UINT)eLayerType::End> mLayerMasks;
+		std::vector<GameObject*> mOpaqueGameObjects;
+		std::vector<GameObject*> mCutOutGameObjects;
+		std::vector<GameObject*> mTransparentGameObjects;
 	};
 }
