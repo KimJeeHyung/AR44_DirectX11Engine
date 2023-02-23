@@ -4,6 +4,7 @@
 
 namespace jh
 {
+	using namespace graphics;
 	class Shader : public Resource
 	{
 	public:
@@ -12,7 +13,7 @@ namespace jh
 
 		virtual HRESULT Load(const std::wstring& path) override;
 
-		void Create(graphics::eShaderStage stage, const std::wstring& file, const std::string& funName);
+		void Create(eShaderStage stage, const std::wstring& file, const std::string& funName);
 		void Binds();
 
 		ID3D11InputLayout* GetInputLayout() { return mInputLayout.Get(); }
@@ -21,10 +22,14 @@ namespace jh
 		void* GetVSBlobBufferPointer() { return mVSBlob->GetBufferPointer(); }
 		SIZE_T GetVSBlobBufferSize() { return mVSBlob->GetBufferSize(); }
 
+		void SetRSState(eRSType state) { mRSType = state; }
+		void SetDSState(eDSType state) { mDSType = state; }
+		void SetBSState(eBSType state) { mBSType = state; }
+
 	private:
 		Microsoft::WRL::ComPtr<ID3D11InputLayout> mInputLayout;
 		D3D11_PRIMITIVE_TOPOLOGY mTopology;
-		graphics::eShaderStage mStage;
+		eShaderStage mStage;
 
 		Microsoft::WRL::ComPtr<ID3DBlob> mVSBlob;
 		Microsoft::WRL::ComPtr<ID3DBlob> mHSBlob;
@@ -37,6 +42,10 @@ namespace jh
 		Microsoft::WRL::ComPtr<ID3D11DomainShader> mDS;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader> mGS;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> mPS;
+
+		eRSType mRSType;
+		eDSType mDSType;
+		eBSType mBSType;
 
 		Microsoft::WRL::ComPtr<ID3DBlob> mErrorBlob;
 	};

@@ -7,6 +7,9 @@ namespace jh::renderer
 	Vertex vertexes[4] = {};
 	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)eSamplerType::End] = {};
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRSType::End] = {};
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDSType::End] = {};
+	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
 	void SetUpState()
 	{
@@ -43,6 +46,7 @@ namespace jh::renderer
 		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, spriteShader->GetVSBlobBufferPointer(),
 			spriteShader->GetVSBlobBufferSize(), spriteShader->GetInputLayoutAddressOf());
 #pragma endregion
+
 #pragma region SamplerState
 		D3D11_SAMPLER_DESC samplerDesc = {};
 		samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -67,6 +71,100 @@ namespace jh::renderer
 			samplerStates[(UINT)eSamplerType::Linear].GetAddressOf());
 		GetDevice()->BindsSamplers((UINT)eSamplerType::Anisotropic, 1,
 			samplerStates[(UINT)eSamplerType::Anisotropic].GetAddressOf());
+#pragma endregion
+
+#pragma region RasterizerState
+		D3D11_RASTERIZER_DESC rsDesc = {};
+		rsDesc.FillMode = D3D11_FILL_SOLID;
+		rsDesc.CullMode = D3D11_CULL_BACK;
+
+		GetDevice()->CreateRasterizerState(&rsDesc,
+			rasterizerStates[(UINT)eRSType::SolidBack].GetAddressOf());
+
+		rsDesc.FillMode = D3D11_FILL_SOLID;
+		rsDesc.CullMode = D3D11_CULL_FRONT;
+
+		GetDevice()->CreateRasterizerState(&rsDesc,
+			rasterizerStates[(UINT)eRSType::SolidFront].GetAddressOf());
+
+		rsDesc.FillMode = D3D11_FILL_SOLID;
+		rsDesc.CullMode = D3D11_CULL_NONE;
+
+		GetDevice()->CreateRasterizerState(&rsDesc,
+			rasterizerStates[(UINT)eRSType::SolidNone].GetAddressOf());
+
+		rsDesc.FillMode = D3D11_FILL_WIREFRAME;
+		rsDesc.CullMode = D3D11_CULL_NONE;
+
+		GetDevice()->CreateRasterizerState(&rsDesc,
+			rasterizerStates[(UINT)eRSType::WireframeNone].GetAddressOf());
+#pragma endregion
+
+#pragma region DepthStencilState
+		D3D11_DEPTH_STENCIL_DESC dsDesc = {};
+		dsDesc.DepthEnable = true;
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		dsDesc.StencilEnable = false;
+
+		GetDevice()->CreateDepthStencilState(&dsDesc,
+			depthStencilStates[(UINT)eDSType::Less].GetAddressOf());
+
+		dsDesc.DepthEnable = true;
+		dsDesc.DepthFunc = D3D11_COMPARISON_GREATER;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		dsDesc.StencilEnable = false;
+
+		GetDevice()->CreateDepthStencilState(&dsDesc,
+			depthStencilStates[(UINT)eDSType::Greater].GetAddressOf());
+
+		dsDesc.DepthEnable = true;
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		dsDesc.StencilEnable = false;
+
+		GetDevice()->CreateDepthStencilState(&dsDesc,
+			depthStencilStates[(UINT)eDSType::NoWrite].GetAddressOf());
+
+		dsDesc.DepthEnable = false;
+		dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+		dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		dsDesc.StencilEnable = false;
+
+		GetDevice()->CreateDepthStencilState(&dsDesc,
+			depthStencilStates[(UINT)eDSType::None].GetAddressOf());
+#pragma endregion
+
+#pragma region BlendState
+		blendStates[(UINT)eBSType::Default] = nullptr;
+
+		D3D11_BLEND_DESC bsDesc = {};
+		bsDesc.AlphaToCoverageEnable = false;
+		bsDesc.IndependentBlendEnable = false;
+		bsDesc.RenderTarget[0].BlendEnable = true;
+		bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		bsDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		bsDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		bsDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		GetDevice()->CreateBlendState(&bsDesc,
+			blendStates[(UINT)eBSType::AlphaBlend].GetAddressOf());
+
+		bsDesc.AlphaToCoverageEnable = false;
+		bsDesc.IndependentBlendEnable = false;
+		bsDesc.RenderTarget[0].BlendEnable = true;
+		bsDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		bsDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;
+		bsDesc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+
+		bsDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		GetDevice()->CreateBlendState(&bsDesc,
+			blendStates[(UINT)eBSType::OneOne].GetAddressOf());
 #pragma endregion
 	}
 
@@ -125,7 +223,7 @@ namespace jh::renderer
 		Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
 
 		//Sprite
-		std::shared_ptr<Texture> spriteTexture = Resources::Load<Texture>(L"DefaultSprite", L"DefaultSprite.png");
+		std::shared_ptr<Texture> spriteTexture = Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
 		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 		spriteMaterial->SetShader(spriteShader);

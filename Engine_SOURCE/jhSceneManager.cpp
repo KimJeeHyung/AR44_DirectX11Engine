@@ -43,9 +43,6 @@ namespace jh
 		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 		std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
 
-		//Vector2 vec2(1.f, 1.f);
-		//material->SetData(eGPUParam::Vector2, &vec2);
-
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
@@ -55,6 +52,7 @@ namespace jh
 		GameObject* spriteObj = new GameObject();
 		Transform* spriteTr = new Transform();
 		spriteTr->SetPosition(Vector3(5.f, 0.f, 10.f));
+		spriteTr->SetScale(Vector3(5.f, 5.f, 1.f));
 		spriteObj->AddComponent(spriteTr);
 
 		SpriteRenderer* sr = new SpriteRenderer();

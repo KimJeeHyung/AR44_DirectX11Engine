@@ -40,8 +40,11 @@ namespace jh::renderer
 	extern Vertex vertexes[4];
 	// 상수버퍼
 	extern ConstantBuffer* constantBuffers[];
-	// 샘플러
+	// States
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
+	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
 	void Initialize();
 	void Release();
