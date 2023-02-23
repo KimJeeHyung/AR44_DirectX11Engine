@@ -6,6 +6,7 @@ namespace jh::enums
 	{
 		None = 0,
 		Camera,
+		Grid,
 		Monster,
 		Player,
 

@@ -37,6 +37,13 @@ namespace jh::renderer
 		Matrix matrix;
 	};
 
+	CBUFFER(GridCB, CBSLOT_GRID)
+	{
+		Vector4 cameraPosition;
+		Vector2 cameraScale;
+		Vector2 resolution;
+	};
+
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼

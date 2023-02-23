@@ -8,6 +8,7 @@
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
+#include "jhGridScript.h"
 
 namespace jh
 {
@@ -17,6 +18,19 @@ namespace jh
 	{
 		mActiveScene = new Scene();
 		//mActiveScene->Initialize();
+
+		// 그리드 오브젝트
+		GameObject* gridOject = new GameObject();
+		Transform* gridTr = new Transform();
+		gridOject->AddComponent(gridTr);
+		MeshRenderer* gridMr = new MeshRenderer();
+		gridOject->AddComponent(gridMr);
+		gridOject->AddComponent(new GridScript());
+
+		gridMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		gridMr->SetMaterial(Resources::Find<Material>(L"GridMaterial"));
+
+		mActiveScene->AddGameObject(gridOject, eLayerType::Grid);
 
 		// 메인 카메라 오브젝트
 		GameObject* cameraObj = new GameObject();
@@ -36,6 +50,7 @@ namespace jh
 		UICameraTr->SetPosition(Vector3(0.f, 0.f, 0.f));
 		UICameraObj->AddComponent(UICameraTr);
 		Camera* UICameraComp = new Camera();
+		UICameraComp->RegisterCameraInRenderer();
 		UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
 		UICameraObj->AddComponent(UICameraComp);
 		mActiveScene->AddGameObject(UICameraObj, eLayerType::Camera);
