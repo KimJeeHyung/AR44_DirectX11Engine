@@ -23,7 +23,7 @@ namespace jh
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		
-		if (Input::GetKeyState(eKeyCode::R) == PRESSED)
+		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
 		{
 			Vector3 rot = tr->GetRotation();
 			rot.z += 10.f * Time::DeltaTime();

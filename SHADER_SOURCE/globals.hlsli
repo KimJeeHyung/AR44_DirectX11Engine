@@ -17,9 +17,18 @@ cbuffer MaterialData : register(b1)
 
 cbuffer Grid : register(b2)
 {
-    float4 cameraPosition;
-    float2 cameraScale;
-    float2 resolution;
+    float4 gCameraPosition;
+    float2 gCameraScale;
+    float2 gResolution;
+}
+
+cbuffer Fade : register(b3)
+{
+    float4 fCameraPosition;
+    float2 fCameraScale;
+    float2 fResolution;
+    float deltaTime;
+    float3 padding;
 }
 
 SamplerState pointSampler : register(s0);

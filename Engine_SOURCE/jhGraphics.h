@@ -14,6 +14,7 @@
 #define CBSLOT_TRANSFORM 0
 #define CBSLOT_MATERIAL 1
 #define CBSLOT_GRID 2
+#define CBSLOT_FADE 3
 
 namespace jh::graphics
 {
@@ -98,6 +99,7 @@ namespace jh::graphics
 		Transform,
 		Material,
 		Grid,
+		Fade,
 		End,
 	};
 

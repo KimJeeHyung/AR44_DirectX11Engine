@@ -10,6 +10,7 @@
 #include "jhSpriteRenderer.h"
 #include "jhGridScript.h"
 #include "jhObject.h"
+#include "jhFadeScript.h"
 
 namespace jh
 {
@@ -95,6 +96,21 @@ namespace jh
 		hpSr->SetMaterial(hpSpriteMaterial);
 
 		//hpBar->Pause();
+
+		// Fade 오브젝트
+		GameObject* fadeObj = object::Instantiate<GameObject>(eLayerType::UI);
+		fadeObj->SetName(L"FADE");
+		Transform* fadeTr = fadeObj->GetComponent<Transform>();
+		fadeTr->SetPosition(Vector3(0.f, 0.f, 10.f));
+		fadeTr->SetScale(Vector3(1.f, 1.f, 1.f));
+
+		SpriteRenderer* fadeSr = fadeObj->AddComponent<SpriteRenderer>();
+		std::shared_ptr<Mesh> fadeMesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Material> fadeMaterial = Resources::Find<Material>(L"FadeMaterial");
+		fadeSr->SetMesh(fadeMesh);
+		fadeSr->SetMaterial(fadeMaterial);
+		fadeObj->AddComponent<FadeScript>();
+
 
 		mActiveScene->Initialize();
 	}

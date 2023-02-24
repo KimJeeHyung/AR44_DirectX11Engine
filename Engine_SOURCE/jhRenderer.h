@@ -44,6 +44,15 @@ namespace jh::renderer
 		Vector2 resolution;
 	};
 
+	CBUFFER(FadeCB, CBSLOT_FADE)
+	{
+		Vector4 cameraPosition;
+		Vector2 cameraScale;
+		Vector2 resolution;
+		float deltaTime;
+		Vector3 padding;
+	};
+
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼
