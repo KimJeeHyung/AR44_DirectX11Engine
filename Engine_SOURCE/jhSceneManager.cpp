@@ -9,6 +9,7 @@
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
 #include "jhGridScript.h"
+#include "jhObject.h"
 
 namespace jh
 {
@@ -20,121 +21,80 @@ namespace jh
 		//mActiveScene->Initialize();
 
 		// 그리드 오브젝트
-		GameObject* gridOject = new GameObject();
-		Transform* gridTr = new Transform();
-		gridOject->AddComponent(gridTr);
-		MeshRenderer* gridMr = new MeshRenderer();
-		gridOject->AddComponent(gridMr);
-		gridOject->AddComponent(new GridScript());
-
+		GameObject* gridOject = object::Instantiate<GameObject>(eLayerType::Grid);
+		MeshRenderer* gridMr = gridOject->AddComponent<MeshRenderer>();
 		gridMr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		gridMr->SetMaterial(Resources::Find<Material>(L"GridMaterial"));
-
-		mActiveScene->AddGameObject(gridOject, eLayerType::Grid);
+		gridOject->AddComponent<GridScript>();
 
 		// 메인 카메라 오브젝트
-		GameObject* cameraObj = new GameObject();
-		Transform* cameraTr = new Transform();
-		cameraTr->SetPosition(Vector3(0.f, 0.f, 0.f));
-		cameraObj->AddComponent(cameraTr);
-		Camera* cameraComp = new Camera();
-		cameraObj->AddComponent(cameraComp);
+		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
+		Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		cameraComp->RegisterCameraInRenderer();
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		CameraScript* cameraScript = new CameraScript();
-		cameraObj->AddComponent(cameraScript);
-		mActiveScene->AddGameObject(cameraObj, eLayerType::Camera);
+		cameraObj->AddComponent<CameraScript>();
 
 		// UI 카메라 오브젝트
-		GameObject* UICameraObj = new GameObject();
-		Transform* UICameraTr = new Transform();
-		UICameraTr->SetPosition(Vector3(0.f, 0.f, 0.f));
-		UICameraObj->AddComponent(UICameraTr);
-		Camera* UICameraComp = new Camera();
-		UICameraComp->RegisterCameraInRenderer();
+		GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
+		Camera* UICameraComp = UICameraObj->AddComponent<Camera>();
 		UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
-		UICameraObj->AddComponent(UICameraComp);
-		mActiveScene->AddGameObject(UICameraObj, eLayerType::Camera);
 		UICameraComp->DisableLayerMasks();
 		UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
 		// SMILE RECT
-		GameObject* obj = new GameObject();
+		GameObject* obj = object::Instantiate<GameObject>(eLayerType::Player);
 		obj->SetName(L"SMILE");
-		Transform* tr = new Transform();
+		Transform* tr = obj->GetComponent<Transform>();
 		tr->SetPosition(Vector3(-3.f, 0.f, 10.f));
 		tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
 		tr->SetScale(Vector3(1.f, 1.f, 1.f));
-		obj->AddComponent(tr);
 
-		MeshRenderer* mr = new MeshRenderer();
-		obj->AddComponent(mr);
-
+		MeshRenderer* mr = obj->AddComponent<MeshRenderer>();
 		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
 		std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
-
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
-
-		PlayerScript* playerScript = new PlayerScript();
-		obj->AddComponent(playerScript);
-		mActiveScene->AddGameObject(obj, eLayerType::Player);
+		obj->AddComponent<PlayerScript>();
 
 		// SMILE RECT CHILD
-		GameObject* child = new GameObject();
+		GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);
 		child->SetName(L"SMILE CHILD");
-		Transform* childTr = new Transform();
+		Transform* childTr = child->GetComponent<Transform>();
 		childTr->SetPosition(Vector3(2.f, 0.f, 0.f));
 		childTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		child->AddComponent(childTr);
-		childTr->SetParent(tr);
+		//childTr->SetParent(tr);
 
-		MeshRenderer* childMr = new MeshRenderer();
-		child->AddComponent(childMr);
-
+		MeshRenderer* childMr = child->AddComponent<MeshRenderer>();
 		std::shared_ptr<Material> childMaterial = Resources::Find<Material>(L"RectMaterial");
 		childMr->SetMaterial(childMaterial);
 		childMr->SetMesh(mesh);
 
-		mActiveScene->AddGameObject(child, eLayerType::Player);
-
 		// Light Object
-		GameObject* spriteObj = new GameObject();
+		GameObject* spriteObj = object::Instantiate<GameObject>(eLayerType::Player);
 		spriteObj->SetName(L"LIGHT");
-		Transform* spriteTr = new Transform();
+		Transform* spriteTr = spriteObj->GetComponent<Transform>();
 		spriteTr->SetPosition(Vector3(5.f, 0.f, 10.f));
 		spriteTr->SetScale(Vector3(5.f, 5.f, 1.f));
-		spriteObj->AddComponent(spriteTr);
 
-		SpriteRenderer* sr = new SpriteRenderer();
-		spriteObj->AddComponent(sr);
-
+		SpriteRenderer* sr = spriteObj->AddComponent<SpriteRenderer>();
 		std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
-
-		//Vector2 vec2(1.f, 1.f);
-		//material->SetData(eGPUParam::Vector2, &vec2);
-
 		sr->SetMaterial(spriteMaterial);
 		sr->SetMesh(mesh);
 
-		mActiveScene->AddGameObject(spriteObj, eLayerType::Player);
-
 		// HPBar
-		GameObject* hpBar = new GameObject();
+		GameObject* hpBar = object::Instantiate<GameObject>(eLayerType::UI);
 		hpBar->SetName(L"HPBAR");
-		Transform* hpBarTr = new Transform();
+		Transform* hpBarTr = hpBar->GetComponent<Transform>();
 		hpBarTr->SetPosition(Vector3(-5.f, 3.f, 12.f));
 		hpBarTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		hpBar->AddComponent(hpBarTr);
 
-		SpriteRenderer* hpSr = new SpriteRenderer();
-		hpBar->AddComponent(hpSr);
-
+		SpriteRenderer* hpSr = hpBar->AddComponent<SpriteRenderer>();
 		std::shared_ptr<Mesh> hpMesh = Resources::Find<Mesh>(L"RectMesh");
 		std::shared_ptr<Material> hpSpriteMaterial = Resources::Find<Material>(L"UIMaterial");
-
 		hpSr->SetMesh(hpMesh);
 		hpSr->SetMaterial(hpSpriteMaterial);
-		mActiveScene->AddGameObject(hpBar, eLayerType::UI);
+
+		//hpBar->Pause();
 
 		mActiveScene->Initialize();
 	}

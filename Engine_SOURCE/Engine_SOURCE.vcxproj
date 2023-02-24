@@ -186,6 +186,7 @@
     <ClInclude Include="jhTexture.h" />
     <ClInclude Include="jhTransform.h" />
     <ClInclude Include="jhTime.h" />
+    <ClInclude Include="jhObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp" />

@@ -23,6 +23,25 @@ namespace jh
 		virtual void FixedUpdate();
 		virtual void Render();
 
+		template<typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			eComponentType order = comp->GetOrder();
+
+			if (order != eComponentType::Script)
+			{
+				mComponents[(UINT)order] = comp;
+				mComponents[(UINT)order]->SetOwner(this);
+			}
+			else
+			{
+				mScripts.push_back(comp);
+				comp->SetOwner(this);
+			}
+
+			return comp;
+		}
 		void AddComponent(Component* comp);
 
 		template <typename T>
@@ -39,6 +58,17 @@ namespace jh
 			
 			return nullptr;
 		}
+
+		bool IsDead()
+		{
+			if (mState == Dead)
+				return true;
+
+			return false;
+		}
+		void Pause() { mState = Paused; }
+		void Death() { mState = Dead; }
+		eState GetState() { return mState; }
 		
 	private:
 		eState mState;
