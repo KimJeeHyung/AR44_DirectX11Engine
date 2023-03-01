@@ -43,8 +43,38 @@ namespace jh
 		}
 	}
 
+	void Scene::Destroy()
+	{
+		for (Layer& layer : mLayers)
+		{
+			layer.Destroy();
+		}
+	}
+
+	void Scene::OnEnter()
+	{
+	}
+
+	void Scene::OnExit()
+	{
+	}
+
 	void Scene::AddGameObject(GameObject* gameObj, const eLayerType type)
 	{
 		mLayers[(UINT)type].AddGameObject(gameObj);
+		gameObj->SetLayerType(type);
+	}
+
+	std::vector<GameObject*> Scene::GetDontDestroyGameObjects()
+	{
+		std::vector<GameObject*> gameObjects;
+		for (Layer& layer : mLayers)
+		{
+			std::vector<GameObject*> dontDestroyObjs = layer.GetDontDestroyGameObjects();
+
+			gameObjects.insert(gameObjects.end(), dontDestroyObjs.begin(), dontDestroyObjs.end());
+		}
+
+		return gameObjects;
 	}
 }

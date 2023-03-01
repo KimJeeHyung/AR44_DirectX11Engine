@@ -14,7 +14,6 @@ namespace jh
 	FadeScript::FadeScript() :
 		Script(),
 		mCamera(nullptr),
-		mAlpha(0.f),
 		mIsFadeOut(false),
 		mDeltaTime(0.f),
 		mFadeTime(2.f)

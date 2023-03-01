@@ -68,4 +68,13 @@ namespace jh::object
 	{
 		gameObject->Death();
 	}
+
+	// 씬 이동 시 이 오브젝트는 삭제하지 않는다.
+	void DontDestroyOnLoad(GameObject* gameObject)
+	{
+		if (gameObject == nullptr)
+			return;
+
+		gameObject->DontDestroy(true);
+	}
 }

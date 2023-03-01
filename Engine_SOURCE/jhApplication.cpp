@@ -15,7 +15,6 @@ namespace jh
 
 	Application::~Application()
 	{
-		SceneManager::Release();
 	}
 
 	void Application::Initialize()
@@ -53,11 +52,16 @@ namespace jh
 		graphicDevice->Present();
 	}
 
+	void Application::Destroy()
+	{
+	}
+
 	void Application::Run()
 	{
 		Update();
 		FixedUpdate();
 		Render();
+		Destroy();
 	}
 
 	void Application::Release()

@@ -20,7 +20,6 @@ namespace jh
 
 	private:
 		Camera* mCamera;
-		float mAlpha;
 		bool mIsFadeOut;
 		float mDeltaTime;
 		float mFadeTime;

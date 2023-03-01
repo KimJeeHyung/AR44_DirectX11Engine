@@ -176,6 +176,7 @@
     <ClInclude Include="jhMesh.h" />
     <ClInclude Include="jhMeshRenderer.h" />
     <ClInclude Include="jhPlayerScript.h" />
+    <ClInclude Include="jhPlayScene.h" />
     <ClInclude Include="jhRenderer.h" />
     <ClInclude Include="jhResource.h" />
     <ClInclude Include="jhResources.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="jhShader.h" />
     <ClInclude Include="jhSpriteRenderer.h" />
     <ClInclude Include="jhTexture.h" />
+    <ClInclude Include="jhTitleScene.h" />
     <ClInclude Include="jhTransform.h" />
     <ClInclude Include="jhTime.h" />
     <ClInclude Include="jhObject.h" />
@@ -208,6 +210,7 @@
     <ClCompile Include="jhMesh.cpp" />
     <ClCompile Include="jhMeshRenderer.cpp" />
     <ClCompile Include="jhPlayerScript.cpp" />
+    <ClCompile Include="jhPlayScene.cpp" />
     <ClCompile Include="jhRenderer.cpp" />
     <ClCompile Include="jhResource.cpp" />
     <ClCompile Include="jhResources.cpp" />
@@ -217,6 +220,7 @@
     <ClCompile Include="jhShader.cpp" />
     <ClCompile Include="jhSpriteRenderer.cpp" />
     <ClCompile Include="jhTexture.cpp" />
+    <ClCompile Include="jhTitleScene.cpp" />
     <ClCompile Include="jhTransform.cpp" />
     <ClCompile Include="jhTime.cpp" />
   </ItemGroup>

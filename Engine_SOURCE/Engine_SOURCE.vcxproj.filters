@@ -64,6 +64,15 @@
     <Filter Include="Component\Camera">
       <UniqueIdentifier>{487076d5-5ead-48c5-bb0b-c7ba81d4d6e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Base">
+      <UniqueIdentifier>{a6f639e8-4384-4447-89fd-34c676149363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Layer">
+      <UniqueIdentifier>{08fffe59-307b-4312-b697-e05ef8de0e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Manager">
+      <UniqueIdentifier>{7cbc5774-c5cd-40ab-aeb3-c944bbdbb594}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -102,15 +111,6 @@
     <ClCompile Include="jhComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="jhSceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="jhScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="jhLayer.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="jhGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -148,6 +148,21 @@
     </ClCompile>
     <ClCompile Include="jhFadeScript.cpp">
       <Filter>Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="jhSceneManager.cpp">
+      <Filter>Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="jhScene.cpp">
+      <Filter>Scene\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="jhLayer.cpp">
+      <Filter>Scene\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPlayScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTitleScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,15 +214,6 @@
     <ClInclude Include="jhComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="jhSceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="jhScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="jhLayer.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="jhGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -248,6 +254,21 @@
     </ClInclude>
     <ClInclude Include="jhFadeScript.h">
       <Filter>Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="jhSceneManager.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="jhScene.h">
+      <Filter>Scene\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="jhLayer.h">
+      <Filter>Scene\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPlayScene.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

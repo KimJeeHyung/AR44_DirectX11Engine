@@ -12,12 +12,10 @@ namespace jh
 		~Application();
 
 		virtual void Initialize();
-		// 게임 로직, 캐릭터 이동 등등
-		// CPU Update
-		virtual void Update();
-		// GPU Update
-		virtual void FixedUpdate();
+		virtual void Update();	// 게임 로직, 캐릭터 이동 등등(CPU Update)
+		virtual void FixedUpdate();	// GPU Update
 		virtual void Render();
+		virtual void Destroy();
 
 		// Running main engine loop
 		void Run();
