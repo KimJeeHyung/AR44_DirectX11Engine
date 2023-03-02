@@ -13,6 +13,81 @@ namespace jh::renderer
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
 	std::vector<Camera*> cameras[(UINT)eSceneType::End];
+	std::vector<DebugMesh> debugMeshes;
+
+	void LoadMesh()
+	{
+		// 사각형
+		vertexes[0].pos = Vector4(-0.5f, 0.5f, 0.5f, 1.f);
+		vertexes[0].color = Vector4(0.f, 1.f, 0.f, 1.f);
+		vertexes[0].uv = Vector2(0.f, 0.f);
+
+		vertexes[1].pos = Vector4(0.5f, 0.5f, 0.5f, 1.f);
+		vertexes[1].color = Vector4(1.f, 1.f, 1.f, 1.f);
+		vertexes[1].uv = Vector2(1.f, 0.f);
+
+		vertexes[2].pos = Vector4(0.5f, -0.5f, 0.5f, 1.f);
+		vertexes[2].color = Vector4(1.f, 0.f, 0.f, 1.f);
+		vertexes[2].uv = Vector2(1.f, 1.f);
+
+		vertexes[3].pos = Vector4(-0.5f, -0.5f, 0.5f, 1.f);
+		vertexes[3].color = Vector4(0.f, 0.f, 1.f, 1.f);
+		vertexes[3].uv = Vector2(0.f, 1.f);
+
+		// Create Mesh
+		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
+		Resources::Insert<Mesh>(L"RectMesh", mesh);
+		mesh->CreateVertexBuffer(vertexes, 4);
+
+		// 인덱스 버퍼
+		std::vector<UINT> indexes;
+		indexes.push_back(0);
+		indexes.push_back(1);
+		indexes.push_back(2);
+
+		indexes.push_back(0);
+		indexes.push_back(2);
+		indexes.push_back(3);
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		
+		// 원
+		std::vector<Vertex> circleVertexes;
+		Vertex center = {};
+		center.pos = Vector4(0.f, 0.f, 0.f, 1.f);
+		center.color = Vector4(0.f, 1.f, 0.f, 1.f);
+		center.uv = Vector2::Zero;
+
+		circleVertexes.push_back(center);
+
+		int iSlice = 40;
+		float fRadius = 0.5f;
+		float fTheta = XM_2PI / (float)iSlice;
+
+		for (size_t i = 0; i < iSlice; i++)
+		{
+			Vertex vtx = {};
+			vtx.pos = Vector4(fRadius * cosf(fTheta * (float)i),
+				fRadius * sinf(fTheta * (float)i), 0.f, 1.f);
+			vtx.color = center.color;
+
+			circleVertexes.push_back(vtx);
+		}
+
+		// 인덱스 버퍼
+		indexes.clear();
+
+		for (size_t i = 0; i < iSlice - 2; i++)
+		{
+			indexes.push_back(i + 1);
+		}
+		indexes.push_back(1);
+
+		// Create Mesh
+		std::shared_ptr<Mesh> circleMesh = std::make_shared<Mesh>();
+		Resources::Insert<Mesh>(L"CircleMesh", circleMesh);
+		circleMesh->CreateVertexBuffer(circleVertexes.data(), circleVertexes.size());
+		circleMesh->CreateIndexBuffer(indexes.data(), indexes.size());
+	}
 
 	void SetUpState()
 	{
@@ -60,6 +135,10 @@ namespace jh::renderer
 		std::shared_ptr<Shader> fadeShader = Resources::Find<Shader>(L"FadeShader");
 		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, fadeShader->GetVSBlobBufferPointer(),
 			fadeShader->GetVSBlobBufferSize(), fadeShader->GetInputLayoutAddressOf());
+
+		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
+		GetDevice()->CreateInputLayout(arrLayoutDesc, 3, debugShader->GetVSBlobBufferPointer(),
+			debugShader->GetVSBlobBufferSize(), debugShader->GetInputLayoutAddressOf());
 #pragma endregion
 
 #pragma region SamplerState
@@ -185,23 +264,6 @@ namespace jh::renderer
 
 	void LoadBuffer()
 	{
-		// Create Mesh
-		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
-		Resources::Insert<Mesh>(L"RectMesh", mesh);
-
-		mesh->CreateVertexBuffer(vertexes, 4);
-
-		// 인덱스 버퍼
-		std::vector<UINT> indexes;
-		indexes.push_back(0);
-		indexes.push_back(1);
-		indexes.push_back(2);
-
-		indexes.push_back(0);
-		indexes.push_back(2);
-		indexes.push_back(3);
-		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
-
 		// 상수 버퍼
 		constantBuffers[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
 		constantBuffers[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
@@ -258,6 +320,17 @@ namespace jh::renderer
 		fadeShader->SetBSState(eBSType::AlphaBlend);
 
 		Resources::Insert<Shader>(L"FadeShader", fadeShader);
+
+		// Debug Shader
+		std::shared_ptr<Shader> debugShader = std::make_shared<Shader>();
+		debugShader->Create(eShaderStage::VS, L"DebugVS.hlsl", "main");
+		debugShader->Create(eShaderStage::PS, L"DebugPS.hlsl", "main");
+		debugShader->SetRSState(eRSType::SolidNone);
+		debugShader->SetDSState(eDSType::NoWrite);
+		debugShader->SetBSState(eBSType::AlphaBlend);
+		debugShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+
+		Resources::Insert<Shader>(L"DebugShader", debugShader);
 	}
 
 	void LoadTexture()
@@ -307,27 +380,17 @@ namespace jh::renderer
 		fadeMaterial->SetRenderingMode(eRenderingMode::Transparent);
 		fadeMaterial->SetShader(fadeShader);
 		Resources::Insert<Material>(L"FadeMaterial", fadeMaterial);
+
+		// Debug
+		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
+		std::shared_ptr<Material> debugMaterial = std::make_shared<Material>();
+		debugMaterial->SetShader(debugShader);
+		Resources::Insert<Material>(L"DebugMaterial", debugMaterial);
 	}
 
 	void Initialize()
 	{
-		// 사각형
-		vertexes[0].pos = Vector4(-0.5f, 0.5f, 0.5f, 1.f);
-		vertexes[0].color = Vector4(0.f, 1.f, 0.f, 1.f);
-		vertexes[0].uv = Vector2(0.f, 0.f);
-
-		vertexes[1].pos = Vector4(0.5f, 0.5f, 0.5f, 1.f);
-		vertexes[1].color = Vector4(1.f, 1.f, 1.f, 1.f);
-		vertexes[1].uv = Vector2(1.f, 0.f);
-
-		vertexes[2].pos = Vector4(0.5f, -0.5f, 0.5f, 1.f);
-		vertexes[2].color = Vector4(1.f, 0.f, 0.f, 1.f);
-		vertexes[2].uv = Vector2(1.f, 1.f);
-
-		vertexes[3].pos = Vector4(-0.5f, -0.5f, 0.5f, 1.f);
-		vertexes[3].color = Vector4(0.f, 0.f, 1.f, 1.f);
-		vertexes[3].uv = Vector2(0.f, 1.f);
-
+		LoadMesh();
 		LoadShader();
 		SetUpState();
 		LoadBuffer();

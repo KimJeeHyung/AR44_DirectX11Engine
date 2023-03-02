@@ -16,11 +16,11 @@ namespace jh
 		void FixedUpdate();
 		void Render();
 		void Release();
-		void DebugRender();
+		void DebugRender(graphics::DebugMesh& mesh);
 
 	private:
 		std::vector<Widget> mWidgets;
 		std::vector<EditorObject> mEditorObjects;
-		std::vector<DebugObject> mDebugObjects;
+		std::vector<DebugObject*> mDebugObjects;
 	};
 }
