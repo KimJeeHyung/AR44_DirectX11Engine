@@ -2,7 +2,8 @@
 
 namespace jh
 {
-	Scene::Scene()
+	Scene::Scene(eSceneType type) :
+		mType(type)
 	{
 		mLayers.resize((UINT)eLayerType::End);
 	}

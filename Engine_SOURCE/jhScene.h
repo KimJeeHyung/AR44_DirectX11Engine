@@ -9,7 +9,7 @@ namespace jh
 	class Scene : public Entity
 	{
 	public:
-		Scene();
+		Scene(eSceneType type);
 		virtual ~Scene();
 
 		virtual void Initialize();
@@ -21,11 +21,13 @@ namespace jh
 		virtual void OnEnter();
 		virtual void OnExit();
 
+		eSceneType GetSceneType() { return mType; }
 		void AddGameObject(GameObject* gameObj, const eLayerType type);
 		Layer& GetLayer(eLayerType type) { return mLayers[(UINT)type]; }
 		std::vector<GameObject*> GetDontDestroyGameObjects();
 
 	private:
 		std::vector<Layer> mLayers;
+		eSceneType mType;
 	};
 }

@@ -48,8 +48,6 @@ namespace jh
 
 		//SceneManager::Render();
 		renderer::Render();
-
-		graphicDevice->Present();
 	}
 
 	void Application::Destroy()
@@ -62,6 +60,11 @@ namespace jh
 		FixedUpdate();
 		Render();
 		Destroy();
+	}
+
+	void Application::Present()
+	{
+		graphicDevice->Present();
 	}
 
 	void Application::Release()

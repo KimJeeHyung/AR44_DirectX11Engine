@@ -11,10 +11,12 @@
 #include "jhGridScript.h"
 #include "jhObject.h"
 #include "jhFadeScript.h"
+#include "jhInput.h"
 
 namespace jh
 {
-	TitleScene::TitleScene()
+	TitleScene::TitleScene() :
+		Scene(eSceneType::Title)
 	{
 	}
 
@@ -29,7 +31,7 @@ namespace jh
 		// 메인 카메라 오브젝트
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		cameraComp->RegisterCameraInRenderer();
+		//cameraComp->RegisterCameraInRenderer();
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
 		cameraObj->AddComponent<CameraScript>();
 
@@ -62,6 +64,7 @@ namespace jh
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 		obj->AddComponent<PlayerScript>();
+		object::DontDestroyOnLoad(obj);
 
 		// SMILE RECT CHILD
 		GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);
@@ -121,6 +124,11 @@ namespace jh
 
 	void TitleScene::Update()
 	{
+		if (Input::GetKeyDown(eKeyCode::N))
+		{
+			SceneManager::LoadScene(eSceneType::Play);
+		}
+
 		Scene::Update();
 	}
 

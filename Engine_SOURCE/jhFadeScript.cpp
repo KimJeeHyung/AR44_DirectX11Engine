@@ -6,6 +6,7 @@
 #include "jhRenderer.h"
 #include "jhTime.h"
 #include "jhInput.h"
+#include "jhSceneManager.h"
 
 extern jh::Application application;
 
@@ -26,7 +27,8 @@ namespace jh
 
 	void FadeScript::Initialize()
 	{
-		mCamera = renderer::cameras[0];
+		eSceneType type = SceneManager::GetActiveScene()->GetSceneType();
+		mCamera = renderer::cameras[(UINT)type][0];
 	}
 
 	void FadeScript::Update()

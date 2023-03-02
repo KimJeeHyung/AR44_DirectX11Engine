@@ -4,6 +4,7 @@
 #include "jhApplication.h"
 #include "jhConstantBuffer.h"
 #include "jhRenderer.h"
+#include "jhSceneManager.h"
 
 extern jh::Application application;
 
@@ -21,7 +22,8 @@ namespace jh
 
 	void GridScript::Initialize()
 	{
-		mCamera = renderer::cameras[0];
+		eSceneType type = SceneManager::GetActiveScene()->GetSceneType();
+		mCamera = renderer::cameras[(UINT)type][0];
 	}
 
 	void GridScript::Update()

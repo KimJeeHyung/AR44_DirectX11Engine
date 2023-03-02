@@ -60,6 +60,25 @@ namespace jh
 			return mMousPosition;
 		}
 
+		// GetKey()		키를 누르는 시간만큼 true를 반환
+		// GetKeyDown()	키를 눌렀을 때 딱 한 번 true를 반환
+		// GetKeyUp()	키를 누르다 뗐을 때 딱 한 번 true를 반환
+
+		static __forceinline bool GetKey(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].eState == eKeyState::PRESSED;
+		}
+
+		static __forceinline bool GetKeyDown(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].eState == eKeyState::DOWN;
+		}
+
+		static __forceinline bool GetKeyUp(eKeyCode keyCode)
+		{
+			return mKeys[static_cast<UINT>(keyCode)].eState == eKeyState::UP;
+		}
+
 	private:
 		Input() = delete;
 		~Input() = delete;

@@ -73,6 +73,21 @@
     <Filter Include="Scene\Manager">
       <UniqueIdentifier>{7cbc5774-c5cd-40ab-aeb3-c944bbdbb594}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{53adb73c-332b-40bf-890a-070acd2d47f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider\2D">
+      <UniqueIdentifier>{265747f1-e186-43bd-a1cf-d328fd7aca97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider\3D">
+      <UniqueIdentifier>{fc2616f1-292f-4936-819e-0852f3758238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider\Manager">
+      <UniqueIdentifier>{5416b047-9533-4969-9c41-c932cacaff19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Prefab">
+      <UniqueIdentifier>{c546c3d9-2cbb-4c26-afa4-e4589ba1ac16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -142,7 +157,6 @@
     <ClCompile Include="jhSpriteRenderer.cpp">
       <Filter>Component\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="jhBaseRenderer.cpp" />
     <ClCompile Include="jhGridScript.cpp">
       <Filter>Component\Script</Filter>
     </ClCompile>
@@ -163,6 +177,24 @@
     </ClCompile>
     <ClCompile Include="jhTitleScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhBaseRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCollisionManager.cpp">
+      <Filter>Component\Collider\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCollider2D.cpp">
+      <Filter>Component\Collider\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCollider3D.cpp">
+      <Filter>Component\Collider\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPrefab.cpp">
+      <Filter>Resource\Prefab</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,7 +277,6 @@
     <ClInclude Include="jhSpriteRenderer.h">
       <Filter>Component\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="jhBaseRenderer.h" />
     <ClInclude Include="jhGridScript.h">
       <Filter>Component\Script</Filter>
     </ClInclude>
@@ -269,6 +300,24 @@
     </ClInclude>
     <ClInclude Include="jhPlayScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhBaseRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCollisionManager.h">
+      <Filter>Component\Collider\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCollider2D.h">
+      <Filter>Component\Collider\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCollider3D.h">
+      <Filter>Component\Collider\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPrefab.h">
+      <Filter>Resource\Prefab</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
