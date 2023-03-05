@@ -13,8 +13,10 @@ namespace jh
 			Orthographic,
 		};
 
-		__forceinline static Matrix& GetViewMatrix() { return View; }
-		__forceinline static Matrix& GetProjectionMatrix() { return Projection; }
+		__forceinline static Matrix& GetGPUViewMatrix() { return View; }
+		__forceinline static Matrix& GetGPUProjectionMatrix() { return Projection; }
+		__forceinline static void SetGPUViewMatrix(Matrix view) { View = view; }
+		__forceinline static void SetGPUProjectionMatrix(Matrix projection) { Projection = projection; }
 
 		Camera();
 		virtual ~Camera();
@@ -35,6 +37,8 @@ namespace jh
 		void SetProjectionType(eProjectionType type) { mProjectionType = type; }
 
 		float GetScale() { return mScale; }
+		Matrix& GetViewMatrix() { return mView; }
+		Matrix& GetProjectionMatrix() { return mProjection; }
 
 	private:
 		void sortGameObjects();

@@ -63,7 +63,9 @@ namespace jh::renderer
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern Camera* mainCamera;
 	extern std::vector<Camera*> cameras[];
+	extern std::vector<DebugMesh> debugMeshes;
 
 	void Initialize();
 	void Render();

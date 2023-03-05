@@ -12,6 +12,7 @@ namespace jh::renderer
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDSType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
+	Camera* mainCamera = nullptr;
 	std::vector<Camera*> cameras[(UINT)eSceneType::End];
 	std::vector<DebugMesh> debugMeshes;
 
@@ -48,6 +49,7 @@ namespace jh::renderer
 		indexes.push_back(0);
 		indexes.push_back(2);
 		indexes.push_back(3);
+		indexes.push_back(0);
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 		
 		// ¿ø
@@ -59,7 +61,7 @@ namespace jh::renderer
 
 		circleVertexes.push_back(center);
 
-		int iSlice = 40;
+		int iSlice = 80;
 		float fRadius = 0.5f;
 		float fTheta = XM_2PI / (float)iSlice;
 
@@ -67,7 +69,7 @@ namespace jh::renderer
 		{
 			Vertex vtx = {};
 			vtx.pos = Vector4(fRadius * cosf(fTheta * (float)i),
-				fRadius * sinf(fTheta * (float)i), 0.f, 1.f);
+				fRadius * sinf(fTheta * (float)i), 0.5f, 1.f);
 			vtx.color = center.color;
 
 			circleVertexes.push_back(vtx);
@@ -78,7 +80,7 @@ namespace jh::renderer
 
 		for (size_t i = 0; i < iSlice - 2; i++)
 		{
-			indexes.push_back(i + 1);
+			indexes.push_back((UINT)i + 1);
 		}
 		indexes.push_back(1);
 
@@ -384,6 +386,7 @@ namespace jh::renderer
 		// Debug
 		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
 		std::shared_ptr<Material> debugMaterial = std::make_shared<Material>();
+		debugMaterial->SetRenderingMode(eRenderingMode::Transparent);
 		debugMaterial->SetShader(debugShader);
 		Resources::Insert<Material>(L"DebugMaterial", debugMaterial);
 	}

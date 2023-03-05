@@ -1,5 +1,6 @@
 #include "jhCollider2D.h"
 #include "jhGameObject.h"
+#include "jhRenderer.h"
 
 namespace jh
 {
@@ -43,9 +44,18 @@ namespace jh
 		rotationMatrix *= Matrix::CreateRotationZ(rotation.z);
 
 		Matrix positionMatrix;
-		positionMatrix.Translation(Vector3(colliderPos.x, colliderPos.y, 1.f));
+		positionMatrix.Translation(Vector3(colliderPos.x, colliderPos.y, colliderPos.z));
 
 		Matrix worldMatrix = scaleMatrix * rotationMatrix * positionMatrix;
+
+		DebugMesh meshAttribute = {};
+		meshAttribute.position = Vector3(colliderPos.x, colliderPos.y, colliderPos.z);
+		meshAttribute.radius = 1.f;
+		meshAttribute.rotation = rotation;
+		meshAttribute.scale = scale;
+		meshAttribute.type = mType;
+
+		renderer::debugMeshes.push_back(meshAttribute);
 	}
 
 	void Collider2D::Render()

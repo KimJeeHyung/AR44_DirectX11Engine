@@ -354,7 +354,7 @@ namespace jh::graphics
     void GraphicDevice_DX11::Clear()
     {
         // 화면 지워주기
-        FLOAT backgroundColor[4] = { 0.f, 0.5f, 0.f, 1.f };
+        FLOAT backgroundColor[4] = { 0.5f, 0.5f, 0.5f, 1.f };
         mContext->ClearRenderTargetView(mRenderTargetView.Get(), backgroundColor);
         mContext->ClearDepthStencilView(mDepthStencilView.Get(),
             D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);

@@ -1,7 +1,23 @@
 #include "jhLayer.h"
+#include "jhRenderer.h"
+#include "jhTransform.h"
 
 namespace jh
 {
+	// Z°ª Á¤·Ä
+	/*static bool CompareGameObjectByZAxis(GameObject* a, GameObject* b)
+	{
+		Transform* aTr = a->GetComponent<Transform>();
+		Transform* bTr = b->GetComponent<Transform>();
+
+		if (aTr->GetPosition().z <= bTr->GetPosition().z)
+		{
+			return true;
+		}
+
+		return false;
+	}*/
+
 	Layer::Layer()
 	{
 	}
@@ -53,6 +69,8 @@ namespace jh
 
 			obj->FixedUpdate();
 		}
+
+		// Sort Z Axis
 	}
 
 	void Layer::Render()

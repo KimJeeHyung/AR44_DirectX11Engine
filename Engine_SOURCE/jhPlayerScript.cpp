@@ -29,6 +29,32 @@ namespace jh
 			rot.z += 10.f * Time::DeltaTime();
 			tr->SetRotation(rot);
 		}
+
+		if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.x += 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+		if (Input::GetKey(eKeyCode::LEFT))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.x -= 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+
+		if (Input::GetKey(eKeyCode::DOWN))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.z += 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+		if (Input::GetKey(eKeyCode::UP))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.z -= 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
 		
 		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 

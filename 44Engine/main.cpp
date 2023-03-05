@@ -81,6 +81,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     jh::SceneManager::Release();
     application.Release();
+    editor.Release();
     return (int)msg.wParam;
 }
 
