@@ -13,6 +13,8 @@
 #include "jhFadeScript.h"
 #include "jhInput.h"
 #include "jhCollider2D.h"
+#include "jhPlayer.h"
+#include "jhMonster.h"
 
 namespace jh
 {
@@ -43,14 +45,16 @@ namespace jh
 		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
 		// SMILE RECT
-		GameObject* obj = object::Instantiate<GameObject>(eLayerType::Player);
+		Player* obj = object::Instantiate<Player>(eLayerType::Player);
 		obj->SetName(L"SMILE");
 		Transform* tr = obj->GetComponent<Transform>();
 		tr->SetPosition(Vector3(0.f, 0.f, 5.f));
 		//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
 		//tr->SetScale(Vector3(1.f, 1.f, 1.f));
 		Collider2D* collider = obj->AddComponent<Collider2D>();
-		collider->SetType(eColliderType::Circle);
+		collider->SetType(eColliderType::Rect);
+		//collider->SetCenter(Vector2(0.5f, 0.5f));
+		//collider->SetSize(Vector2(2.f, 2.f));
 
 		MeshRenderer* mr = obj->AddComponent<MeshRenderer>();
 		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");

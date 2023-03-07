@@ -88,6 +88,18 @@
     <Filter Include="Resource\Prefab">
       <UniqueIdentifier>{c546c3d9-2cbb-4c26-afa4-e4589ba1ac16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Script\Base">
+      <UniqueIdentifier>{36040b70-2b45-431e-8e2e-93d07aff18e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Script\Common">
+      <UniqueIdentifier>{5e32880a-1c44-41c2-96b2-4e76ebcd6ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Base">
+      <UniqueIdentifier>{400989d7-38bf-4713-b890-dfdb7f724336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Contents">
+      <UniqueIdentifier>{391d3bf0-635b-4a1c-b9b1-1e97bbe942e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -126,9 +138,6 @@
     <ClCompile Include="jhComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="jhGameObject.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhTexture.cpp">
       <Filter>Resource\Texture</Filter>
@@ -142,26 +151,14 @@
     <ClCompile Include="jhTransform.cpp">
       <Filter>Component\Transform</Filter>
     </ClCompile>
-    <ClCompile Include="jhScript.cpp">
-      <Filter>Component\Script</Filter>
-    </ClCompile>
     <ClCompile Include="jhPlayerScript.cpp">
       <Filter>Component\Script\Contents</Filter>
     </ClCompile>
     <ClCompile Include="jhCamera.cpp">
       <Filter>Component\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="jhCameraScript.cpp">
-      <Filter>Component\Script</Filter>
-    </ClCompile>
     <ClCompile Include="jhSpriteRenderer.cpp">
       <Filter>Component\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="jhGridScript.cpp">
-      <Filter>Component\Script</Filter>
-    </ClCompile>
-    <ClCompile Include="jhFadeScript.cpp">
-      <Filter>Component\Script</Filter>
     </ClCompile>
     <ClCompile Include="jhSceneManager.cpp">
       <Filter>Scene\Manager</Filter>
@@ -195,6 +192,27 @@
     </ClCompile>
     <ClCompile Include="jhPrefab.cpp">
       <Filter>Resource\Prefab</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCameraScript.cpp">
+      <Filter>Component\Script\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="jhFadeScript.cpp">
+      <Filter>Component\Script\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="jhGridScript.cpp">
+      <Filter>Component\Script\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="jhScript.cpp">
+      <Filter>Component\Script\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="jhGameObject.cpp">
+      <Filter>GameObject\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPlayer.cpp">
+      <Filter>GameObject\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhMonster.cpp">
+      <Filter>GameObject\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +264,6 @@
     <ClInclude Include="jhComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="jhGameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhTexture.h">
       <Filter>Resource\Texture</Filter>
@@ -262,29 +277,17 @@
     <ClInclude Include="jhTransform.h">
       <Filter>Component\Transform</Filter>
     </ClInclude>
-    <ClInclude Include="jhScript.h">
-      <Filter>Component\Script</Filter>
-    </ClInclude>
     <ClInclude Include="jhPlayerScript.h">
       <Filter>Component\Script\Contents</Filter>
     </ClInclude>
     <ClInclude Include="jhCamera.h">
       <Filter>Component\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="jhCameraScript.h">
-      <Filter>Component\Script</Filter>
-    </ClInclude>
     <ClInclude Include="jhSpriteRenderer.h">
       <Filter>Component\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="jhGridScript.h">
-      <Filter>Component\Script</Filter>
-    </ClInclude>
     <ClInclude Include="jhObject.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="jhFadeScript.h">
-      <Filter>Component\Script</Filter>
     </ClInclude>
     <ClInclude Include="jhSceneManager.h">
       <Filter>Scene\Manager</Filter>
@@ -318,6 +321,27 @@
     </ClInclude>
     <ClInclude Include="jhPrefab.h">
       <Filter>Resource\Prefab</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCameraScript.h">
+      <Filter>Component\Script\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="jhFadeScript.h">
+      <Filter>Component\Script\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="jhGridScript.h">
+      <Filter>Component\Script\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="jhScript.h">
+      <Filter>Component\Script\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="jhGameObject.h">
+      <Filter>GameObject\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPlayer.h">
+      <Filter>GameObject\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMonster.h">
+      <Filter>GameObject\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

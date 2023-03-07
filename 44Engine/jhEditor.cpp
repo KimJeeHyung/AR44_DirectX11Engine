@@ -14,7 +14,7 @@ namespace jh
 		// 충돌체의 종류 갯수만큼만 있으면 된다.
 		mDebugObjects.resize((UINT)eColliderType::End);
 
-		std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"DebugRectMesh");
 		std::shared_ptr<Material> material = Resources::Find<Material>(L"DebugMaterial");
 
 		mDebugObjects[(UINT)eColliderType::Rect] = new DebugObject();
