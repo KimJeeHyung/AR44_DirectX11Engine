@@ -116,8 +116,8 @@ namespace jh
 
 		tr->FixedUpdate();
 
-		Camera::SetGPUViewMatrix(renderer::mainCamera->GetGPUViewMatrix());
-		Camera::SetGPUProjectionMatrix(renderer::mainCamera->GetGPUProjectionMatrix());
+		Camera::SetGPUViewMatrix(renderer::mainCamera->GetViewMatrix());
+		Camera::SetGPUProjectionMatrix(renderer::mainCamera->GetProjectionMatrix());
 
 		debugObj->Render();
 	}

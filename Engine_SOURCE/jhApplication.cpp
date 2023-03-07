@@ -4,6 +4,7 @@
 #include "jhInput.h"
 #include "jhSceneManager.h"
 #include "jhResources.h"
+#include "jhCollisionManager.h"
 
 namespace jh
 {
@@ -21,7 +22,7 @@ namespace jh
 	{
 		Time::Initialize();
 		Input::Initialize();
-
+		CollisionManager::Initialize();
 		renderer::Initialize();
 		SceneManager::Initialize();
 	}
@@ -30,12 +31,13 @@ namespace jh
 	{
 		Time::Update();
 		Input::Update();
-
+		CollisionManager::Update();
 		SceneManager::Update();
 	}
 
 	void Application::FixedUpdate()
 	{
+		CollisionManager::FixedUpdate();
 		SceneManager::FixedUpdate();
 	}
 
@@ -48,6 +50,7 @@ namespace jh
 
 		//SceneManager::Render();
 		renderer::Render();
+		CollisionManager::Render();
 	}
 
 	void Application::Destroy()

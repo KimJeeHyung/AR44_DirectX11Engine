@@ -15,6 +15,7 @@
 #include "jhCollider2D.h"
 #include "jhPlayer.h"
 #include "jhMonster.h"
+#include "jhCollisionManager.h"
 
 namespace jh
 {
@@ -33,7 +34,7 @@ namespace jh
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();
 		//cameraComp->RegisterCameraInRenderer();
-		cameraComp->TurnLayerMask(eLayerType::UI, false);
+		//cameraComp->TurnLayerMask(eLayerType::UI, false);
 		cameraObj->AddComponent<CameraScript>();
 		mainCamera = cameraComp;
 
@@ -44,25 +45,48 @@ namespace jh
 		//UICameraComp->DisableLayerMasks();
 		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
-		// SMILE RECT
-		Player* obj = object::Instantiate<Player>(eLayerType::Player);
-		obj->SetName(L"SMILE");
-		Transform* tr = obj->GetComponent<Transform>();
-		tr->SetPosition(Vector3(0.f, 0.f, 5.f));
-		//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-		//tr->SetScale(Vector3(1.f, 1.f, 1.f));
-		Collider2D* collider = obj->AddComponent<Collider2D>();
-		collider->SetType(eColliderType::Rect);
-		//collider->SetCenter(Vector2(0.5f, 0.5f));
-		//collider->SetSize(Vector2(2.f, 2.f));
+		// SMILE RECT(Player)
+		{
+			Player* obj = object::Instantiate<Player>(eLayerType::Player);
+			obj->SetName(L"pSMILE");
+			Transform* tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(0.f, 0.f, 5.f));
+			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
+			//tr->SetScale(Vector3(1.f, 1.f, 1.f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			//collider->SetCenter(Vector2(0.5f, 0.5f));
+			//collider->SetSize(Vector2(2.f, 2.f));
 
-		MeshRenderer* mr = obj->AddComponent<MeshRenderer>();
-		std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-		std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
-		mr->SetMaterial(material);
-		mr->SetMesh(mesh);
-		obj->AddComponent<PlayerScript>();
-		object::DontDestroyOnLoad(obj);
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
+			mr->SetMaterial(material);
+			mr->SetMesh(mesh);
+			obj->AddComponent<PlayerScript>();
+			object::DontDestroyOnLoad(obj);
+		}
+
+		// SMILE RECT(Monster)
+		{
+			Player* obj = object::Instantiate<Player>(eLayerType::Monster);
+			obj->SetName(L"mSMILE");
+			Transform* tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.f, 0.f, 5.f));
+			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
+			//tr->SetScale(Vector3(1.f, 1.f, 1.f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			//collider->SetCenter(Vector2(0.5f, 0.5f));
+			//collider->SetSize(Vector2(2.f, 2.f));
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
+			mr->SetMaterial(material);
+			mr->SetMesh(mesh);
+			object::DontDestroyOnLoad(obj);
+		}
 
 		// SMILE RECT CHILD
 		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);
@@ -118,6 +142,9 @@ namespace jh
 		fadeSr->SetMaterial(fadeMaterial);
 		FadeScript* fadeScript = fadeObj->AddComponent<FadeScript>();
 		fadeScript->SetCamera(cameraComp);
+
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
+		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::UI, false);
 
 		Scene::Initialize();
 	}
