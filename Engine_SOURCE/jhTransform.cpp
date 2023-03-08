@@ -72,8 +72,8 @@ namespace jh
 	{
 		renderer::TransformCB trCB = {};
 		trCB.world = mWorld;
-		trCB.view = Camera::GetGPUViewMatrix();
-		trCB.projection = Camera::GetGPUProjectionMatrix();
+		trCB.view = Camera::GetGpuViewMatrix();
+		trCB.projection = Camera::GetGpuProjectionMatrix();
 		
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Transform];
 		cb->Bind(&trCB);

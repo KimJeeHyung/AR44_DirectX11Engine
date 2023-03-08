@@ -13,10 +13,10 @@ namespace jh
 			Orthographic,
 		};
 
-		__forceinline static Matrix& GetGPUViewMatrix() { return View; }
-		__forceinline static Matrix& GetGPUProjectionMatrix() { return Projection; }
-		__forceinline static void SetGPUViewMatrix(Matrix view) { View = view; }
-		__forceinline static void SetGPUProjectionMatrix(Matrix projection) { Projection = projection; }
+		__forceinline static Matrix& GetGpuViewMatrix() { return View; }
+		__forceinline static Matrix& GetGpuProjectionMatrix() { return Projection; }
+		__forceinline static void SetGpuViewMatrix(Matrix view) { View = view; }
+		__forceinline static void SetGpuProjectionMatrix(Matrix projection) { Projection = projection; }
 
 		Camera();
 		virtual ~Camera();
@@ -34,7 +34,7 @@ namespace jh
 		void EnableLayerMasks() { mLayerMasks.set(); }
 		void DisableLayerMasks() { mLayerMasks.reset(); }
 
-		void SetProjectionType(eProjectionType type) { mProjectionType = type; }
+		void SetProjectionType(eProjectionType type) { mType = type; }
 
 		float GetScale() { return mScale; }
 		Matrix& GetViewMatrix() { return mView; }
@@ -54,7 +54,7 @@ namespace jh
 		Matrix mView;
 		Matrix mProjection;
 
-		eProjectionType mProjectionType;
+		eProjectionType mType;
 		float mAspectRatio;
 
 		float mNear;

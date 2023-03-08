@@ -18,7 +18,7 @@ namespace jh
 
 	Camera::Camera() :
 		Component(eComponentType::Camera),
-		mProjectionType(eProjectionType::Perspective),
+		mType(eProjectionType::Perspective),
 		mAspectRatio(1.f),
 		mNear(1.f),
 		mFar(1000.f),
@@ -91,7 +91,7 @@ namespace jh
 		float height = (winRect.bottom - winRect.top) * mScale;
 		mAspectRatio = width / height;
 
-		if (mProjectionType == eProjectionType::Perspective)
+		if (mType == eProjectionType::Perspective)
 		{
 			mProjection = Matrix::CreatePerspectiveFieldOfViewLH(XM_2PI / 6.f, mAspectRatio,
 				mNear, mFar);

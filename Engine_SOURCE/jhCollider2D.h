@@ -24,7 +24,9 @@ namespace jh
 		virtual void OnTriggerExit(Collider2D* collider);
 
 		void SetType(eColliderType type) { mType = type; }
+		eColliderType GetType() { return mType; }
 		void SetSize(Vector2 size) { mSize = size; }
+		Vector2 GetSize() { return mSize; }
 		void SetCenter(Vector2 center) { mCenter = center; }
 		bool IsTrigger() { return mbTrigger; }
 		UINT GetID() { return mID; }

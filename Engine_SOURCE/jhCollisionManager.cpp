@@ -151,65 +151,82 @@ namespace jh
 	bool CollisionManager::Intersect(Collider2D* left, Collider2D* right)
 	{
 		// Rect vs Rect
-		// 0 --- 1
-		// |     |
-		// 3 --- 2
-
-		static const Vector3 arrLocalPos[4] =
+		if (left->GetType() == eColliderType::Rect && right->GetType() == eColliderType::Rect)
 		{
-			Vector3(-0.5f, 0.5f, 0.f),
-			Vector3(0.5f, 0.5f, 0.f),
-			Vector3(0.5f, -0.5f, 0.f),
-			Vector3(-0.5f, -0.5f, 0.f)
-		};
-
-		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
-		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
-
-		Matrix leftMat = leftTr->GetWorldMatrix();
-		Matrix rightMat = rightTr->GetWorldMatrix();
-
-		// ∫–∏Æ√‡ ∫§≈Õ(≈ıøµ ∫§≈Õ)
-		Vector3 Axis[4] = {};
-		Axis[0] = Vector3::Transform(arrLocalPos[1], leftMat);
-		Axis[1] = Vector3::Transform(arrLocalPos[3], leftMat);
-		Axis[2] = Vector3::Transform(arrLocalPos[1], rightMat);
-		Axis[3] = Vector3::Transform(arrLocalPos[3], rightMat);
-
-		Axis[0] -= Vector3::Transform(arrLocalPos[0], leftMat);
-		Axis[1] -= Vector3::Transform(arrLocalPos[0], leftMat);
-		Axis[2] -= Vector3::Transform(arrLocalPos[0], rightMat);
-		Axis[3] -= Vector3::Transform(arrLocalPos[0], rightMat);
-
-		for (size_t i = 0; i < 4; i++)
-		{
-			Axis[i].z = 0.f;
-		}
-
-		Vector3 vc = left->GetPosition() - right->GetPosition();
-		vc.z = 0.f;
-
-		Vector3 centerDir = vc;
-		for (size_t i = 0; i < 4; i++)
-		{
-			Vector3 vA = Axis[i];
-			vA.Normalize();
-
-			float projDist = 0.f;
-			for (size_t j = 0; j < 4; j++)
+			// 0 --- 1
+			// |     |
+			// 3 --- 2
+			static const Vector3 arrLocalPos[4] =
 			{
-				projDist += fabsf(Axis[j].Dot(vA) * 0.5f);
+				Vector3(-0.5f, 0.5f, 0.f),
+				Vector3(0.5f, 0.5f, 0.f),
+				Vector3(0.5f, -0.5f, 0.f),
+				Vector3(-0.5f, -0.5f, 0.f)
+			};
+
+			Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
+			Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
+
+			Matrix leftMat = leftTr->GetWorldMatrix();
+			Matrix rightMat = rightTr->GetWorldMatrix();
+
+			// ∫–∏Æ√‡ ∫§≈Õ(≈ıøµ ∫§≈Õ)
+			Vector3 Axis[4] = {};
+			Axis[0] = Vector3::Transform(arrLocalPos[1], leftMat);
+			Axis[1] = Vector3::Transform(arrLocalPos[3], leftMat);
+			Axis[2] = Vector3::Transform(arrLocalPos[1], rightMat);
+			Axis[3] = Vector3::Transform(arrLocalPos[3], rightMat);
+
+			Axis[0] -= Vector3::Transform(arrLocalPos[0], leftMat);
+			Axis[1] -= Vector3::Transform(arrLocalPos[0], leftMat);
+			Axis[2] -= Vector3::Transform(arrLocalPos[0], rightMat);
+			Axis[3] -= Vector3::Transform(arrLocalPos[0], rightMat);
+
+			for (size_t i = 0; i < 4; i++)
+			{
+				Axis[i].z = 0.f;
 			}
 
-			if (projDist < fabsf(centerDir.Dot(vA)))
+			Vector3 vc = left->GetPosition() - right->GetPosition();
+			vc.z = 0.f;
+
+			Vector3 centerDir = vc;
+			for (size_t i = 0; i < 4; i++)
+			{
+				Vector3 vA = Axis[i];
+				vA.Normalize();
+
+				float projDist = 0.f;
+				for (size_t j = 0; j < 4; j++)
+				{
+					projDist += fabsf(Axis[j].Dot(vA) * 0.5f);
+				}
+
+				if (projDist < fabsf(centerDir.Dot(vA)))
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+		// Circle vs Circle
+		else if (left->GetType() == eColliderType::Circle && right->GetType() == eColliderType::Circle)
+		{
+			Vector3 vc = left->GetPosition() - right->GetPosition();
+			vc.z = 0.f;
+
+			float leftRadius = left->GetSize().x * 0.5f;
+			float righttRadius = right->GetSize().x * 0.5f;
+
+			if ((leftRadius + righttRadius) < vc.Length())
 			{
 				return false;
 			}
+
+			return true;
 		}
 
-		// Circle vs Circle
-
-
-		return true;
+		return false;
 	}
 }
