@@ -30,6 +30,7 @@ namespace jh::enums
 		Collider,
 		MeshRenderer,
 		SpriteRenderer,
+		Animator,
 		UI,
 		Script,
 		End,

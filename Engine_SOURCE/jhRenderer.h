@@ -53,6 +53,16 @@ namespace jh::renderer
 		Vector3 padding;
 	};
 
+	CBUFFER(AnimationCB, CBSLOT_ANIMATION)
+	{
+		Vector2 leftTop;
+		Vector2 size;
+		Vector2 offset;
+		Vector2 atlasSize;
+
+		UINT used;
+	};
+
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼

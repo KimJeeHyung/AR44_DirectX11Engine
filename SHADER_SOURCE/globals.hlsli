@@ -31,6 +31,16 @@ cbuffer Fade : register(b3)
     float3 padding;
 }
 
+cbuffer Animation : register(b4)
+{
+    float2 leftTop;
+    float2 size;
+    float2 offset;
+    float2 atlasSize;
+
+    uint used;
+}
+
 SamplerState pointSampler : register(s0);
 SamplerState linearSampler : register(s1);
 SamplerState anisotropicSampler : register(s2);

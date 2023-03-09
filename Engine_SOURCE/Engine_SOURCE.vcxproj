@@ -155,6 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
+    <ClInclude Include="jhAnimation.h" />
+    <ClInclude Include="jhAnimator.h" />
     <ClInclude Include="jhApplication.h" />
     <ClInclude Include="jhBaseRenderer.h" />
     <ClInclude Include="jhCamera.h" />
@@ -199,6 +201,8 @@
     <ClInclude Include="jhObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jhAnimation.cpp" />
+    <ClCompile Include="jhAnimator.cpp" />
     <ClCompile Include="jhApplication.cpp" />
     <ClCompile Include="jhBaseRenderer.cpp" />
     <ClCompile Include="jhCamera.cpp" />

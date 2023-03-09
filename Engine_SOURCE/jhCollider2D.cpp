@@ -14,7 +14,8 @@ namespace jh
 		mSize(Vector2::One),
 		mCenter(Vector2::Zero),
 		mbTrigger(false),
-		mID(0)
+		mID(0),
+		mRadius(0.f)
 	{
 		mID = ColliderNumber++;
 	}
@@ -56,7 +57,7 @@ namespace jh
 
 		DebugMesh meshAttribute = {};
 		meshAttribute.position = Vector3(colliderPos.x, colliderPos.y, colliderPos.z);
-		meshAttribute.radius = scale.x;
+		meshAttribute.radius = mRadius;
 		meshAttribute.rotation = rotation;
 		meshAttribute.scale = scale;
 		meshAttribute.type = mType;

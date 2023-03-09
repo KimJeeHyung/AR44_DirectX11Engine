@@ -22,9 +22,6 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{b57b8e83-b769-47c4-b56d-420669a30d6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource\Manager">
-      <UniqueIdentifier>{7fb06c4e-dbd4-495f-9dfd-d6927f0f488e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource\Material">
       <UniqueIdentifier>{4b9fedcd-e3cb-4315-bde1-11937144e007}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,15 @@
     </Filter>
     <Filter Include="GameObject\Contents">
       <UniqueIdentifier>{391d3bf0-635b-4a1c-b9b1-1e97bbe942e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{dc176cea-9dbe-4925-b636-aa1bac9a4b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Animation">
+      <UniqueIdentifier>{33e11f6e-fd96-4970-8de5-0940348e525d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Manager">
+      <UniqueIdentifier>{7fb06c4e-dbd4-495f-9dfd-d6927f0f488e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +219,12 @@
     </ClCompile>
     <ClCompile Include="jhMonster.cpp">
       <Filter>GameObject\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAnimation.cpp">
+      <Filter>Resource\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +354,12 @@
     </ClInclude>
     <ClInclude Include="jhMonster.h">
       <Filter>GameObject\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAnimation.h">
+      <Filter>Resource\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
