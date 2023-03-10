@@ -14,7 +14,7 @@ namespace jh
 		
 		//Special Key
 		ENTER, ESC, LSHIFT, LALT, LCTRL,
-		SPACE, LEFT, RIGHT, UP, DOWN,
+		SPACE, BACKSPACE, LEFT, RIGHT, UP, DOWN,
 		LBTN, RBTN,
 		
 		//Num Pad

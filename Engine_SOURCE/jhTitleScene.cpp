@@ -31,12 +31,12 @@ namespace jh
 	void TitleScene::Initialize()
 	{
 		// 메인 카메라 오브젝트
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
-		Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		//GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
+		//Camera* cameraComp = cameraObj->AddComponent<Camera>();
 		//cameraComp->RegisterCameraInRenderer();
 		//cameraComp->TurnLayerMask(eLayerType::UI, false);
-		cameraObj->AddComponent<CameraScript>();
-		mainCamera = cameraComp;
+		//cameraObj->AddComponent<CameraScript>();
+		//mainCamera = cameraComp;
 
 		// UI 카메라 오브젝트
 		//GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
@@ -45,117 +45,55 @@ namespace jh
 		//UICameraComp->DisableLayerMasks();
 		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
-		// SMILE RECT(Player)
+		// 타이틀 선택화면 배경
 		{
-			Player* obj = object::Instantiate<Player>(eLayerType::Player);
-			obj->SetName(L"pSMILE");
-			Transform* tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(-1.f, 0.f, 5.f));
-			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-			//tr->SetScale(Vector3(2.f, 2.f, 2.f));
-			Collider2D* collider = obj->AddComponent<Collider2D>();
-			collider->SetType(eColliderType::Circle);
-			//collider->SetCenter(Vector2(0.5f, 0.5f));
-			//collider->SetSize(Vector2(2.f, 2.f));
-			collider->SetRadius(2.f);
-
-			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
-			mr->SetMaterial(material);
-			mr->SetMesh(mesh);
-			obj->AddComponent<PlayerScript>();
-			object::DontDestroyOnLoad(obj);
+			GameObject* mainBackground = object::Instantiate<GameObject>(eLayerType::Background);
+			mainBackground->SetName(L"TitleBackground");
+			Transform* bgTr = mainBackground->GetComponent<Transform>();
+			bgTr->SetScale(Vector3(16.f, 9.f, 1.f));
+			SpriteRenderer* spriteRenderer = mainBackground->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"MBMaterial");
+			spriteRenderer->SetMesh(rectMesh);
+			spriteRenderer->SetMaterial(spriteMaterial);
 		}
 
-		// SMILE RECT(Monster)
+		// 역재1 타이틀
 		{
-			Player* obj = object::Instantiate<Player>(eLayerType::Monster);
-			obj->SetName(L"mSMILE");
-			Transform* tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(2.f, 0.f, 5.f));
-			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-			tr->SetScale(Vector3(2.f, 2.f, 2.f));
-			Collider2D* collider = obj->AddComponent<Collider2D>();
-			collider->SetType(eColliderType::Circle);
-			//collider->SetCenter(Vector2(0.5f, 0.5f));
-			//collider->SetSize(Vector2(2.f, 2.f));
-			collider->SetRadius(1.f);
-
-			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
-			mr->SetMaterial(material);
-			mr->SetMesh(mesh);
-			object::DontDestroyOnLoad(obj);
+			GameObject* gs1Title = object::Instantiate<GameObject>(eLayerType::UI);
+			gs1Title->SetName(L"gs1Title");
+			Transform* gs1tTr = gs1Title->GetComponent<Transform>();
+			gs1tTr->SetPosition(Vector3(0.f, 1.3f, 0.f));
+			gs1tTr->SetScale(Vector3(11.f, 5.8f, 1.f));
+			SpriteRenderer* spriteRenderer = gs1Title->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"GS1TMaterial");
+			spriteRenderer->SetMesh(rectMesh);
+			spriteRenderer->SetMaterial(spriteMaterial);
 		}
 
-		// SMILE RECT CHILD
-		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);
-		//child->SetName(L"SMILE CHILD");
-		//Transform* childTr = child->GetComponent<Transform>();
-		//childTr->SetPosition(Vector3(2.f, 0.f, 0.f));
-		//childTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		////childTr->SetParent(tr);
-		//
-		//MeshRenderer* childMr = child->AddComponent<MeshRenderer>();
-		//std::shared_ptr<Material> childMaterial = Resources::Find<Material>(L"RectMaterial");
-		//childMr->SetMaterial(childMaterial);
-		//childMr->SetMesh(mesh);
-
-		// Light Object
-		//GameObject* spriteObj = object::Instantiate<GameObject>(eLayerType::Player);
-		//spriteObj->SetName(L"LIGHT");
-		//Transform* spriteTr = spriteObj->GetComponent<Transform>();
-		//spriteTr->SetPosition(Vector3(5.f, 0.f, 10.f));
-		//spriteTr->SetScale(Vector3(5.f, 5.f, 1.f));
-		//
-		//SpriteRenderer* sr = spriteObj->AddComponent<SpriteRenderer>();
-		//std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SpriteMaterial");
-		//sr->SetMaterial(spriteMaterial);
-		//sr->SetMesh(mesh);
-
-		// HPBar
-		//GameObject* hpBar = object::Instantiate<GameObject>(eLayerType::UI);
-		//hpBar->SetName(L"HPBAR");
-		//Transform* hpBarTr = hpBar->GetComponent<Transform>();
-		//hpBarTr->SetPosition(Vector3(-5.f, 3.f, 12.f));
-		//hpBarTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		//
-		//SpriteRenderer* hpSr = hpBar->AddComponent<SpriteRenderer>();
-		//std::shared_ptr<Mesh> hpMesh = Resources::Find<Mesh>(L"RectMesh");
-		//std::shared_ptr<Material> hpSpriteMaterial = Resources::Find<Material>(L"UIMaterial");
-		//hpSr->SetMesh(hpMesh);
-		//hpSr->SetMaterial(hpSpriteMaterial);
-
-		//hpBar->Pause();
-
-		// Fade 오브젝트
-		GameObject* fadeObj = object::Instantiate<GameObject>(eLayerType::UI);
-		fadeObj->SetName(L"FADE");
-		Transform* fadeTr = fadeObj->GetComponent<Transform>();
-		fadeTr->SetPosition(Vector3(0.f, 0.f, 10.f));
-		fadeTr->SetScale(Vector3(1.f, 1.f, 1.f));
-
-		SpriteRenderer* fadeSr = fadeObj->AddComponent<SpriteRenderer>();
-		std::shared_ptr<Mesh> fadeMesh = Resources::Find<Mesh>(L"RectMesh");
-		std::shared_ptr<Material> fadeMaterial = Resources::Find<Material>(L"FadeMaterial");
-		fadeSr->SetMesh(fadeMesh);
-		fadeSr->SetMaterial(fadeMaterial);
-		FadeScript* fadeScript = fadeObj->AddComponent<FadeScript>();
-		fadeScript->SetCamera(cameraComp);
-
-		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
-		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::UI, false);
+		// 역재1 저작권
+		{
+			GameObject* gs1Copy = object::Instantiate<GameObject>(eLayerType::UI);
+			gs1Copy->SetName(L"gs1Copy");
+			Transform* gs1cTr = gs1Copy->GetComponent<Transform>();
+			gs1cTr->SetPosition(Vector3(0.f, -4.f, 0.f));
+			gs1cTr->SetScale(Vector3(9.5f, 0.45f, 1.f));
+			SpriteRenderer* spriteRenderer = gs1Copy->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"GS1CMaterial");
+			spriteRenderer->SetMesh(rectMesh);
+			spriteRenderer->SetMaterial(spriteMaterial);
+		}
 
 		Scene::Initialize();
 	}
 
 	void TitleScene::Update()
 	{
-		if (Input::GetKeyDown(eKeyCode::N))
+		if (Input::GetKeyDown(eKeyCode::BACKSPACE))
 		{
-			SceneManager::LoadScene(eSceneType::Play);
+			SceneManager::LoadScene(eSceneType::Main);
 		}
 
 		Scene::Update();

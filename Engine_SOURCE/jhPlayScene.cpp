@@ -26,20 +26,20 @@ namespace jh
 
 	void PlayScene::Initialize()
 	{
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
-		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		cameraObj->AddComponent<CameraScript>();
+		//GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		//Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		//cameraComp->TurnLayerMask(eLayerType::UI, false);
+		//cameraObj->AddComponent<CameraScript>();
 
 		Scene::Initialize();
 	}
 
 	void PlayScene::Update()
 	{
-		if (Input::GetKeyDown(eKeyCode::N))
+		/*if (Input::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(eSceneType::Title);
-		}
+		}*/
 
 		Scene::Update();
 	}

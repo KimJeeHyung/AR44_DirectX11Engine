@@ -11,6 +11,8 @@
 #include "jhGridScript.h"
 #include "jhObject.h"
 #include "jhFadeScript.h"
+#include "jhTestScene.h"
+#include "jhMainScene.h"
 #include "jhTitleScene.h"
 #include "jhPlayScene.h"
 
@@ -23,10 +25,12 @@ namespace jh
 	{
 		mScenes.resize((UINT)eSceneType::End);
 
+		mScenes[(UINT)eSceneType::Test] = new TestScene;
+		mScenes[(UINT)eSceneType::Main] = new MainScene;
 		mScenes[(UINT)eSceneType::Title] = new TitleScene;
 		mScenes[(UINT)eSceneType::Play] = new PlayScene;
 
-		mActiveScene = mScenes[(UINT)eSceneType::Title];
+		mActiveScene = mScenes[(UINT)eSceneType::Main];
 
 		for (Scene* scene : mScenes)
 		{

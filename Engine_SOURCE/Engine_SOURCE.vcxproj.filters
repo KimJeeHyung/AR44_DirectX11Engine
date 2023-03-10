@@ -106,6 +106,9 @@
     <Filter Include="Resource\Manager">
       <UniqueIdentifier>{7fb06c4e-dbd4-495f-9dfd-d6927f0f488e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Contents">
+      <UniqueIdentifier>{049389f0-a988-4d4f-80a8-aa7cccb44003}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -178,9 +181,6 @@
     <ClCompile Include="jhPlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="jhTitleScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="jhBaseRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
@@ -225,6 +225,15 @@
     </ClCompile>
     <ClCompile Include="jhAnimation.cpp">
       <Filter>Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTestScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTitleScene.cpp">
+      <Filter>Scene\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhMainScene.cpp">
+      <Filter>Scene\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,9 +319,6 @@
     <ClInclude Include="jhLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="jhTitleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="jhPlayScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -360,6 +366,15 @@
     </ClInclude>
     <ClInclude Include="jhAnimation.h">
       <Filter>Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTestScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTitleScene.h">
+      <Filter>Scene\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMainScene.h">
+      <Filter>Scene\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

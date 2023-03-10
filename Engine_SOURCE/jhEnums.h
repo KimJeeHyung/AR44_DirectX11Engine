@@ -4,6 +4,8 @@ namespace jh::enums
 {
 	enum class eSceneType
 	{
+		Test,
+		Main,
 		Title,
 		Play,
 		End,
@@ -14,6 +16,7 @@ namespace jh::enums
 		None = 0,
 		Camera,
 		Grid,
+		Background,
 		Monster,
 		Player,
 

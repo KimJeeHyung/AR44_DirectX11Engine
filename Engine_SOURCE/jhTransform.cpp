@@ -11,7 +11,7 @@ namespace jh
 		mUp(Vector3::Up),
 		mScale(Vector3::One),
 		mRotation(Vector3::Zero),
-		mPosition(Vector3::One),
+		mPosition(Vector3::Zero),
 		mParent(nullptr)
 	{
 	}

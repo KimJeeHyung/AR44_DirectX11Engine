@@ -51,7 +51,7 @@ namespace jh::renderer
 		indexes.push_back(3);
 		indexes.push_back(0);
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
-		
+
 		// 사각형 충돌체
 		vertexes[0].pos = Vector4(-0.5f, 0.5f, -0.00001f, 1.0f);
 		vertexes[0].color = Vector4(0.f, 1.f, 0.f, 1.f);
@@ -365,27 +365,34 @@ namespace jh::renderer
 		Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
 		Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
+		Resources::Load<Texture>(L"MainBackground", L"title_back.png");
+		Resources::Load<Texture>(L"MainTitle", L"titlek.png");
+		Resources::Load<Texture>(L"MainCopy", L"copy.png");
+		Resources::Load<Texture>(L"gs1Title", L"titlegs1k.png");
+		Resources::Load<Texture>(L"gs1Copy", L"copygs1.png");
 	}
 
 	void LoadMaterial()
 	{
 		// Default
-		std::shared_ptr<Texture> defaultTexture = Resources::Find<Texture>(L"SmileTexture");
-		std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
-		std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
-		defaultMaterial->SetShader(defaultShader);
-		defaultMaterial->SetTexture(defaultTexture);
-		Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
-
+		{
+			std::shared_ptr<Texture> defaultTexture = Resources::Find<Texture>(L"SmileTexture");
+			std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
+			std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
+			defaultMaterial->SetShader(defaultShader);
+			defaultMaterial->SetTexture(defaultTexture);
+			Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
+		}
 		//Sprite
-		std::shared_ptr<Texture> spriteTexture = Resources::Find<Texture>(L"DefaultSprite");
-		std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
-		std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
-		spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
-		spriteMaterial->SetShader(spriteShader);
-		spriteMaterial->SetTexture(spriteTexture);
-		Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
-
+		{
+			std::shared_ptr<Texture> spriteTexture = Resources::Find<Texture>(L"DefaultSprite");
+			std::shared_ptr<Shader> spriteShader = Resources::Find<Shader>(L"SpriteShader");
+			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
+			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			spriteMaterial->SetShader(spriteShader);
+			spriteMaterial->SetTexture(spriteTexture);
+			Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
+		}
 		// UI
 		std::shared_ptr<Texture> uiTexture = Resources::Find<Texture>(L"HPBarTexture");
 		std::shared_ptr<Shader> uiShader = Resources::Find<Shader>(L"UIShader");
@@ -394,26 +401,76 @@ namespace jh::renderer
 		uiMaterial->SetShader(uiShader);
 		uiMaterial->SetTexture(uiTexture);
 		Resources::Insert<Material>(L"UIMaterial", uiMaterial);
-
 		// Grid
-		std::shared_ptr<Shader> gridShader = Resources::Find<Shader>(L"GridShader");
-		std::shared_ptr<Material> gridMaterial = std::make_shared<Material>();
-		gridMaterial->SetShader(gridShader);
-		Resources::Insert<Material>(L"GridMaterial", gridMaterial);
-
+		{
+			std::shared_ptr<Shader> gridShader = Resources::Find<Shader>(L"GridShader");
+			std::shared_ptr<Material> gridMaterial = std::make_shared<Material>();
+			gridMaterial->SetShader(gridShader);
+			Resources::Insert<Material>(L"GridMaterial", gridMaterial);
+		}
 		// FadeInOut
-		std::shared_ptr<Shader> fadeShader = Resources::Find<Shader>(L"FadeShader");
-		std::shared_ptr<Material> fadeMaterial = std::make_shared<Material>();
-		fadeMaterial->SetRenderingMode(eRenderingMode::Transparent);
-		fadeMaterial->SetShader(fadeShader);
-		Resources::Insert<Material>(L"FadeMaterial", fadeMaterial);
+		{
+			std::shared_ptr<Shader> fadeShader = Resources::Find<Shader>(L"FadeShader");
+			std::shared_ptr<Material> fadeMaterial = std::make_shared<Material>();
+			fadeMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			fadeMaterial->SetShader(fadeShader);
+			Resources::Insert<Material>(L"FadeMaterial", fadeMaterial);
+		}
+		// Debug(Collider)
+		{
+			std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
+			std::shared_ptr<Material> debugMaterial = std::make_shared<Material>();
+			debugMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			debugMaterial->SetShader(debugShader);
+			Resources::Insert<Material>(L"DebugMaterial", debugMaterial);
+		}
 
-		// Debug
-		std::shared_ptr<Shader> debugShader = Resources::Find<Shader>(L"DebugShader");
-		std::shared_ptr<Material> debugMaterial = std::make_shared<Material>();
-		debugMaterial->SetRenderingMode(eRenderingMode::Transparent);
-		debugMaterial->SetShader(debugShader);
-		Resources::Insert<Material>(L"DebugMaterial", debugMaterial);
+#pragma region Portfolio
+		// Main
+		{
+			// Background
+			std::shared_ptr<Texture> mbTexture = Resources::Find<Texture>(L"MainBackground");
+			std::shared_ptr<Material> mbMaterial = std::make_shared<Material>();
+			mbMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			mbMaterial->SetShader(uiShader);
+			mbMaterial->SetTexture(mbTexture);
+			Resources::Insert<Material>(L"MBMaterial", mbMaterial);
+
+			// Title
+			std::shared_ptr<Texture> mtTexture = Resources::Find<Texture>(L"MainTitle");
+			std::shared_ptr<Material> mtMaterial = std::make_shared<Material>();
+			mtMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			mtMaterial->SetShader(uiShader);
+			mtMaterial->SetTexture(mtTexture);
+			Resources::Insert<Material>(L"MTMaterial", mtMaterial);
+
+			// Copy
+			std::shared_ptr<Texture> mcTexture = Resources::Find<Texture>(L"MainCopy");
+			std::shared_ptr<Material> mcMaterial = std::make_shared<Material>();
+			mcMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			mcMaterial->SetShader(uiShader);
+			mcMaterial->SetTexture(mcTexture);
+			Resources::Insert<Material>(L"MCMaterial", mcMaterial);
+		}
+		//GS1
+		{
+			// Title
+			std::shared_ptr<Texture> gs1tTexture = Resources::Find<Texture>(L"gs1Title");
+			std::shared_ptr<Material> gs1tMaterial = std::make_shared<Material>();
+			gs1tMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			gs1tMaterial->SetShader(uiShader);
+			gs1tMaterial->SetTexture(gs1tTexture);
+			Resources::Insert<Material>(L"GS1TMaterial", gs1tMaterial);
+
+			// Copy
+			std::shared_ptr<Texture> gs1cTexture = Resources::Find<Texture>(L"gs1Copy");
+			std::shared_ptr<Material> gs1cMaterial = std::make_shared<Material>();
+			gs1cMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			gs1cMaterial->SetShader(uiShader);
+			gs1cMaterial->SetTexture(gs1cTexture);
+			Resources::Insert<Material>(L"GS1CMaterial", gs1cMaterial);
+		}
+#pragma endregion
 	}
 
 	void Initialize()
