@@ -177,7 +177,11 @@
     <ClInclude Include="jhGridScript.h" />
     <ClInclude Include="jhInput.h" />
     <ClInclude Include="jhLayer.h" />
+<<<<<<< HEAD
     <ClInclude Include="jhMainTitleScene.h" />
+=======
+    <ClInclude Include="jhMainScene.h" />
+>>>>>>> 3b5412c70a7eef1c9328c376f7f824f18db51195
     <ClInclude Include="jhMaterial.h" />
     <ClInclude Include="jhMath.h" />
     <ClInclude Include="jhMesh.h" />
@@ -222,7 +226,11 @@
     <ClCompile Include="jhGridScript.cpp" />
     <ClCompile Include="jhInput.cpp" />
     <ClCompile Include="jhLayer.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="jhMainTitleScene.cpp" />
+=======
+    <ClCompile Include="jhMainScene.cpp" />
+>>>>>>> 3b5412c70a7eef1c9328c376f7f824f18db51195
     <ClCompile Include="jhMaterial.cpp" />
     <ClCompile Include="jhMath.cpp" />
     <ClCompile Include="jhMesh.cpp" />
