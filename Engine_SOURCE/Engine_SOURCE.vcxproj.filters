@@ -232,11 +232,7 @@
     <ClCompile Include="jhTitleScene.cpp">
       <Filter>Scene\Contents</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="jhMainTitleScene.cpp">
-=======
-    <ClCompile Include="jhMainScene.cpp">
->>>>>>> 3b5412c70a7eef1c9328c376f7f824f18db51195
       <Filter>Scene\Contents</Filter>
     </ClCompile>
   </ItemGroup>
@@ -377,11 +373,7 @@
     <ClInclude Include="jhTitleScene.h">
       <Filter>Scene\Contents</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="jhMainTitleScene.h">
-=======
-    <ClInclude Include="jhMainScene.h">
->>>>>>> 3b5412c70a7eef1c9328c376f7f824f18db51195
       <Filter>Scene\Contents</Filter>
     </ClInclude>
   </ItemGroup>

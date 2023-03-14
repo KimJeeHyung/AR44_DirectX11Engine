@@ -19,7 +19,7 @@ namespace jh
 			anim.second = nullptr;
 		}
 
-		for (auto evt : mAnimations)
+		for (auto evt : mEvents)
 		{
 			delete evt.second;
 			evt.second = nullptr;
@@ -58,7 +58,7 @@ namespace jh
 
 	bool Animator::Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
 		Vector2 leftTop, Vector2 size, Vector2 offset,
-		UINT columnLength, UINT spriteLength, float duration)
+		UINT spriteLength, float duration)
 	{
 		if (atlas == nullptr)
 			return false;
@@ -68,8 +68,7 @@ namespace jh
 			return false;
 
 		animation = new Animation();
-		animation->Create(name, atlas, leftTop, size, offset, columnLength, spriteLength,
-			duration);
+		animation->Create(name, atlas, leftTop, size, offset, spriteLength, duration);
 
 		mAnimations.insert(std::make_pair(name, animation));
 	}

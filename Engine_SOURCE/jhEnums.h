@@ -63,4 +63,12 @@ namespace jh::enums
 		Sphere,
 		End,
 	};
+
+	enum class eAnimationType
+	{
+		None,
+		SecondDimension,
+		ThirdDimension,
+		End,
+	};
 }

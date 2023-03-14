@@ -39,7 +39,7 @@ namespace jh
 
 		bool Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
 			Vector2 leftTop, Vector2 size, Vector2 offset,
-			UINT columnLength, UINT spriteLength, float duration);
+			UINT spriteLength, float duration);
 
 		Animation* FindAnimation(const std::wstring& name);
 		Events* FindEvents(const std::wstring& name);
