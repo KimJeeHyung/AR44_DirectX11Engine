@@ -59,11 +59,11 @@ namespace jh
 		const std::vector<GameObject*>& lefts = scene->GetGameObjects(left);
 		const std::vector<GameObject*>& rights = scene->GetGameObjects(right);
 
-		for (GameObject* left : lefts)
+		for (GameObject* leftObj : lefts)
 		{
-			if (left->GetState() != GameObject::Active)
+			if (leftObj->GetState() != GameObject::Active)
 				continue;
-			if (left->GetComponent<Collider2D>() == nullptr)
+			if (leftObj->GetComponent<Collider2D>() == nullptr)
 				continue;
 
 			for (GameObject* right : rights)
@@ -72,12 +72,15 @@ namespace jh
 					continue;
 				if (right->GetComponent<Collider2D>() == nullptr)
 					continue;
-				if (left == right)
+				if (leftObj == right)
 					continue;
 
-				ColliderCollision(left->GetComponent<Collider2D>(),
+				ColliderCollision(leftObj->GetComponent<Collider2D>(),
 					right->GetComponent<Collider2D>());
 			}
+
+			if ((UINT)left == (UINT)right)
+				break;
 		}
 	}
 

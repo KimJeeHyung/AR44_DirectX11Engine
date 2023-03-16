@@ -100,9 +100,6 @@
     <Filter Include="Component\Animator">
       <UniqueIdentifier>{dc176cea-9dbe-4925-b636-aa1bac9a4b31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource\Animation">
-      <UniqueIdentifier>{33e11f6e-fd96-4970-8de5-0940348e525d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource\Manager">
       <UniqueIdentifier>{7fb06c4e-dbd4-495f-9dfd-d6927f0f488e}</UniqueIdentifier>
     </Filter>
@@ -223,9 +220,6 @@
     <ClCompile Include="jhAnimator.cpp">
       <Filter>Component\Animator</Filter>
     </ClCompile>
-    <ClCompile Include="jhAnimation.cpp">
-      <Filter>Resource\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="jhTestScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -234,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="jhMainTitleScene.cpp">
       <Filter>Scene\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAnimation.cpp">
+      <Filter>Component\Animator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -364,9 +361,6 @@
     <ClInclude Include="jhAnimator.h">
       <Filter>Component\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="jhAnimation.h">
-      <Filter>Resource\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="jhTestScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -375,6 +369,9 @@
     </ClInclude>
     <ClInclude Include="jhMainTitleScene.h">
       <Filter>Scene\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAnimation.h">
+      <Filter>Component\Animator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

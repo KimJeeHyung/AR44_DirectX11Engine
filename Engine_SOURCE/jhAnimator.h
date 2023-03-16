@@ -27,6 +27,8 @@ namespace jh
 			Event mStartEvent;
 			Event mCompleteEvent;
 			Event mEndEvent;
+
+			std::vector<Event> mEvents;
 		};
 
 		Animator();
@@ -51,6 +53,7 @@ namespace jh
 		std::function<void()>& GetStartEvent(const std::wstring& name);
 		std::function<void()>& GetCompleteEvent(const std::wstring& name);
 		std::function<void()>& GetEndEvent(const std::wstring& name);
+		std::function<void()>& GetEvent(const std::wstring& name, UINT index);
 
 	private:
 		std::map<std::wstring, Animation*> mAnimations;

@@ -17,7 +17,7 @@ namespace jh
 
 	void Player::Update()
 	{
-		//GameObject::Update();
+		GameObject::Update();
 	}
 
 	void Player::FixedUpdate()

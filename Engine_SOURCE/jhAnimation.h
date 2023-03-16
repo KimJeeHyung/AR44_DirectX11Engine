@@ -30,7 +30,7 @@ namespace jh
 		Animation();
 		~Animation();
 
-		void Update();
+		UINT Update();
 		void FixedUpdate();
 		void Render();
 

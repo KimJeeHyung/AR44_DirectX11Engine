@@ -18,6 +18,7 @@ namespace jh::graphics
 		Texture();
 		virtual ~Texture();
 
+		static void Clear(UINT startSlot);
 		virtual HRESULT Load(const std::wstring& path) override;
 		void BindShader(eShaderStage stage, UINT slot);
 		void Clear();

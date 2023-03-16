@@ -63,6 +63,8 @@ namespace jh
 			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"Zelda", L"Zelda.png");
 			animator->Create(L"Idle", texture, Vector2(0.f, 0.f), Vector2(120.f, 130.f),
 				Vector2::Zero, 3, 0.1f);
+			animator->Create(L"MoveDown", texture, Vector2(0.f, 520.f), Vector2(120.f, 130.f),
+				Vector2::Zero, 8, 0.1f);
 			animator->Play(L"Idle", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
@@ -76,7 +78,7 @@ namespace jh
 
 		// SMILE RECT(Monster)
 		//{
-		//	Player* obj = object::Instantiate<Player>(eLayerType::Monster);
+		//	Player* obj = object::Instantiate<Player>(eLayerType::Player);
 		//	obj->SetName(L"mSMILE");
 		//	Transform* tr = obj->GetComponent<Transform>();
 		//	tr->SetPosition(Vector3(2.f, 0.f, 5.f));
@@ -152,7 +154,7 @@ namespace jh
 		//fadeScript->SetCamera(cameraComp);
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
-		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::UI, false);
+		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Player, true);
 
 		Scene::Initialize();
 	}

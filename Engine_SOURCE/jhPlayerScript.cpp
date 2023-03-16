@@ -3,6 +3,7 @@
 #include "jhGameObject.h"
 #include "jhInput.h"
 #include "jhTime.h"
+#include "jhAnimator.h"
 
 namespace jh
 {
@@ -17,6 +18,12 @@ namespace jh
 
 	void PlayerScript::Initialize()
 	{
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+
+		animator->GetStartEvent(L"MoveDown") = std::bind(&PlayerScript::Start, this);
+		animator->GetCompleteEvent(L"Idle") = std::bind(&PlayerScript::Action, this);
+		animator->GetEndEvent(L"Idle") = std::bind(&PlayerScript::End, this);
+		//animator->GetEvent(L"Idle", 1) = std::bind(&PlayerScript::End, this);
 	}
 
 	void PlayerScript::Update()
@@ -86,6 +93,12 @@ namespace jh
 		}
 
 		tr->SetPosition(pos);*/
+
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+		if (Input::GetKey(eKeyCode::N_1))
+		{
+			animator->Play(L"MoveDown");
+		}
 	}
 
 	void PlayerScript::Render()
@@ -101,6 +114,18 @@ namespace jh
 	}
 
 	void PlayerScript::OnCollisionExit(Collider2D* collider)
+	{
+	}
+
+	void PlayerScript::Start()
+	{
+	}
+
+	void PlayerScript::Action()
+	{
+	}
+
+	void PlayerScript::End()
 	{
 	}
 }
