@@ -1,3 +1,4 @@
+#include "Light.hlsli"
 cbuffer Transform : register(b0)
 {
     row_major matrix world;
@@ -44,6 +45,8 @@ cbuffer Animation : register(b4)
 SamplerState pointSampler : register(s0);
 SamplerState linearSampler : register(s1);
 SamplerState anisotropicSampler : register(s2);
+
+StructuredBuffer<LightAttribute> lightAttributes : register(t13);
 
 Texture2D defaultTexture : register(t0);
 // Atlas Texture

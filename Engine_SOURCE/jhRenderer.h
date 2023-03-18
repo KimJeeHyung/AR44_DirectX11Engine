@@ -76,6 +76,7 @@ namespace jh::renderer
 	extern Camera* mainCamera;
 	extern std::vector<Camera*> cameras[];
 	extern std::vector<DebugMesh> debugMeshes;
+	extern std::vector<LightAttribute> lights;
 
 	void Initialize();
 	void Render();

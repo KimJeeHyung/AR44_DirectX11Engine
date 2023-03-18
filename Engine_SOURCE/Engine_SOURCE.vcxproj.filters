@@ -106,6 +106,9 @@
     <Filter Include="Scene\Contents">
       <UniqueIdentifier>{049389f0-a988-4d4f-80a8-aa7cccb44003}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Light">
+      <UniqueIdentifier>{4d13f205-9d83-4392-971c-8b3532d750d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -232,6 +235,10 @@
     <ClCompile Include="jhAnimation.cpp">
       <Filter>Component\Animator</Filter>
     </ClCompile>
+    <ClCompile Include="jhLight.cpp">
+      <Filter>Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="jhStructedBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -373,6 +380,10 @@
     <ClInclude Include="jhAnimation.h">
       <Filter>Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="jhLight.h">
+      <Filter>Component\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="jhStructedBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">
