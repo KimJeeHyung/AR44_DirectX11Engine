@@ -16,6 +16,7 @@
 #define CBSLOT_GRID 2
 #define CBSLOT_FADE 3
 #define CBSLOT_ANIMATION 4
+#define CBSLOT_NUMBEROFLIGHT 5
 
 using namespace jh::math;
 namespace jh::graphics
@@ -103,6 +104,7 @@ namespace jh::graphics
 		Grid,
 		Fade,
 		Animation,
+		Light,
 		End,
 	};
 
@@ -138,7 +140,6 @@ namespace jh::graphics
 		Vector4 diffuse;
 		Vector4 specular;
 		Vector4 ambient;
-		Vector4 emissive;
 		Vector4 position;
 		Vector4 direction;
 

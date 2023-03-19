@@ -10,6 +10,7 @@ struct VSIn
 struct VSOut
 {
     float4 Pos : SV_Position;
+    float3 WorldPos : POSITION;
     float4 Color : COLOR;
     float2 UV : TEXCOORD;
 };
@@ -18,7 +19,7 @@ float4 main(VSOut In) : SV_Target
 {
     float4 color = (float) 0.f;
     
-    if(animationType == 1)  // 2D
+    if (animationType == 1)  // 2D
     {
         float2 diff = (atlasSize - spriteSize) / 2.f;
         float2 UV = (leftTop - diff - offset) + (atlasSize * In.UV);
@@ -33,6 +34,14 @@ float4 main(VSOut In) : SV_Target
     {
         color = defaultTexture.Sample(anisotropicSampler, In.UV);
     }
+    
+    LightColor lightColor = (LightColor) 0.f;
+    for (int i = 0; i < numberOfLight; i++)
+    {
+        CalculateLight(lightColor, In.WorldPos.xyz, i);
+    }
+    
+    color *= lightColor.diffuse;
     
     return color;
 }

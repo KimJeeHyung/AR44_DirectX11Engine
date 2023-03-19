@@ -17,6 +17,7 @@
 #include "jhMonster.h"
 #include "jhCollisionManager.h"
 #include "jhAnimator.h"
+#include "jhLight.h"
 
 namespace jh
 {
@@ -31,6 +32,25 @@ namespace jh
 
 	void TestScene::Initialize()
 	{
+		// Directional Light
+		{
+			GameObject* directionalLight = object::Instantiate<GameObject>(eLayerType::Player);
+			directionalLight->GetComponent<Transform>()->SetPosition(Vector3(0.f, 0.f, -100.f));
+			Light* lightComp = directionalLight->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetDiffuse(Vector4(1.f, 1.f, 1.f, 1.f));
+		}
+
+		// Point Light
+		{
+			GameObject* pointLight = object::Instantiate<GameObject>(eLayerType::Player);
+			pointLight->GetComponent<Transform>()->SetPosition(Vector3(3.f, 0.f, 0.f));
+			Light* lightComp = pointLight->AddComponent<Light>();
+			lightComp->SetType(eLightType::Point);
+			lightComp->SetRadius(10.f);
+			lightComp->SetDiffuse(Vector4(1.f, 0.f, 0.f, 1.f));
+		}
+
 		// 메인 카메라 오브젝트
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();

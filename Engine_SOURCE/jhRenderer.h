@@ -7,6 +7,8 @@
 #include "jhShader.h"
 #include "jhConstantBuffer.h"
 #include "jhCamera.h"
+#include "jhLight.h"
+#include "jhStructedBuffer.h"
 
 using namespace jh::math;
 using namespace jh::graphics;
@@ -63,6 +65,11 @@ namespace jh::renderer
 		UINT type;
 	};
 
+	CBUFFER(LightCB, CBSLOT_NUMBEROFLIGHT)
+	{
+		UINT numberOfLight;
+	};
+
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼
@@ -77,9 +84,13 @@ namespace jh::renderer
 	extern std::vector<Camera*> cameras[];
 	extern std::vector<DebugMesh> debugMeshes;
 	extern std::vector<LightAttribute> lights;
+	extern StructedBuffer* lightsBuffer;
 
 	void Initialize();
 	void Render();
 	void Release();
+
+	void PushLightAttribute(LightAttribute lightAttribute);
+	void BindLights();
 }
 
