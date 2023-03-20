@@ -42,14 +42,14 @@ namespace jh
 		}
 
 		// Point Light
-		{
+		/*{
 			GameObject* pointLight = object::Instantiate<GameObject>(eLayerType::Player);
 			pointLight->GetComponent<Transform>()->SetPosition(Vector3(3.f, 0.f, 0.f));
 			Light* lightComp = pointLight->AddComponent<Light>();
 			lightComp->SetType(eLightType::Point);
 			lightComp->SetRadius(10.f);
 			lightComp->SetDiffuse(Vector4(1.f, 0.f, 0.f, 1.f));
-		}
+		}*/
 
 		// 메인 카메라 오브젝트
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
@@ -69,23 +69,24 @@ namespace jh
 		// SMILE RECT(Player)
 		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Player);
-			obj->SetName(L"Zelda");
+			obj->SetName(L"Phoenix");
 			Transform* tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(-1.f, 0.f, 5.f));
 			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-			//tr->SetScale(Vector3(2.f, 2.f, 2.f));
+			tr->SetScale(Vector3(5.f, 5.f, 5.f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);
 			//collider->SetCenter(Vector2(0.5f, 0.5f));
 			//collider->SetSize(Vector2(2.f, 2.f));
 			//collider->SetRadius(2.f);
 			Animator* animator = obj->AddComponent<Animator>();
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"Zelda", L"Zelda.png");
-			animator->Create(L"Idle", texture, Vector2(0.f, 0.f), Vector2(120.f, 130.f),
-				Vector2::Zero, 3, 0.1f);
-			animator->Create(L"MoveDown", texture, Vector2(0.f, 520.f), Vector2(120.f, 130.f),
-				Vector2::Zero, 8, 0.1f);
-			animator->Play(L"Idle", true);
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle.png");
+			animator->Create(L"PhoenixIdle", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
+				Vector2::Zero, 5, 0.05f);
+			texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Phoenix_Idle_Talk.png");
+			animator->Create(L"PhoenixIdleTalk", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
+				Vector2::Zero, 8, 0.05f);
+			animator->Play(L"PhoenixIdle", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
 			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
@@ -93,7 +94,7 @@ namespace jh
 			mr->SetMaterial(material);
 			mr->SetMesh(mesh);
 			obj->AddComponent<PlayerScript>();
-			object::DontDestroyOnLoad(obj);
+			//object::DontDestroyOnLoad(obj);
 		}
 
 		// SMILE RECT(Monster)

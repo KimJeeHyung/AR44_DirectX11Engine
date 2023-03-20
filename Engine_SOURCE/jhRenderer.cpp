@@ -374,9 +374,12 @@ namespace jh::renderer
 		Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
 		Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
+
+		// MainTitle
 		Resources::Load<Texture>(L"MainBackground", L"title_back.png");
 		Resources::Load<Texture>(L"MainTitle", L"titlek.png");
 		Resources::Load<Texture>(L"MainCopy", L"copy.png");
+		// Titles
 		Resources::Load<Texture>(L"gs1Title", L"titlegs1k.png");
 		Resources::Load<Texture>(L"gs1Copy", L"copygs1.png");
 	}
