@@ -72,6 +72,10 @@ namespace jh
 		{
 			animator->Play(L"PhoenixIdleTalk", true);
 		}
+		if (Input::GetKey(eKeyCode::N_3))
+		{
+			animator->Play(L"PhoenixThink", true);
+		}
 	}
 
 	void PlayerScript::Render()

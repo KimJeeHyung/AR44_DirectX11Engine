@@ -80,12 +80,15 @@ namespace jh
 			//collider->SetSize(Vector2(2.f, 2.f));
 			//collider->SetRadius(2.f);
 			Animator* animator = obj->AddComponent<Animator>();
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle.png");
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle2.png");
 			animator->Create(L"PhoenixIdle", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
-				Vector2::Zero, 5, 0.05f);
+				Vector2::Zero, 9, 0.1f);
 			texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Phoenix_Idle_Talk.png");
 			animator->Create(L"PhoenixIdleTalk", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
 				Vector2::Zero, 8, 0.05f);
+			texture = Resources::Load<Texture>(L"PhoenixThink", L"Phoenix_Think.png");
+			animator->Create(L"PhoenixThink", texture, Vector2(0.f, 0.f), Vector2(464.f, 490.f),
+				Vector2::Zero, 27, 0.16f);
 			animator->Play(L"PhoenixIdle", true);
 
 			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();

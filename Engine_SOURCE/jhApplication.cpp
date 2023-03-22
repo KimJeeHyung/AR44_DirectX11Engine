@@ -85,7 +85,7 @@ namespace jh
 
 			ValidationMode validationMode = ValidationMode::Disabled;
 			graphicDevice = std::make_unique<GraphicDevice_DX11>();
-			graphics::GetDevice() = graphicDevice.get();
+			//graphics::GetDevice() = graphicDevice.get();
 		}
 
 		RECT rt = { 0, 0, (LONG)width, (LONG)height };
