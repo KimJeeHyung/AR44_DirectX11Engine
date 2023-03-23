@@ -24,6 +24,9 @@ namespace jh::graphics
 		bool Create(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture);
 		virtual HRESULT Load(const std::wstring& path) override;
 		void BindShader(eShaderStage stage, UINT slot);
+		void BindUnorderedAccessView(UINT startSlot);
+		void ClearUnorderedAccessView(UINT startSlot);
+
 		void Clear();
 
 		size_t GetHeight() { return mImage.GetMetadata().height; }

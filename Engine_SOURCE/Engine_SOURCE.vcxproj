@@ -166,6 +166,7 @@
     <ClInclude Include="jhCollider3D.h" />
     <ClInclude Include="jhCollisionManager.h" />
     <ClInclude Include="jhComponent.h" />
+    <ClInclude Include="jhComputeShader.h" />
     <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhEngine.h" />
     <ClInclude Include="jhEntity.h" />
@@ -184,6 +185,7 @@
     <ClInclude Include="jhMesh.h" />
     <ClInclude Include="jhMeshRenderer.h" />
     <ClInclude Include="jhMonster.h" />
+    <ClInclude Include="jhPaintShader.h" />
     <ClInclude Include="jhPlayer.h" />
     <ClInclude Include="jhPlayerScript.h" />
     <ClInclude Include="jhPlayScene.h" />
@@ -216,6 +218,7 @@
     <ClCompile Include="jhCollider3D.cpp" />
     <ClCompile Include="jhCollisionManager.cpp" />
     <ClCompile Include="jhComponent.cpp" />
+    <ClCompile Include="jhComputeShader.cpp" />
     <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhEntity.cpp" />
     <ClCompile Include="jhFadeScript.cpp" />
@@ -231,6 +234,7 @@
     <ClCompile Include="jhMesh.cpp" />
     <ClCompile Include="jhMeshRenderer.cpp" />
     <ClCompile Include="jhMonster.cpp" />
+    <ClCompile Include="jhPaintShader.cpp" />
     <ClCompile Include="jhPlayer.cpp" />
     <ClCompile Include="jhPlayerScript.cpp" />
     <ClCompile Include="jhPlayScene.cpp" />

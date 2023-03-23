@@ -7,6 +7,9 @@
     <Filter Include="PS">
       <UniqueIdentifier>{5d616b72-6b28-4c51-b2c8-5965e8028cb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CS">
+      <UniqueIdentifier>{be464fde-c7d7-4c7c-a24a-2e6cb2e74d04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="$(MSBuildThisFileDirectory)TriangleVS.hlsl">
@@ -44,6 +47,9 @@
     </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)DebugPS.hlsl">
       <Filter>PS</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)PaintCS.hlsl">
+      <Filter>CS</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

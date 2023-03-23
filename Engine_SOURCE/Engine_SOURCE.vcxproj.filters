@@ -239,6 +239,8 @@
       <Filter>Component\Light</Filter>
     </ClCompile>
     <ClCompile Include="jhStructedBuffer.cpp" />
+    <ClCompile Include="jhComputeShader.cpp" />
+    <ClCompile Include="jhPaintShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -384,6 +386,8 @@
     <ClInclude Include="jhObject.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
+    <ClInclude Include="jhComputeShader.h" />
+    <ClInclude Include="jhPaintShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">
