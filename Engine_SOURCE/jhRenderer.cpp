@@ -2,6 +2,7 @@
 #include "jhResources.h"
 #include "jhMaterial.h"
 #include "jhSceneManager.h"
+#include "jhPaintShader.h"
 
 namespace jh::renderer
 {
@@ -367,6 +368,11 @@ namespace jh::renderer
 		debugShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
 
 		Resources::Insert<Shader>(L"DebugShader", debugShader);
+
+		// PaintShader
+		std::shared_ptr<PaintShader> paintShader = std::make_shared<PaintShader>();
+		paintShader->Create(L"PaintCS.hlsl", "main");
+		Resources::Insert<PaintShader>(L"PaintShader", paintShader);
 	}
 
 	void LoadTexture()
@@ -374,6 +380,11 @@ namespace jh::renderer
 		Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
 		Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
+
+		std::shared_ptr<Texture> uavTexture = std::make_shared<Texture>();
+		uavTexture->Create(1024, 1024, DXGI_FORMAT_R8G8B8A8_UNORM,
+			D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
+		Resources::Insert<Texture>(L"PaintTexture", uavTexture);
 
 		// MainTitle
 		Resources::Load<Texture>(L"MainBackground", L"title_back.png");
@@ -388,7 +399,7 @@ namespace jh::renderer
 	{
 		// Default
 		{
-			std::shared_ptr<Texture> defaultTexture = Resources::Find<Texture>(L"SmileTexture");
+			std::shared_ptr<Texture> defaultTexture = Resources::Find<Texture>(L"PaintTexture");
 			std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
 			std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
 			defaultMaterial->SetShader(defaultShader);

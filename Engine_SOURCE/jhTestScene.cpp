@@ -18,6 +18,7 @@
 #include "jhCollisionManager.h"
 #include "jhAnimator.h"
 #include "jhLight.h"
+#include "jhPaintShader.h"
 
 namespace jh
 {
@@ -32,6 +33,12 @@ namespace jh
 
 	void TestScene::Initialize()
 	{
+		// PaintShader
+		std::shared_ptr<PaintShader> paintShader = Resources::Find<PaintShader>(L"PaintShader");
+		std::shared_ptr<Texture> paintTexture = Resources::Find<Texture>(L"PaintTexture");
+		paintShader->SetTarget(paintTexture);
+		paintShader->OnExcute();
+
 		// Directional Light
 		{
 			GameObject* directionalLight = object::Instantiate<GameObject>(eLayerType::Player);
@@ -67,60 +74,60 @@ namespace jh
 		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
 		// SMILE RECT(Player)
-		{
-			Player* obj = object::Instantiate<Player>(eLayerType::Player);
-			obj->SetName(L"Phoenix");
-			Transform* tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(-1.f, 0.f, 5.f));
-			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-			tr->SetScale(Vector3(5.f, 5.f, 5.f));
-			Collider2D* collider = obj->AddComponent<Collider2D>();
-			collider->SetType(eColliderType::Rect);
-			//collider->SetCenter(Vector2(0.5f, 0.5f));
-			//collider->SetSize(Vector2(2.f, 2.f));
-			//collider->SetRadius(2.f);
-			Animator* animator = obj->AddComponent<Animator>();
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle2.png");
-			animator->Create(L"PhoenixIdle", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
-				Vector2::Zero, 9, 0.1f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Phoenix_Idle_Talk.png");
-			animator->Create(L"PhoenixIdleTalk", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
-				Vector2::Zero, 8, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink", L"Phoenix_Think.png");
-			animator->Create(L"PhoenixThink", texture, Vector2(0.f, 0.f), Vector2(464.f, 490.f),
-				Vector2::Zero, 27, 0.16f);
-			animator->Play(L"PhoenixIdle", true);
-
-			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-			std::shared_ptr<Material> material = Resources::Find<Material>(L"SpriteMaterial");
-			mr->SetMaterial(material);
-			mr->SetMesh(mesh);
-			obj->AddComponent<PlayerScript>();
-			//object::DontDestroyOnLoad(obj);
-		}
-
-		// SMILE RECT(Monster)
 		//{
 		//	Player* obj = object::Instantiate<Player>(eLayerType::Player);
-		//	obj->SetName(L"mSMILE");
+		//	obj->SetName(L"Phoenix");
 		//	Transform* tr = obj->GetComponent<Transform>();
-		//	tr->SetPosition(Vector3(2.f, 0.f, 5.f));
+		//	tr->SetPosition(Vector3(-1.f, 0.f, 5.f));
 		//	//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
-		//	//tr->SetScale(Vector3(2.f, 2.f, 2.f));
+		//	tr->SetScale(Vector3(5.f, 5.f, 5.f));
 		//	Collider2D* collider = obj->AddComponent<Collider2D>();
 		//	collider->SetType(eColliderType::Rect);
 		//	//collider->SetCenter(Vector2(0.5f, 0.5f));
-		//	collider->SetSize(Vector2(2.f, 2.f));
-		//	collider->SetRadius(1.f);
+		//	//collider->SetSize(Vector2(2.f, 2.f));
+		//	//collider->SetRadius(2.f);
+		//	Animator* animator = obj->AddComponent<Animator>();
+		//	std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle2.png");
+		//	animator->Create(L"PhoenixIdle", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
+		//		Vector2::Zero, 9, 0.1f);
+		//	texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Phoenix_Idle_Talk.png");
+		//	animator->Create(L"PhoenixIdleTalk", texture, Vector2(0.f, 0.f), Vector2(875.f, 980.f),
+		//		Vector2::Zero, 8, 0.05f);
+		//	texture = Resources::Load<Texture>(L"PhoenixThink", L"Phoenix_Think.png");
+		//	animator->Create(L"PhoenixThink", texture, Vector2(0.f, 0.f), Vector2(464.f, 490.f),
+		//		Vector2::Zero, 27, 0.16f);
+		//	animator->Play(L"PhoenixIdle", true);
 
 		//	SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
 		//	std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-		//	std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
+		//	std::shared_ptr<Material> material = Resources::Find<Material>(L"SpriteMaterial");
 		//	mr->SetMaterial(material);
 		//	mr->SetMesh(mesh);
-		//	object::DontDestroyOnLoad(obj);
+		//	obj->AddComponent<PlayerScript>();
+		//	//object::DontDestroyOnLoad(obj);
 		//}
+
+		// SMILE RECT(Monster)
+		{
+			Player* obj = object::Instantiate<Player>(eLayerType::Player);
+			obj->SetName(L"mSMILE");
+			Transform* tr = obj->GetComponent<Transform>();
+			tr->SetPosition(Vector3(2.f, 0.f, 5.f));
+			//tr->SetRotation(Vector3(0.f, 0.f, XM_PIDIV2));
+			//tr->SetScale(Vector3(2.f, 2.f, 2.f));
+			Collider2D* collider = obj->AddComponent<Collider2D>();
+			collider->SetType(eColliderType::Rect);
+			//collider->SetCenter(Vector2(0.5f, 0.5f));
+			collider->SetSize(Vector2(2.f, 2.f));
+			collider->SetRadius(1.f);
+
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
+			mr->SetMaterial(material);
+			mr->SetMesh(mesh);
+			object::DontDestroyOnLoad(obj);
+		}
 
 		// SMILE RECT CHILD
 		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);

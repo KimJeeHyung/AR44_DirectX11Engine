@@ -9,10 +9,10 @@ namespace jh::graphics
 		mCS(nullptr),
 		mThreadGroupCountX(0),
 		mThreadGroupCountY(0),
-		mThreadGroupCountZ(0)
-		//mGroupX(0),
-		//mGroupY(0),
-		//mGroupZ(0)
+		mThreadGroupCountZ(0),
+		mGroupX(0),
+		mGroupY(0),
+		mGroupZ(0)
 	{
 		mThreadGroupCountX = 32;
 		mThreadGroupCountY = 32;
@@ -52,7 +52,7 @@ namespace jh::graphics
 		Binds();
 
 		GetDevice()->BindComputeShader(mCS.Get(), nullptr, 0);
-		GetDevice()->Dispatch(mThreadGroupCountX, mThreadGroupCountY, mThreadGroupCountZ);
+		GetDevice()->Dispatch(mGroupX, mGroupY, mGroupZ);
 
 		Clear();
 	}
