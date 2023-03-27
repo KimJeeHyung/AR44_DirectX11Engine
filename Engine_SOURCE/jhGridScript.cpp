@@ -52,9 +52,9 @@ namespace jh
 		data.cameraScale = Vector2(scale, scale);
 		data.resolution = resolution;
 
-		cb->Bind(&data);
-		cb->SetPipeline(eShaderStage::VS);
-		cb->SetPipeline(eShaderStage::PS);
+		cb->SetData(&data);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);
 	}
 
 	void GridScript::FixedUpdate()

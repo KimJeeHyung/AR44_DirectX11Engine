@@ -109,13 +109,22 @@
     <Filter Include="Component\Light">
       <UniqueIdentifier>{4d13f205-9d83-4392-971c-8b3532d750d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\API">
+      <UniqueIdentifier>{dd2a4248-5f06-462d-9955-f9cf801e65e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Buffer">
+      <UniqueIdentifier>{fc79e0ed-3325-493e-9d26-0d0394c63fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader\CS">
+      <UniqueIdentifier>{12f14c17-ff60-4ec1-8d52-c86e39d3ccb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader\CS\Base">
+      <UniqueIdentifier>{3650957f-6e42-418d-ae2c-8b8f00f96b39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
       <Filter>High Level Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="jhGraphicDevice_DX11.cpp">
-      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="jhMath.cpp">
       <Filter>Common\Math</Filter>
@@ -147,7 +156,6 @@
     <ClCompile Include="jhComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="jhConstantBuffer.cpp" />
     <ClCompile Include="jhTexture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
@@ -238,9 +246,22 @@
     <ClCompile Include="jhLight.cpp">
       <Filter>Component\Light</Filter>
     </ClCompile>
-    <ClCompile Include="jhStructedBuffer.cpp" />
-    <ClCompile Include="jhComputeShader.cpp" />
-    <ClCompile Include="jhPaintShader.cpp" />
+    <ClCompile Include="jhGraphicDevice_DX11.cpp">
+      <Filter>Graphics\API</Filter>
+    </ClCompile>
+    <ClCompile Include="jhStructedBuffer.cpp">
+      <Filter>Graphics\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="jhConstantBuffer.cpp">
+      <Filter>Graphics\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="jhComputeShader.cpp">
+      <Filter>Resource\Shader\CS\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPaintShader.cpp">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClCompile>
+    <ClCompile Include="jhParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -248,9 +269,6 @@
     </ClInclude>
     <ClInclude Include="jhApplication.h">
       <Filter>High Level Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="jhGraphicDevice_DX11.h">
-      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="jhMath.h">
       <Filter>Common\Math</Filter>
@@ -291,7 +309,6 @@
     <ClInclude Include="jhComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="jhConstantBuffer.h" />
     <ClInclude Include="jhTexture.h">
       <Filter>Resource\Texture</Filter>
     </ClInclude>
@@ -382,12 +399,25 @@
     <ClInclude Include="jhLight.h">
       <Filter>Component\Light</Filter>
     </ClInclude>
-    <ClInclude Include="jhStructedBuffer.h" />
     <ClInclude Include="jhObject.h">
       <Filter>GameObject\Base</Filter>
     </ClInclude>
-    <ClInclude Include="jhComputeShader.h" />
-    <ClInclude Include="jhPaintShader.h" />
+    <ClInclude Include="jhGraphicDevice_DX11.h">
+      <Filter>Graphics\API</Filter>
+    </ClInclude>
+    <ClInclude Include="jhStructedBuffer.h">
+      <Filter>Graphics\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="jhConstantBuffer.h">
+      <Filter>Graphics\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="jhComputeShader.h">
+      <Filter>Resource\Shader\CS\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPaintShader.h">
+      <Filter>Resource\Shader\CS</Filter>
+    </ClInclude>
+    <ClInclude Include="jhParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">

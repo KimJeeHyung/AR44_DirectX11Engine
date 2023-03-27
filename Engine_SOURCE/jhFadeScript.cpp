@@ -77,9 +77,9 @@ namespace jh
 		data.deltaTime = mDeltaTime;
 		data.padding = Vector3(0.f, 0.f, 0.f);
 
-		cb->Bind(&data);
-		cb->SetPipeline(eShaderStage::VS);
-		cb->SetPipeline(eShaderStage::PS);
+		cb->SetData(&data);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::PS);
 	}
 
 	void FadeScript::FixedUpdate()

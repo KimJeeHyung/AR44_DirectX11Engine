@@ -20,6 +20,7 @@ namespace jh::enums
 		Monster,
 		Player,
 
+		Particle,
 		UI,
 		End = 16,
 	};
@@ -34,6 +35,7 @@ namespace jh::enums
 		MeshRenderer,
 		SpriteRenderer,
 		Animator,
+		ParticleSystem,
 		Light,
 		UI,
 		Script,

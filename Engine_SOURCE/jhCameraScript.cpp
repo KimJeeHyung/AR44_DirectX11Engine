@@ -27,27 +27,27 @@ namespace jh
 
 		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
 		{
-			pos += 10.f * tr->Right() * Time::DeltaTime();
+			pos += 100.f * tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
-			pos += 10.f * -tr->Right() * Time::DeltaTime();
+			pos += 100.f * -tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
-			pos += 10.f * tr->Up() * Time::DeltaTime();
+			pos += 100.f * tr->Up() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
-			pos += 10.f * -tr->Up() * Time::DeltaTime();
+			pos += 100.f * -tr->Up() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::Q) == eKeyState::PRESSED)
 		{
-			pos += 10.f * tr->Foward() * Time::DeltaTime();
+			pos += 100.f * tr->Foward() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::E) == eKeyState::PRESSED)
 		{
-			pos += 10.f * -tr->Foward() * Time::DeltaTime();
+			pos += 100.f * -tr->Foward() * Time::DeltaTime();
 		}
 
 		tr->SetPosition(pos);

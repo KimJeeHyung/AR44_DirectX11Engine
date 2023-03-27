@@ -76,7 +76,7 @@ namespace jh
 		trCB.projection = Camera::GetGpuProjectionMatrix();
 		
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Transform];
-		cb->Bind(&trCB);
-		cb->SetPipeline(eShaderStage::VS);
+		cb->SetData(&trCB);
+		cb->Bind(eShaderStage::VS);
 	}
 }

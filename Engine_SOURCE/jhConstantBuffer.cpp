@@ -28,12 +28,12 @@ namespace jh::graphics
 		return true;
 	}
 
-	void ConstantBuffer::Bind(void* data)
+	void ConstantBuffer::SetData(void* data)
 	{
 		GetDevice()->BindBuffer(buffer.Get(), data, desc.ByteWidth);
 	}
 
-	void ConstantBuffer::SetPipeline(eShaderStage stage)
+	void ConstantBuffer::Bind(eShaderStage stage)
 	{
 		GetDevice()->BindConstantBuffer(stage, mType, buffer.Get());
 	}

@@ -70,6 +70,11 @@ namespace jh::renderer
 		UINT numberOfLight;
 	};
 
+	CBUFFER(ParticleSystemCB, CBSLOT_PARTICLESYSTEM)
+	{
+		Vector4 color;
+	};
+
 	// 정점 데이터
 	extern Vertex vertexes[4];
 	// 상수버퍼
