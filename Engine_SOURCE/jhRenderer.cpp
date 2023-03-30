@@ -394,9 +394,11 @@ namespace jh::renderer
 		std::shared_ptr<Shader> particleShader = std::make_shared<Shader>();
 		particleShader->Create(eShaderStage::VS, L"ParticleVS.hlsl", "main");
 		particleShader->Create(eShaderStage::PS, L"ParticlePS.hlsl", "main");
+		particleShader->Create(eShaderStage::GS, L"ParticleGS.hlsl", "main");
 		particleShader->SetRSState(eRSType::SolidNone);
 		particleShader->SetDSState(eDSType::NoWrite);
 		particleShader->SetBSState(eBSType::AlphaBlend);
+		particleShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 
 		Resources::Insert<Shader>(L"ParticleShader", particleShader);
 	}
@@ -406,6 +408,7 @@ namespace jh::renderer
 		Resources::Load<Texture>(L"SmileTexture", L"Smile.png");
 		Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 		Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
+		Resources::Load<Texture>(L"CartoonSmoke", L"particle\\CartoonSmoke.png");
 
 		std::shared_ptr<Texture> uavTexture = std::make_shared<Texture>();
 		uavTexture->Create(1024, 1024, DXGI_FORMAT_R8G8B8A8_UNORM,
@@ -429,7 +432,7 @@ namespace jh::renderer
 			std::shared_ptr<Shader> defaultShader = Resources::Find<Shader>(L"RectShader");
 			std::shared_ptr<Material> defaultMaterial = std::make_shared<Material>();
 			defaultMaterial->SetShader(defaultShader);
-			defaultMaterial->SetTexture(defaultTexture);
+			defaultMaterial->SetTexture(eTextureSlot::T0, defaultTexture);
 			Resources::Insert<Material>(L"RectMaterial", defaultMaterial);
 		}
 		//Sprite
@@ -439,7 +442,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> spriteMaterial = std::make_shared<Material>();
 			spriteMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			spriteMaterial->SetShader(spriteShader);
-			spriteMaterial->SetTexture(spriteTexture);
+			spriteMaterial->SetTexture(eTextureSlot::T0, spriteTexture);
 			Resources::Insert<Material>(L"SpriteMaterial", spriteMaterial);
 		}
 		// UI
@@ -448,7 +451,7 @@ namespace jh::renderer
 		std::shared_ptr<Material> uiMaterial = std::make_shared<Material>();
 		uiMaterial->SetRenderingMode(eRenderingMode::Transparent);
 		uiMaterial->SetShader(uiShader);
-		uiMaterial->SetTexture(uiTexture);
+		uiMaterial->SetTexture(eTextureSlot::T0, uiTexture);
 		Resources::Insert<Material>(L"UIMaterial", uiMaterial);
 		// Grid
 		{
@@ -490,7 +493,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> mbMaterial = std::make_shared<Material>();
 			mbMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			mbMaterial->SetShader(uiShader);
-			mbMaterial->SetTexture(mbTexture);
+			mbMaterial->SetTexture(eTextureSlot::T0, mbTexture);
 			Resources::Insert<Material>(L"MBMaterial", mbMaterial);
 
 			// Title
@@ -498,7 +501,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> mtMaterial = std::make_shared<Material>();
 			mtMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			mtMaterial->SetShader(uiShader);
-			mtMaterial->SetTexture(mtTexture);
+			mtMaterial->SetTexture(eTextureSlot::T0, mtTexture);
 			Resources::Insert<Material>(L"MTMaterial", mtMaterial);
 
 			// Copy
@@ -506,7 +509,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> mcMaterial = std::make_shared<Material>();
 			mcMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			mcMaterial->SetShader(uiShader);
-			mcMaterial->SetTexture(mcTexture);
+			mcMaterial->SetTexture(eTextureSlot::T0, mcTexture);
 			Resources::Insert<Material>(L"MCMaterial", mcMaterial);
 		}
 		//GS1
@@ -516,7 +519,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> gs1tMaterial = std::make_shared<Material>();
 			gs1tMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			gs1tMaterial->SetShader(uiShader);
-			gs1tMaterial->SetTexture(gs1tTexture);
+			gs1tMaterial->SetTexture(eTextureSlot::T0, gs1tTexture);
 			Resources::Insert<Material>(L"GS1TMaterial", gs1tMaterial);
 
 			// Copy
@@ -524,7 +527,7 @@ namespace jh::renderer
 			std::shared_ptr<Material> gs1cMaterial = std::make_shared<Material>();
 			gs1cMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			gs1cMaterial->SetShader(uiShader);
-			gs1cMaterial->SetTexture(gs1cTexture);
+			gs1cMaterial->SetTexture(eTextureSlot::T0, gs1cTexture);
 			Resources::Insert<Material>(L"GS1CMaterial", gs1cMaterial);
 		}
 #pragma endregion

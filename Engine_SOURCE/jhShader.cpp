@@ -50,6 +50,14 @@ namespace jh
 			GetDevice()->CreatePixelShader(mPSBlob->GetBufferPointer(),
 				mPSBlob->GetBufferSize(), nullptr, mPS.GetAddressOf());
         }
+		else if (stage == graphics::eShaderStage::GS)
+		{
+			D3DCompileFromFile(shaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
+				funName.c_str(), "gs_5_0", 0, 0, mGSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
+
+			GetDevice()->CreateGeometryShader(mGSBlob->GetBufferPointer(),
+				mGSBlob->GetBufferSize(), nullptr, mGS.GetAddressOf());
+		}
 	}
 
 	void Shader::Binds()
@@ -58,6 +66,9 @@ namespace jh
 		GetDevice()->BindInputLayout(mInputLayout.Get());
 
 		GetDevice()->BindVertexShader(mVS.Get(), nullptr, 0);
+		GetDevice()->BindHullShader(mHS.Get(), nullptr, 0);
+		GetDevice()->BindDomainShader(mDS.Get(), nullptr, 0);
+		GetDevice()->BindGeometryShader(mGS.Get(), nullptr, 0);
 		GetDevice()->BindPixelShader(mPS.Get(), nullptr, 0);
 
 		Microsoft::WRL::ComPtr<ID3D11RasterizerState> rs = renderer::rasterizerStates[(UINT)mRSType];

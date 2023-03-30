@@ -43,11 +43,11 @@ namespace jh
 		}
 		else if (Input::GetKeyState(eKeyCode::Q) == eKeyState::PRESSED)
 		{
-			pos += 100.f * tr->Foward() * Time::DeltaTime();
+			pos += 300.f * tr->Foward() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::E) == eKeyState::PRESSED)
 		{
-			pos += 100.f * -tr->Foward() * Time::DeltaTime();
+			pos += 300.f * -tr->Foward() * Time::DeltaTime();
 		}
 
 		tr->SetPosition(pos);
