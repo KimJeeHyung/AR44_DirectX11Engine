@@ -40,6 +40,8 @@ namespace jh
 				comp->SetOwner(this);
 			}
 
+			comp->Initialize();
+
 			return comp;
 		}
 		void AddComponent(Component* comp);

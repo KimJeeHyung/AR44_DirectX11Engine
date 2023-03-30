@@ -18,6 +18,16 @@ namespace jh
 		mEndColor(Vector4::Zero),
 		mStartLifeTime(0.f)
 	{
+	}
+
+	ParticleSystem::~ParticleSystem()
+	{
+		delete mBuffer;
+		mBuffer = nullptr;
+	}
+
+	void ParticleSystem::Initialize()
+	{
 		std::shared_ptr<Mesh> point = Resources::Find<Mesh>(L"PointMesh");
 		SetMesh(point);
 
@@ -43,16 +53,6 @@ namespace jh
 		mCount = 144;
 		mBuffer = new StructedBuffer();
 		mBuffer->Create(sizeof(Particle), mCount, eSRVType::None, particles);
-	}
-
-	ParticleSystem::~ParticleSystem()
-	{
-		delete mBuffer;
-		mBuffer = nullptr;
-	}
-
-	void ParticleSystem::Initialize()
-	{
 	}
 
 	void ParticleSystem::Update()
