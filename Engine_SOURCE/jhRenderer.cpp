@@ -403,7 +403,7 @@ namespace jh::renderer
 		#pragma endregion
 		#pragma region STRUCTURED BUFFER
 				lightsBuffer = new StructedBuffer();
-				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::None, nullptr);
+				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::SRV, nullptr);
 		#pragma endregion
 	}
 
@@ -583,8 +583,8 @@ namespace jh::renderer
 	void BindLights()
 	{
 		lightsBuffer->SetData(lights.data(), lights.size());
-		lightsBuffer->Bind(eShaderStage::VS, 13);
-		lightsBuffer->Bind(eShaderStage::PS, 13);
+		lightsBuffer->BindSRV(eShaderStage::VS, 13);
+		lightsBuffer->BindSRV(eShaderStage::PS, 13);
 
 		renderer::LightCB trCB = {};
 		trCB.numberOfLight = lights.size();

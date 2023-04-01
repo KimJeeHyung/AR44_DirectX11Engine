@@ -73,6 +73,8 @@ namespace jh::renderer
 	CBUFFER(ParticleSystemCB, CBSLOT_PARTICLESYSTEM)
 	{
 		Vector4 color;
+		UINT elementCount;
+		float deltaTime;
 	};
 
 	// 정점 데이터

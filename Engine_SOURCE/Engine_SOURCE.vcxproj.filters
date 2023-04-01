@@ -262,6 +262,7 @@
       <Filter>Resource\Shader\CS</Filter>
     </ClCompile>
     <ClCompile Include="jhParticleSystem.cpp" />
+    <ClCompile Include="jhParticleShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -418,6 +419,7 @@
       <Filter>Resource\Shader\CS</Filter>
     </ClInclude>
     <ClInclude Include="jhParticleSystem.h" />
+    <ClInclude Include="jhParticleShader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">

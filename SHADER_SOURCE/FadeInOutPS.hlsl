@@ -16,7 +16,7 @@ struct VSOut
 
 float4 main(VSOut In) : SV_Target
 {
-    float alpha = deltaTime;
+    float alpha = fadeDeltaTime;
     
     if (alpha >= 1.f)
     {

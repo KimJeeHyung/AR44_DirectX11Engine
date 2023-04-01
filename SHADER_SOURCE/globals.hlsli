@@ -30,7 +30,7 @@ cbuffer Fade : register(b3)
     float4 fCameraPosition;
     float2 fCameraScale;
     float2 fResolution;
-    float deltaTime;
+    float fadeDeltaTime;
     float3 padding;
 }
 
@@ -52,6 +52,8 @@ cbuffer NumberOfLight : register(b5)
 cbuffer ParticleSystem : register(b6)
 {
     float4 particleColor;
+    uint elementCount;
+    float particleDeltaTime;
 }
 
 SamplerState pointSampler : register(s0);
