@@ -6,7 +6,7 @@
 namespace jh::graphics
 {
 	ParticleShader::ParticleShader() :
-		ComputeShader(128,1,1),
+		ComputeShader(128, 1, 1),
 		mBuffer(nullptr)
 	{
 	}
@@ -19,7 +19,7 @@ namespace jh::graphics
 	{
 		mBuffer->BindUAV(eShaderStage::CS, 0);
 
-		mGroupX = mBuffer->GetStride() / mThreadGroupCountX;
+		mGroupX = mBuffer->GetStride() / mThreadGroupCountX + 1;
 		mGroupY = 1;
 		mGroupZ = 1;
 	}
@@ -38,7 +38,7 @@ namespace jh::graphics
 		info.deltaTime = Time::DeltaTime();
 
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::ParticleSystem];
-		cb->SetData(&cb);
+		cb->SetData(&info);
 		cb->Bind(eShaderStage::CS);
 	}
 }

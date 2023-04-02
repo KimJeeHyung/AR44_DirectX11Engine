@@ -8,8 +8,8 @@ namespace jh::graphics
 		mType(eSRVType::SRV),
 		mSize(0),
 		mStride(0),
-		mSRVSlot(-1),
-		mUAVSlot(-1)
+		mSRVSlot(0),
+		mUAVSlot(0)
 	{
 	}
 
@@ -33,7 +33,7 @@ namespace jh::graphics
 		if (mType == eSRVType::UAV)
 		{
 			desc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
-			desc.BindFlags=D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE |
+			desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE |
 				D3D11_BIND_FLAG::D3D11_BIND_UNORDERED_ACCESS;
 			desc.CPUAccessFlags = 0;
 		}
@@ -65,7 +65,7 @@ namespace jh::graphics
 			uavDesc.Buffer.NumElements = mStride;
 			uavDesc.ViewDimension = D3D11_UAV_DIMENSION_BUFFER;
 
-			if (!GetDevice()->CreateUnorderedAccessView(buffer.Get(), &uavDesc, mUAV.GetAddressOf()))
+			if (!(GetDevice()->CreateUnorderedAccessView(buffer.Get(), &uavDesc, mUAV.GetAddressOf())))
 				return false;
 		}
 
@@ -86,11 +86,14 @@ namespace jh::graphics
 
 	void StructedBuffer::BindSRV(eShaderStage stage, UINT slot)
 	{
+		mSRVSlot = slot;
+
 		GetDevice()->BindShaderResource(stage, slot, mSRV.GetAddressOf());
 	}
 
 	void StructedBuffer::BindUAV(eShaderStage stage, UINT slot)
 	{
+		mUAVSlot = slot;
 		UINT i = -1;
 		GetDevice()->BindUnorderedAccessView(slot, 1, mUAV.GetAddressOf(), &i);
 	}

@@ -11,7 +11,7 @@ namespace jh
 {
 	ParticleSystem::ParticleSystem() :
 		BaseRenderer(eComponentType::ParticleSystem),
-		mCount(0),
+		mCount(100),
 		mStartSize(Vector4::Zero),
 		mEndSize(Vector4::Zero),
 		mStartColor(Vector4::Zero),
@@ -28,6 +28,8 @@ namespace jh
 
 	void ParticleSystem::Initialize()
 	{
+		mCS = Resources::Find<ParticleShader>(L"ParticleCS");
+
 		std::shared_ptr<Mesh> point = Resources::Find<Mesh>(L"PointMesh");
 		SetMesh(point);
 
@@ -38,21 +40,20 @@ namespace jh
 		std::shared_ptr<Texture> tex = Resources::Find<Texture>(L"CartoonSmoke");
 		material->SetTexture(eTextureSlot::T0, tex);
 
-		Particle particles[1000] = {};
+		Particle particles[100] = {};
 		Vector4 startPos = Vector4(-800.f, -450.f, 0.f, 0.f);
-		for (size_t y = 0; y < 9; y++)
+		for (size_t i = 0; i < mCount; i++)
 		{
-			for (size_t x = 0; x < 16; x++)
-			{
-				particles[16 * y + x].position = startPos + Vector4(x * 100.f, y * 100.f, 0.f, 0.f);
+			particles[i].position = Vector4(0.f, 0.f, 20.f, 1.f);
+			particles[i].active = 1;
+			particles[i].direction = Vector4(cosf((float)i * (XM_2PI / (float)mCount)),
+				sinf((float)i * (XM_2PI / (float)mCount)), 0.f, 1.f);
 
-				particles[16 * y + x].active = 1;
-			}
+			particles[i].speed = 100.f;
 		}
 
-		mCount = 144;
 		mBuffer = new StructedBuffer();
-		mBuffer->Create(sizeof(Particle), mCount, eSRVType::SRV, particles);
+		mBuffer->Create(sizeof(Particle), mCount, eSRVType::UAV, particles);
 	}
 
 	void ParticleSystem::Update()
@@ -61,6 +62,8 @@ namespace jh
 
 	void ParticleSystem::FixedUpdate()
 	{
+		mCS->SetStructedBuffer(mBuffer);
+		mCS->OnExcute();
 	}
 
 	void ParticleSystem::Render()
@@ -72,5 +75,7 @@ namespace jh
 
 		GetMaterial()->Bind();
 		GetMesh()->RenderInstanced(mCount);
+
+		mBuffer->Clear();
 	}
 }
