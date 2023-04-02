@@ -54,6 +54,12 @@ namespace jh::graphics
 		D3DCompileFromFile(shaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
 			funcName.c_str(), "cs_5_0", 0, 0, mCSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
 
+		if (mErrorBlob)
+		{
+			OutputDebugStringA((char*)mErrorBlob->GetBufferPointer());
+			mErrorBlob->Release();
+		}
+
 		GetDevice()->CreateComputeShader(mCSBlob->GetBufferPointer(), mCSBlob->GetBufferSize(),
 			nullptr, mCS.GetAddressOf());
 		

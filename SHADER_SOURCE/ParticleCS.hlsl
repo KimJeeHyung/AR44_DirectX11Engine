@@ -11,7 +11,7 @@ void main(uint3 DTid : SV_DispatchThreadID)
     if (elementCount <= DTid.x)
         return;
     
-    if (particleBuffer[DTid.x].active == 0)
+    if (ParticleBuffer[DTid.x].active == 0)
     {
         while (0 < ParticleSharedBuffer[0].gActiveCount)
         {
@@ -25,14 +25,14 @@ void main(uint3 DTid : SV_DispatchThreadID)
             
             if (originValue == exchange)
             {
-                particleBuffer[DTid.x].active = 1;
+                ParticleBuffer[DTid.x].active = 1;
                 break;
             }
         }
     }
     else // active == 1
     {
-        particleBuffer[DTid.x].position += particleBuffer[DTid.x].direction *
-            particleBuffer[DTid.x].speed * particleDeltaTime;
+        ParticleBuffer[DTid.x].position += ParticleBuffer[DTid.x].direction *
+            ParticleBuffer[DTid.x].speed * particleDeltaTime;
     }
 }

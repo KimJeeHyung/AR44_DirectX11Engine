@@ -24,7 +24,7 @@ namespace jh
 		return E_NOTIMPL;
 	}
 
-	void Shader::Create(eShaderStage stage, const std::wstring& file, const std::string& funName)
+	void Shader::Create(eShaderStage stage, const std::wstring& file, const std::string& funcName)
 	{
 		mErrorBlob = nullptr;
 
@@ -37,7 +37,7 @@ namespace jh
         if (stage == graphics::eShaderStage::VS)
         {
             D3DCompileFromFile(shaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
-                funName.c_str(), "vs_5_0", 0, 0, mVSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
+                funcName.c_str(), "vs_5_0", 0, 0, mVSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
 
             GetDevice()->CreateVertexShader(mVSBlob->GetBufferPointer(),
                 mVSBlob->GetBufferSize(), nullptr, mVS.GetAddressOf());
@@ -45,7 +45,7 @@ namespace jh
         else if (stage == graphics::eShaderStage::PS)
         {
             D3DCompileFromFile(shaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
-                funName.c_str(), "ps_5_0", 0, 0, mPSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
+                funcName.c_str(), "ps_5_0", 0, 0, mPSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
 
 			GetDevice()->CreatePixelShader(mPSBlob->GetBufferPointer(),
 				mPSBlob->GetBufferSize(), nullptr, mPS.GetAddressOf());
@@ -53,7 +53,7 @@ namespace jh
 		else if (stage == graphics::eShaderStage::GS)
 		{
 			D3DCompileFromFile(shaderPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE,
-				funName.c_str(), "gs_5_0", 0, 0, mGSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
+				funcName.c_str(), "gs_5_0", 0, 0, mGSBlob.GetAddressOf(), mErrorBlob.GetAddressOf());
 
 			GetDevice()->CreateGeometryShader(mGSBlob->GetBufferPointer(),
 				mGSBlob->GetBufferSize(), nullptr, mGS.GetAddressOf());

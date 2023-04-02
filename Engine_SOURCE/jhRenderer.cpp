@@ -408,7 +408,7 @@ namespace jh::renderer
 		#pragma endregion
 		#pragma region STRUCTURED BUFFER
 				lightsBuffer = new StructedBuffer();
-				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::SRV, nullptr);
+				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::SRV, nullptr, true);
 		#pragma endregion
 	}
 
