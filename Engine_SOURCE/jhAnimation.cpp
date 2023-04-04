@@ -54,31 +54,6 @@ namespace jh
 
 	void Animation::Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
 		Vector2 leftTop, Vector2 size, Vector2 offset,
-		UINT spriteLegth, float duration)
-	{
-		mAnimationName = name;
-
-		mAtlas = atlas;
-		float width = (float)atlas->GetWidth();
-		float height = (float)atlas->GetHeight();
-
-		for (size_t i = 0; i < spriteLegth; i++)
-		{
-			// API와는 다르게 0 ~ 1 사이의 비율좌표로 위치를 표현해야 한다.
-			Sprite sprite = {};
-			sprite.leftTop = Vector2((leftTop.x + (size.x * (float)i)) / width, leftTop.y / height);
-
-			sprite.size = Vector2(size.x / width, size.y / height);
-			sprite.offset = offset;
-			sprite.duration = duration;
-			sprite.atlasSize = Vector2(1000.f / width, 1000.f / height);
-
-			mSpriteSheet.push_back(sprite);
-		}
-	}
-
-	void Animation::Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
-		Vector2 leftTop, Vector2 size, Vector2 offset,
 		UINT spriteRowCount, UINT spriteColumnCount, float duration)
 	{
 		mAnimationName = name;
@@ -89,7 +64,6 @@ namespace jh
 
 		for (size_t i = 0; i < spriteColumnCount; i++)
 		{
-			
 			for (size_t j = 0; j < spriteRowCount; j++)
 			{
 				// API와는 다르게 0 ~ 1 사이의 비율좌표로 위치를 표현해야 한다.
@@ -99,7 +73,7 @@ namespace jh
 				sprite.size = Vector2(size.x / width, size.y / height);
 				sprite.offset = offset;
 				sprite.duration = duration;
-				sprite.atlasSize = Vector2(1000.f / width, 1000.f / height);
+				sprite.atlasSize = Vector2(1500.f / width, 1500.f / height);
 
 				mSpriteSheet.push_back(sprite);
 			}

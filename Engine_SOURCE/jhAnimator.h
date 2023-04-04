@@ -39,9 +39,6 @@ namespace jh
 		virtual void FixedUpdate() override;
 		virtual void Render() override;
 
-		bool Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
-			Vector2 leftTop, Vector2 size, Vector2 offset,
-			UINT spriteLength, float duration);
 		bool Create(const std::wstring& name, std::shared_ptr<Texture> atlas
 			, Vector2 leftTop, Vector2 size, Vector2 offset
 			, UINT spriteRowCount, UINT spriteColumnCount, float duration);
@@ -52,6 +49,8 @@ namespace jh
 
 		void Binds();
 		void Clear();
+
+		Animation* GetActiveAnimation() { return mActiveAnimation; }
 
 		std::function<void()>& GetStartEvent(const std::wstring& name);
 		std::function<void()>& GetCompleteEvent(const std::wstring& name);
