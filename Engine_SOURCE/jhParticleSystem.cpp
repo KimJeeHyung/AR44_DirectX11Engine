@@ -19,7 +19,8 @@ namespace jh
 		mEndColor(Vector4::Zero),
 		mStartLifeTime(0.f),
 		mFrequency(1.f),
-		mTime(0.f)
+		mTime(0.f),
+		mCBData{}
 	{
 	}
 
@@ -47,7 +48,7 @@ namespace jh
 		material->SetTexture(eTextureSlot::T0, tex);
 
 		Particle particles[100] = {};
-		Vector4 startPos = Vector4(-800.f, -450.f, 0.f, 0.f);
+		Vector4 startPos = Vector4(0.f, 0.f, 0.f, 0.f);
 		for (size_t i = 0; i < mCount; i++)
 		{
 			particles[i].position = Vector4(0.f, 0.f, 20.f, 1.f);
@@ -90,12 +91,12 @@ namespace jh
 			mSharedBuffer->SetData(&shared, 1);
 		}
 
-		renderer::ParticleSystemCB info = {};
-		info.elementCount = mBuffer->GetStride();
-		info.deltaTime = Time::DeltaTime();
+		mCBData.elementCount = mBuffer->GetStride();
+		mCBData.deltaTime = Time::DeltaTime();
+		mCBData.elapsedTime += Time::DeltaTime();
 
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::ParticleSystem];
-		cb->SetData(&info);
+		cb->SetData(&mCBData);
 		cb->Bind(eShaderStage::CS);
 
 		mCS->SetSharedStructedBuffer(mSharedBuffer);
@@ -106,9 +107,7 @@ namespace jh
 	void ParticleSystem::Render()
 	{
 		GetOwner()->GetComponent<Transform>()->SetConstantBuffer();
-		mBuffer->BindSRV(eShaderStage::VS, 15);
 		mBuffer->BindSRV(eShaderStage::GS, 15);
-		mBuffer->BindSRV(eShaderStage::PS, 15);
 
 		GetMaterial()->Bind();
 		GetMesh()->RenderInstanced(mCount);

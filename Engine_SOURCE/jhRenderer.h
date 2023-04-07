@@ -75,6 +75,12 @@ namespace jh::renderer
 		Vector4 color;
 		UINT elementCount;
 		float deltaTime;
+		float elapsedTime;
+	};
+
+	CBUFFER(NoiseCB, CBSLOT_NOISE)
+	{
+		Vector4 noiseSize;
 	};
 
 	// 정점 데이터
@@ -99,5 +105,6 @@ namespace jh::renderer
 
 	void PushLightAttribute(LightAttribute lightAttribute);
 	void BindLights();
+	void BindNoiseTexture();
 }
 

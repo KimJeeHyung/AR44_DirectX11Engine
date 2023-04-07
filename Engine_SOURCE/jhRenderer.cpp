@@ -405,6 +405,9 @@ namespace jh::renderer
 
 				constantBuffers[(UINT)eCBType::ParticleSystem] = new ConstantBuffer(eCBType::ParticleSystem);
 				constantBuffers[(UINT)eCBType::ParticleSystem]->Create(sizeof(ParticleSystemCB));
+
+				constantBuffers[(UINT)eCBType::Noise] = new ConstantBuffer(eCBType::Noise);
+				constantBuffers[(UINT)eCBType::Noise]->Create(sizeof(NoiseCB));
 		#pragma endregion
 		#pragma region STRUCTURED BUFFER
 				lightsBuffer = new StructedBuffer();
@@ -419,6 +422,8 @@ namespace jh::renderer
 				Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 				Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
 				Resources::Load<Texture>(L"CartoonSmoke", L"particle\\CartoonSmoke.png");
+				Resources::Load<Texture>(L"Noise_01", L"noise\\noise_01.png");
+				Resources::Load<Texture>(L"Noise_02", L"noise\\noise_02.png");
 		#pragma endregion
 		#pragma region DYNAMIC TEXTURE
 				std::shared_ptr<Texture> uavTexture = std::make_shared<Texture>();
@@ -428,12 +433,12 @@ namespace jh::renderer
 		#pragma endregion
 		#pragma region STATIC TEXTURE(PORTFOLIO)
 				// MainTitle
-				Resources::Load<Texture>(L"MainBackground", L"title_back.png");
-				Resources::Load<Texture>(L"MainTitle", L"titlek.png");
-				Resources::Load<Texture>(L"MainCopy", L"copy.png");
+				Resources::Load<Texture>(L"MainBackground", L"Portfolio\\title_back.png");
+				Resources::Load<Texture>(L"MainTitle", L"Portfolio\\titlek.png");
+				Resources::Load<Texture>(L"MainCopy", L"Portfolio\\copy.png");
 				// Titles
-				Resources::Load<Texture>(L"gs1Title", L"titlegs1k.png");
-				Resources::Load<Texture>(L"gs1Copy", L"copygs1.png");
+				Resources::Load<Texture>(L"gs1Title", L"Portfolio\\titlegs1k.png");
+				Resources::Load<Texture>(L"gs1Copy", L"Portfolio\\copygs1.png");
 		#pragma endregion
 	}
 
@@ -553,6 +558,7 @@ namespace jh::renderer
 
 	void Render()
 	{
+		BindNoiseTexture();
 		BindLights();
 
 		eSceneType type = SceneManager::GetActiveScene()->GetSceneType();
@@ -598,5 +604,29 @@ namespace jh::renderer
 		cb->SetData(&trCB);
 		cb->Bind(eShaderStage::VS);
 		cb->Bind(eShaderStage::PS);
+	}
+
+	void BindNoiseTexture()
+	{
+		std::shared_ptr<Texture> noise = Resources::Find<Texture>(L"Noise_01");
+		noise->BindShaderResource(eShaderStage::VS, 16);
+		noise->BindShaderResource(eShaderStage::HS, 16);
+		noise->BindShaderResource(eShaderStage::DS, 16);
+		noise->BindShaderResource(eShaderStage::GS, 16);
+		noise->BindShaderResource(eShaderStage::PS, 16);
+		noise->BindShaderResource(eShaderStage::CS, 16);
+
+		NoiseCB info = {};
+		info.noiseSize.x = noise->GetWidth();
+		info.noiseSize.y = noise->GetHeight();
+
+		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Noise];
+		cb->SetData(&info);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::HS);
+		cb->Bind(eShaderStage::DS);
+		cb->Bind(eShaderStage::GS);
+		cb->Bind(eShaderStage::PS);
+		cb->Bind(eShaderStage::CS);
 	}
 }

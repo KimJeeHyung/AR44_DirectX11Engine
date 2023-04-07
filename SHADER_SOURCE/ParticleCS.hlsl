@@ -21,7 +21,8 @@ void main(uint3 DTid : SV_DispatchThreadID)
             // 스레드 동기화
             // dest값을 exchange값으로 바꾸는 동안
             // 다른 스레드는 멈춘다.
-            InterlockedExchange(ParticleSharedBuffer[0].gActiveCount, exchange, exchange);
+            //InterlockedExchange(ParticleSharedBuffer[0].gActiveCount, exchange, exchange);
+            InterlockedCompareExchange(ParticleSharedBuffer[0].gActiveCount, originValue, exchange, exchange);
             
             if (originValue == exchange)
             {
@@ -29,10 +30,27 @@ void main(uint3 DTid : SV_DispatchThreadID)
                 break;
             }
         }
+        
+        if (ParticleBuffer[DTid.x].active)
+        {
+            // 랜덤값으로 위치와 방향을 설정해준다.
+            // 샘플링을 시도할 UV를 계산해준다.
+            float3 Random = (float3) 0.f;
+            float2 UV = float2((float) DTid.x / elementCount, 0.5f);
+            UV.x += elapsedTime;
+            UV.y += sin((UV.x + elapsedTime) * 3.141592f + 2.f * 10.f) * 0.5f;
+            
+            Random = float3(GaussianBlur(UV + float2(0.f, 0.f)).x,
+                            GaussianBlur(UV + float2(0.1f, 0.f)).x,
+                            GaussianBlur(UV + float2(0.2f, 0.f)).x);
+            
+            ParticleBuffer[DTid.x].position.xyz = Random.xyz * 50.f - 600.f;
+            ParticleBuffer[DTid.x].position.z = 100.f;
+        }
     }
     else // active == 1
     {
-        ParticleBuffer[DTid.x].position += ParticleBuffer[DTid.x].direction *
-            ParticleBuffer[DTid.x].speed * particleDeltaTime;
+        //ParticleBuffer[DTid.x].position += ParticleBuffer[DTid.x].direction *
+        //    ParticleBuffer[DTid.x].speed * particleDeltaTime;
     }
 }

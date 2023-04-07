@@ -62,7 +62,7 @@ namespace jh
 		// 메인 카메라 오브젝트
 		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		//cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+		cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
 		//cameraComp->RegisterCameraInRenderer();
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
 		cameraObj->AddComponent<CameraScript>();
@@ -86,55 +86,55 @@ namespace jh
 			collider->SetType(eColliderType::Rect);
 #pragma region CREATE ANIMATION
 			Animator* animator = obj->AddComponent<Animator>();
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Phoenix_Idle.png");
+			std::shared_ptr<Texture> texture = Resources::Load<Texture>(L"PhoenixIdle", L"Portfolio\\Phoenix_Idle.png");
 			animator->Create(L"PhoenixIdle", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 5, 1, 0.4f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleBlink", L"Phoenix_Idle_Blink.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleBlink", L"Portfolio\\Phoenix_Idle_Blink.png");
 			animator->Create(L"PhoenixIdleBlink", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 3, 1, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Phoenix_Idle_Talk.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleTalk", L"Portfolio\\Phoenix_Idle_Talk.png");
 			animator->Create(L"PhoenixIdleTalk", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 8, 2, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleTalkBlink", L"Phoenix_Idle_Talk_Blink.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleTalkBlink", L"Portfolio\\Phoenix_Idle_Talk_Blink.png");
 			animator->Create(L"PhoenixIdleTalkBlink", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 3, 1, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleTalk2", L"Phoenix_Idle_Talk_2.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleTalk2", L"Portfolio\\Phoenix_Idle_Talk_2.png");
 			animator->Create(L"PhoenixIdleTalk2", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 11, 2, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleNod", L"Phoenix_Idle_Nod.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleNod", L"Portfolio\\Phoenix_Idle_Nod.png");
 			animator->Create(L"PhoenixIdleNod", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 9, 2, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixIdleShake", L"Phoenix_Idle_Shake.png");
+			texture = Resources::Load<Texture>(L"PhoenixIdleShake", L"Portfolio\\Phoenix_Idle_Shake.png");
 			animator->Create(L"PhoenixIdleShake", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 12, 2, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink", L"Phoenix_Think.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink", L"Portfolio\\Phoenix_Think.png");
 			animator->Create(L"PhoenixThink", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 4, 5, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink2", L"Phoenix_Think_2.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink2", L"Portfolio\\Phoenix_Think_2.png");
 			animator->Create(L"PhoenixThink2", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 11, 1, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink3", L"Phoenix_Think_3.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink3", L"Portfolio\\Phoenix_Think_3.png");
 			animator->Create(L"PhoenixThink3", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 12, 3, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink4", L"Phoenix_Think_4.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink4", L"Portfolio\\Phoenix_Think_4.png");
 			animator->Create(L"PhoenixThink4", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 6, 1, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink5", L"Phoenix_Think_5.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink5", L"Portfolio\\Phoenix_Think_5.png");
 			animator->Create(L"PhoenixThink5", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 10, 3, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixThink6", L"Phoenix_Think_6.png");
+			texture = Resources::Load<Texture>(L"PhoenixThink6", L"Portfolio\\Phoenix_Think_6.png");
 			animator->Create(L"PhoenixThink6", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 6, 1, 0.05f); 
-			texture = Resources::Load<Texture>(L"PhoenixThinkTalk", L"Phoenix_Think_Talk.png");
+			texture = Resources::Load<Texture>(L"PhoenixThinkTalk", L"Portfolio\\Phoenix_Think_Talk.png");
 			animator->Create(L"PhoenixThinkTalk", texture, Vector2(0.f, 0.f), Vector2(926.f, 980.f),
 				Vector2::Zero, 14, 3, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixDeskHit", L"Phoenix_Desk_Hit.png");
+			texture = Resources::Load<Texture>(L"PhoenixDeskHit", L"Portfolio\\Phoenix_Desk_Hit.png");
 			animator->Create(L"PhoenixDeskHit", texture, Vector2(0.f, 0.f), Vector2(1285.f, 980.f),
 				Vector2::Zero, 10, 2, 0.05f);
-			texture = Resources::Load<Texture>(L"PhoenixDeskIdle", L"Phoenix_Desk_Idle.png");
+			texture = Resources::Load<Texture>(L"PhoenixDeskIdle", L"Portfolio\\Phoenix_Desk_Idle.png");
 			animator->Create(L"PhoenixDeskIdle", texture, Vector2(0.f, 0.f), Vector2(1285.f, 980.f),
 				Vector2::Zero, 5, 1, 0.4f);
-			texture = Resources::Load<Texture>(L"PhoenixDeskIdleBlink", L"Phoenix_Desk_Idle_Blink.png");
+			texture = Resources::Load<Texture>(L"PhoenixDeskIdleBlink", L"Portfolio\\Phoenix_Desk_Idle_Blink.png");
 			animator->Create(L"PhoenixDeskIdleBlink", texture, Vector2(0.f, 0.f), Vector2(1285.f, 980.f),
 				Vector2::Zero, 3, 1, 0.05f);
 #pragma endregion
@@ -227,13 +227,13 @@ namespace jh
 		//fadeScript->SetCamera(cameraComp);
 
 		// Particle
-		/*{
+		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Particle);
 			obj->SetName(L"PARTICLE");
 			Transform* tr = obj->GetComponent<Transform>();
 			tr->SetPosition(Vector3(0.f, 0.f, 100.f));
 			obj->AddComponent<ParticleSystem>();
-		}*/
+		}
 
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Monster, true);
 		//CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Player, true);
