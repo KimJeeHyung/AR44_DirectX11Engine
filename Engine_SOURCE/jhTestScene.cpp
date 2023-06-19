@@ -215,13 +215,13 @@ namespace jh
 		//	collider->SetSize(Vector2(2.f, 2.f));
 		//	collider->SetRadius(1.f);
 
-		//	SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
-		//	std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
-		//	std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
-		//	mr->SetMaterial(material);
-		//	mr->SetMesh(mesh);
-		//	object::DontDestroyOnLoad(obj);
-		//}
+			SpriteRenderer* mr = obj->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> mesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> material = Resources::Find<Material>(L"RectMaterial");
+			mr->SetMaterial(material);
+			mr->SetMesh(mesh);
+			object::DontDestroyOnLoad(obj);
+		}
 
 		// SMILE RECT CHILD
 		//GameObject* child = object::Instantiate<GameObject>(eLayerType::Player, tr);
