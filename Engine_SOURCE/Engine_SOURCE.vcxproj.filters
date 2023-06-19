@@ -121,6 +121,9 @@
     <Filter Include="Resource\Shader\CS\Base">
       <UniqueIdentifier>{3650957f-6e42-418d-ae2c-8b8f00f96b39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Test">
+      <UniqueIdentifier>{f455d562-1719-4fac-a693-0127a3a406c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -186,9 +189,6 @@
     <ClCompile Include="jhLayer.cpp">
       <Filter>Scene\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="jhPlayScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="jhBaseRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
@@ -231,9 +231,6 @@
     <ClCompile Include="jhAnimator.cpp">
       <Filter>Component\Animator</Filter>
     </ClCompile>
-    <ClCompile Include="jhTestScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="jhTitleScene.cpp">
       <Filter>Scene\Contents</Filter>
     </ClCompile>
@@ -263,6 +260,42 @@
     </ClCompile>
     <ClCompile Include="jhParticleSystem.cpp" />
     <ClCompile Include="jhParticleShader.cpp" />
+    <ClCompile Include="jhMiaScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPayneScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTest2Scene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTest3Scene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTestScene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTest4Scene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="jhJudgeScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhLarryScript.cpp">
+      <Filter>Component\Script\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTest5Scene.cpp">
+      <Filter>Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTitleSelectScene.cpp">
+      <Filter>Scene\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhBeforeTalkScene.cpp">
+      <Filter>Scene\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhCourtScene.cpp">
+      <Filter>Scene\Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h">
@@ -340,9 +373,6 @@
     <ClInclude Include="jhLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="jhPlayScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="jhBaseRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
@@ -385,9 +415,6 @@
     <ClInclude Include="jhAnimator.h">
       <Filter>Component\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="jhTestScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="jhTitleScene.h">
       <Filter>Scene\Contents</Filter>
     </ClInclude>
@@ -420,6 +447,42 @@
     </ClInclude>
     <ClInclude Include="jhParticleSystem.h" />
     <ClInclude Include="jhParticleShader.h" />
+    <ClInclude Include="jhMiaScript.h">
+      <Filter>Component\Script\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPayneScript.h">
+      <Filter>Component\Script\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTest2Scene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTest3Scene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTestScene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTest4Scene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="jhJudgeScript.h">
+      <Filter>Component\Script\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhLarryScript.h">
+      <Filter>Component\Script\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTest5Scene.h">
+      <Filter>Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTitleSelectScene.h">
+      <Filter>Scene\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhBeforeTalkScene.h">
+      <Filter>Scene\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhCourtScene.h">
+      <Filter>Scene\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="jhMath.inl">

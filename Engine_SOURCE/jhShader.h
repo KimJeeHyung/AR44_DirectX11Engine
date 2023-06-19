@@ -13,7 +13,7 @@ namespace jh
 
 		virtual HRESULT Load(const std::wstring& path) override;
 
-		void Create(eShaderStage stage, const std::wstring& file, const std::string& funName);
+		void Create(eShaderStage stage, const std::wstring& file, const std::string& funcName);
 		void Binds();
 
 		ID3D11InputLayout* GetInputLayout() { return mInputLayout.Get(); }

@@ -62,27 +62,6 @@ namespace jh
 
 	bool Animator::Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
 		Vector2 leftTop, Vector2 size, Vector2 offset,
-		UINT spriteLength, float duration)
-	{
-		if (atlas == nullptr)
-			return false;
-
-		Animation* animation = FindAnimation(name);
-		if (animation != nullptr)
-			return false;
-
-		animation = new Animation();
-		animation->Create(name, atlas, leftTop, size, offset, spriteLength, duration);
-
-		mAnimations.insert(std::make_pair(name, animation));
-
-		Events* events = new Events();
-		events->mEvents.resize(spriteLength);
-		mEvents.insert(std::make_pair(name, events));
-	}
-
-	bool Animator::Create(const std::wstring& name, std::shared_ptr<Texture> atlas,
-		Vector2 leftTop, Vector2 size, Vector2 offset,
 		UINT spriteRowCount, UINT spriteColumnCount, float duration)
 	{
 		if (atlas == nullptr)

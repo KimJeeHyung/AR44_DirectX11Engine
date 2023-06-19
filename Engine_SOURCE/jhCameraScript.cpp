@@ -25,30 +25,47 @@ namespace jh
 
 		Vector3 pos = tr->GetPosition();
 
-		if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
+		if (Input::GetKeyDown(eKeyCode::W))
 		{
-			pos += 100.f * tr->Right() * Time::DeltaTime();
+			pos = Vector3(0.f, 9.f, -7.8f);
+		}
+		else if (Input::GetKeyDown(eKeyCode::A))
+		{
+			pos = Vector3(-28.7f, 0.f, -7.8f);
+		}
+		else if (Input::GetKeyDown(eKeyCode::S))
+		{
+			pos = Vector3(0.f, 0.f, -7.8f);
+		}
+		else if (Input::GetKeyDown(eKeyCode::D))
+		{
+			pos = Vector3(28.f, 0.f, -7.8f);
+		}
+
+		/*if (Input::GetKeyState(eKeyCode::D) == eKeyState::PRESSED)
+		{
+			pos += 10.f * tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::A) == eKeyState::PRESSED)
 		{
-			pos += 100.f * -tr->Right() * Time::DeltaTime();
+			pos += 10.f * -tr->Right() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::W) == eKeyState::PRESSED)
 		{
-			pos += 100.f * tr->Up() * Time::DeltaTime();
+			pos += 10.f * tr->Up() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::S) == eKeyState::PRESSED)
 		{
-			pos += 100.f * -tr->Up() * Time::DeltaTime();
+			pos += 10.f * -tr->Up() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::Q) == eKeyState::PRESSED)
 		{
-			pos += 300.f * tr->Foward() * Time::DeltaTime();
+			pos += 10.f * tr->Foward() * Time::DeltaTime();
 		}
 		else if (Input::GetKeyState(eKeyCode::E) == eKeyState::PRESSED)
 		{
-			pos += 300.f * -tr->Foward() * Time::DeltaTime();
-		}
+			pos += 10.f * -tr->Foward() * Time::DeltaTime();
+		}*/
 
 		tr->SetPosition(pos);
 	}

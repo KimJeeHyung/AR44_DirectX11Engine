@@ -5,9 +5,15 @@ namespace jh::enums
 	enum class eSceneType
 	{
 		Test,
+		Test2,
+		Test3,
+		Test4,
+		Test5,
 		MainTitle,
 		Title,
-		Play,
+		TitleSelect,
+		BeforeTalk,
+		Court,
 		End,
 	};
 
@@ -19,6 +25,7 @@ namespace jh::enums
 		Background,
 		Monster,
 		Player,
+		Desk,
 
 		Particle,
 		UI,

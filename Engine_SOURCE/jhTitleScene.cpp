@@ -93,7 +93,11 @@ namespace jh
 
 	void TitleScene::Update()
 	{
-		if (Input::GetKeyDown(eKeyCode::BACKSPACE))
+		if (Input::GetKeyDown(eKeyCode::ENTER))
+		{
+			SceneManager::LoadScene(eSceneType::TitleSelect);
+		}
+		else if (Input::GetKeyDown(eKeyCode::BACKSPACE))
 		{
 			SceneManager::LoadScene(eSceneType::MainTitle);
 		}

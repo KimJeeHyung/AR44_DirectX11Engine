@@ -1,0 +1,97 @@
+#include "jhPayneScript.h"
+#include "jhTransform.h"
+#include "jhGameObject.h"
+#include "jhInput.h"
+#include "jhTime.h"
+#include "jhAnimator.h"
+
+namespace jh
+{
+	PayneScript::PayneScript() :
+		Script(),
+		mAnimator(nullptr)
+	{
+	}
+
+	PayneScript::~PayneScript()
+	{
+	}
+
+	void PayneScript::Initialize()
+	{
+		mAnimator = GetOwner()->GetComponent<Animator>();
+
+		bindEvent();
+	}
+
+	void PayneScript::Update()
+	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+
+		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
+		{
+			Vector3 rot = tr->GetRotation();
+			rot.z += 10.f * Time::DeltaTime();
+			tr->SetRotation(rot);
+		}
+
+		if (Input::GetKey(eKeyCode::RIGHT))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.x += 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+		if (Input::GetKey(eKeyCode::LEFT))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.x -= 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+
+		if (Input::GetKey(eKeyCode::DOWN))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.y -= 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+		if (Input::GetKey(eKeyCode::UP))
+		{
+			Vector3 pos = tr->GetPosition();
+			pos.y += 6.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+
+		if (Input::GetKey(eKeyCode::N_1))
+		{
+			mAnimator->Play(L"PayneIdle", false);
+		}
+		if (Input::GetKey(eKeyCode::N_2))
+		{
+			mAnimator->Play(L"PayneIdleTalk", true);
+		}
+		if (Input::GetKey(eKeyCode::N_3))
+		{
+			mAnimator->Play(L"PayneSweat", true);
+		}
+		if (Input::GetKey(eKeyCode::N_4))
+		{
+			mAnimator->Play(L"PayneSweatTalk", true);
+		}
+	}
+
+	void PayneScript::Render()
+	{
+	}
+
+	void PayneScript::bindEvent()
+	{
+	}
+
+	void PayneScript::returnIdle()
+	{
+	}
+
+	void PayneScript::blink()
+	{
+	}
+}

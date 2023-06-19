@@ -405,10 +405,13 @@ namespace jh::renderer
 
 				constantBuffers[(UINT)eCBType::ParticleSystem] = new ConstantBuffer(eCBType::ParticleSystem);
 				constantBuffers[(UINT)eCBType::ParticleSystem]->Create(sizeof(ParticleSystemCB));
+
+				constantBuffers[(UINT)eCBType::Noise] = new ConstantBuffer(eCBType::Noise);
+				constantBuffers[(UINT)eCBType::Noise]->Create(sizeof(NoiseCB));
 		#pragma endregion
 		#pragma region STRUCTURED BUFFER
 				lightsBuffer = new StructedBuffer();
-				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::SRV, nullptr);
+				lightsBuffer->Create(sizeof(LightAttribute), 128, eSRVType::SRV, nullptr, true);
 		#pragma endregion
 	}
 
@@ -419,6 +422,8 @@ namespace jh::renderer
 				Resources::Load<Texture>(L"DefaultSprite", L"Light.png");
 				Resources::Load<Texture>(L"HPBarTexture", L"HPBar.png");
 				Resources::Load<Texture>(L"CartoonSmoke", L"particle\\CartoonSmoke.png");
+				Resources::Load<Texture>(L"Noise_01", L"noise\\noise_01.png");
+				Resources::Load<Texture>(L"Noise_02", L"noise\\noise_02.png");
 		#pragma endregion
 		#pragma region DYNAMIC TEXTURE
 				std::shared_ptr<Texture> uavTexture = std::make_shared<Texture>();
@@ -428,12 +433,29 @@ namespace jh::renderer
 		#pragma endregion
 		#pragma region STATIC TEXTURE(PORTFOLIO)
 				// MainTitle
-				Resources::Load<Texture>(L"MainBackground", L"title_back.png");
-				Resources::Load<Texture>(L"MainTitle", L"titlek.png");
-				Resources::Load<Texture>(L"MainCopy", L"copy.png");
+				Resources::Load<Texture>(L"MainBackground", L"Portfolio\\title_back.png");
+				Resources::Load<Texture>(L"SelectBackground", L"Portfolio\\title_select_bg.png");
+				Resources::Load<Texture>(L"MainTitle", L"Portfolio\\titlek.png");
+				Resources::Load<Texture>(L"MainCopy", L"Portfolio\\copy.png");
+
 				// Titles
-				Resources::Load<Texture>(L"gs1Title", L"titlegs1k.png");
-				Resources::Load<Texture>(L"gs1Copy", L"copygs1.png");
+				Resources::Load<Texture>(L"gs1Title", L"Portfolio\\titlegs1k.png");
+				Resources::Load<Texture>(L"gs1Copy", L"Portfolio\\copygs1.png");
+
+				// Episodes
+				Resources::Load<Texture>(L"ep1Image", L"Portfolio\\storygs1 #2074.png");
+				Resources::Load<Texture>(L"ep1Text", L"Portfolio\\title_textgs1k.png");
+				Resources::Load<Texture>(L"TitleFrame", L"Portfolio\\title_select_frame.png");
+
+				// Court Backgrounds
+				Resources::Load<Texture>(L"WaitingRoom", L"Portfolio\\Backgrounds\\bg002.png");
+				Resources::Load<Texture>(L"Court", L"Portfolio\\Backgrounds\\Court.png");
+				Resources::Load<Texture>(L"Desk1", L"Portfolio\\Backgrounds\\etc22.png");
+				Resources::Load<Texture>(L"Desk2", L"Portfolio\\Backgrounds\\etc21.png");
+				Resources::Load<Texture>(L"Desk3", L"Portfolio\\Backgrounds\\etc20.png");
+				Resources::Load<Texture>(L"WholeCourt", L"Portfolio\\Backgrounds\\bg006.png");
+				Resources::Load<Texture>(L"SupportBack", L"Portfolio\\Backgrounds\\bg007.png");
+				Resources::Load<Texture>(L"JudgeBack", L"Portfolio\\Backgrounds\\bg008.png");
 		#pragma endregion
 	}
 
@@ -504,6 +526,14 @@ namespace jh::renderer
 			mbMaterial->SetTexture(eTextureSlot::T0, mbTexture);
 			Resources::Insert<Material>(L"MBMaterial", mbMaterial);
 
+			// Select Background
+			std::shared_ptr<Texture> sbTexture = Resources::Find<Texture>(L"SelectBackground");
+			std::shared_ptr<Material> sbMaterial = std::make_shared<Material>();
+			sbMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			sbMaterial->SetShader(uiShader);
+			sbMaterial->SetTexture(eTextureSlot::T0, sbTexture);
+			Resources::Insert<Material>(L"SBMaterial", sbMaterial);
+
 			// Title
 			std::shared_ptr<Texture> mtTexture = Resources::Find<Texture>(L"MainTitle");
 			std::shared_ptr<Material> mtMaterial = std::make_shared<Material>();
@@ -537,6 +567,72 @@ namespace jh::renderer
 			gs1cMaterial->SetShader(uiShader);
 			gs1cMaterial->SetTexture(eTextureSlot::T0, gs1cTexture);
 			Resources::Insert<Material>(L"GS1CMaterial", gs1cMaterial);
+
+			// Episodes
+			std::shared_ptr<Texture> selectFrameTexture = Resources::Find<Texture>(L"TitleFrame");
+			std::shared_ptr<Material> selectFrameMaterial = std::make_shared<Material>();
+			selectFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			selectFrameMaterial->SetShader(uiShader);
+			selectFrameMaterial->SetTexture(eTextureSlot::T0, selectFrameTexture);
+			Resources::Insert<Material>(L"SFMaterial", selectFrameMaterial);
+
+			std::shared_ptr<Texture> ep1iTexture = Resources::Find<Texture>(L"ep1Image");
+			std::shared_ptr<Material> ep1iMaterial = std::make_shared<Material>();
+			ep1iMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			ep1iMaterial->SetShader(uiShader);
+			ep1iMaterial->SetTexture(eTextureSlot::T0, ep1iTexture);
+			Resources::Insert<Material>(L"EP1IMaterial", ep1iMaterial);
+
+			std::shared_ptr<Texture> ep1tTexture = Resources::Find<Texture>(L"ep1Text");
+			std::shared_ptr<Material> ep1tMaterial = std::make_shared<Material>();
+			ep1tMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			ep1tMaterial->SetShader(uiShader);
+			ep1tMaterial->SetTexture(eTextureSlot::T0, ep1tTexture);
+			Resources::Insert<Material>(L"EP1TMaterial", ep1tMaterial);
+
+			// Waiting Room
+			std::shared_ptr<Texture> wrTexture = Resources::Find<Texture>(L"WaitingRoom");
+			std::shared_ptr<Material> wrMaterial = std::make_shared<Material>();
+			wrMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			wrMaterial->SetShader(uiShader);
+			wrMaterial->SetTexture(eTextureSlot::T0, wrTexture);
+			Resources::Insert<Material>(L"WaitingRoomMaterial", wrMaterial);
+
+			// Court
+			std::shared_ptr<Texture> courtTexture = Resources::Find<Texture>(L"Court");
+			std::shared_ptr<Material> courtMaterial = std::make_shared<Material>();
+			courtMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			courtMaterial->SetShader(uiShader);
+			courtMaterial->SetTexture(eTextureSlot::T0, courtTexture);
+			Resources::Insert<Material>(L"CourtMaterial", courtMaterial);
+
+			std::shared_ptr<Texture> judgeBackTexture = Resources::Find<Texture>(L"JudgeBack");
+			std::shared_ptr<Material> judgeBackMaterial = std::make_shared<Material>();
+			judgeBackMaterial->SetRenderingMode(eRenderingMode::Opaque);
+			judgeBackMaterial->SetShader(uiShader);
+			judgeBackMaterial->SetTexture(eTextureSlot::T0, judgeBackTexture);
+			Resources::Insert<Material>(L"JudgeBackMaterial", judgeBackMaterial);
+
+			std::shared_ptr<Texture> desk1Texture = Resources::Find<Texture>(L"Desk1");
+			std::shared_ptr<Material> desk1Material = std::make_shared<Material>();
+			desk1Material->SetRenderingMode(eRenderingMode::Transparent);
+			desk1Material->SetShader(uiShader);
+			desk1Material->SetTexture(eTextureSlot::T0, desk1Texture);
+			Resources::Insert<Material>(L"Desk1Material", desk1Material);
+
+			std::shared_ptr<Texture> desk2Texture = Resources::Find<Texture>(L"Desk2");
+			std::shared_ptr<Material> desk2Material = std::make_shared<Material>();
+			desk2Material->SetRenderingMode(eRenderingMode::Transparent);
+			desk2Material->SetShader(uiShader);
+			desk2Material->SetTexture(eTextureSlot::T0, desk2Texture);
+			Resources::Insert<Material>(L"Desk2Material", desk2Material);
+
+			std::shared_ptr<Texture> desk3Texture = Resources::Find<Texture>(L"Desk3");
+			std::shared_ptr<Material> desk3Material = std::make_shared<Material>();
+			desk3Material->SetRenderingMode(eRenderingMode::Transparent);
+			desk3Material->SetShader(uiShader);
+			desk3Material->SetTexture(eTextureSlot::T0, desk3Texture);
+			Resources::Insert<Material>(L"Desk3Material", desk3Material);
 		}
 #pragma endregion
 	}
@@ -553,6 +649,7 @@ namespace jh::renderer
 
 	void Render()
 	{
+		BindNoiseTexture();
 		BindLights();
 
 		eSceneType type = SceneManager::GetActiveScene()->GetSceneType();
@@ -598,5 +695,29 @@ namespace jh::renderer
 		cb->SetData(&trCB);
 		cb->Bind(eShaderStage::VS);
 		cb->Bind(eShaderStage::PS);
+	}
+
+	void BindNoiseTexture()
+	{
+		std::shared_ptr<Texture> noise = Resources::Find<Texture>(L"Noise_01");
+		noise->BindShaderResource(eShaderStage::VS, 16);
+		noise->BindShaderResource(eShaderStage::HS, 16);
+		noise->BindShaderResource(eShaderStage::DS, 16);
+		noise->BindShaderResource(eShaderStage::GS, 16);
+		noise->BindShaderResource(eShaderStage::PS, 16);
+		noise->BindShaderResource(eShaderStage::CS, 16);
+
+		NoiseCB info = {};
+		info.noiseSize.x = noise->GetWidth();
+		info.noiseSize.y = noise->GetHeight();
+
+		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Noise];
+		cb->SetData(&info);
+		cb->Bind(eShaderStage::VS);
+		cb->Bind(eShaderStage::HS);
+		cb->Bind(eShaderStage::DS);
+		cb->Bind(eShaderStage::GS);
+		cb->Bind(eShaderStage::PS);
+		cb->Bind(eShaderStage::CS);
 	}
 }

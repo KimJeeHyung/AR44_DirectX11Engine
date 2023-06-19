@@ -1,6 +1,6 @@
 #pragma once
 #include "jhEngine.h"
-
+#include <math.h>
 
 
 
