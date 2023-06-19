@@ -109,7 +109,6 @@ namespace jh
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::ParticleSystem];
 		cb->SetData(&mCBData);
 		cb->Bind(eShaderStage::ALL);
-		cb->Bind(eShaderStage::CS);
 
 		mCS->SetSharedStructedBuffer(mSharedBuffer);
 		mCS->SetStructedBuffer(mBuffer);
