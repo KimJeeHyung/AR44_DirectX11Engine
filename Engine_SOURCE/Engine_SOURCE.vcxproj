@@ -131,6 +131,12 @@
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)fmod.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)fmodL.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)fmodstudio.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,12 +158,18 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)fmod.dll" "$(SolutionDir)x64\Release\"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="jhAnimation.h" />
     <ClInclude Include="jhAnimator.h" />
     <ClInclude Include="jhApplication.h" />
+    <ClInclude Include="jhAudioClip.h" />
+    <ClInclude Include="jhAudioListener.h" />
+    <ClInclude Include="jhAudioSource.h" />
     <ClInclude Include="jhBaseRenderer.h" />
     <ClInclude Include="jhBeforeTalkScene.h" />
     <ClInclude Include="jhCamera.h" />
@@ -174,6 +186,7 @@
     <ClInclude Include="jhEntity.h" />
     <ClInclude Include="jhEnums.h" />
     <ClInclude Include="jhFadeScript.h" />
+    <ClInclude Include="jhFmod.h" />
     <ClInclude Include="jhGameObject.h" />
     <ClInclude Include="jhGraphicDevice_DX11.h" />
     <ClInclude Include="jhGraphics.h" />
@@ -222,6 +235,9 @@
     <ClCompile Include="jhAnimation.cpp" />
     <ClCompile Include="jhAnimator.cpp" />
     <ClCompile Include="jhApplication.cpp" />
+    <ClCompile Include="jhAudioClip.cpp" />
+    <ClCompile Include="jhAudioListener.cpp" />
+    <ClCompile Include="jhAudioSource.cpp" />
     <ClCompile Include="jhBaseRenderer.cpp" />
     <ClCompile Include="jhBeforeTalkScene.cpp" />
     <ClCompile Include="jhCamera.cpp" />
@@ -236,6 +252,7 @@
     <ClCompile Include="jhCourtScene.cpp" />
     <ClCompile Include="jhEntity.cpp" />
     <ClCompile Include="jhFadeScript.cpp" />
+    <ClCompile Include="jhFmod.cpp" />
     <ClCompile Include="jhGameObject.cpp" />
     <ClCompile Include="jhGraphicDevice_DX11.cpp" />
     <ClCompile Include="jhGridScript.cpp" />

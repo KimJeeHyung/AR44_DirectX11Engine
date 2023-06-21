@@ -124,6 +124,12 @@
     <Filter Include="Scene\Test">
       <UniqueIdentifier>{f455d562-1719-4fac-a693-0127a3a406c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Audio">
+      <UniqueIdentifier>{c0f2e7d1-9c84-4c7e-80fa-e78969776ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Audio">
+      <UniqueIdentifier>{d3a49709-e4b5-445d-af76-ae8355e44afc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -295,6 +301,18 @@
     </ClCompile>
     <ClCompile Include="jhCourtScene.cpp">
       <Filter>Scene\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAudioClip.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAudioListener.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="jhFmod.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAudioSource.cpp">
+      <Filter>Resource\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -482,6 +500,18 @@
     </ClInclude>
     <ClInclude Include="jhCourtScene.h">
       <Filter>Scene\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAudioClip.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAudioListener.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="jhFmod.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAudioSource.h">
+      <Filter>Resource\Audio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

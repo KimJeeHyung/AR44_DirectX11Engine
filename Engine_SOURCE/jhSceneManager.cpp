@@ -42,7 +42,7 @@ namespace jh
 		mScenes[(UINT)eSceneType::BeforeTalk] = new BeforeTalkScene;
 		mScenes[(UINT)eSceneType::Court] = new CourtScene;
 
-		mActiveScene = mScenes[(UINT)eSceneType::Court];
+		mActiveScene = mScenes[(UINT)eSceneType::MainTitle];
 
 		for (Scene* scene : mScenes)
 		{

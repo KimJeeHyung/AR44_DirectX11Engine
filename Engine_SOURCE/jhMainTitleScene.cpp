@@ -16,6 +16,9 @@
 #include "jhPlayer.h"
 #include "jhMonster.h"
 #include "jhCollisionManager.h"
+#include "jhAudioClip.h"
+#include "jhAudioSource.h"
+#include "jhAudioListener.h"
 
 namespace jh
 {
@@ -46,6 +49,13 @@ namespace jh
 		UICameraComp->TurnLayerMask(eLayerType::UI, true);
 		UICameraComp->TurnLayerMask(eLayerType::Background, true);
 		//mainCamera = UICameraComp;
+
+		//AudioListener* audioListener = UICameraObj->AddComponent<AudioListener>();
+		//std::shared_ptr<AudioClip> mainBGM = Resources::Load<AudioClip>(L"MainBGM", L"Portfolio\\Sound\\bgm200_Title.wav");
+		//AudioSource* audioSource = UICameraObj->AddComponent<AudioSource>();
+		//audioSource->SetClip(mainBGM);
+		//audioSource->SetLoop(true);
+		//audioSource->Play();
 
 		// 메인화면 배경
 		{

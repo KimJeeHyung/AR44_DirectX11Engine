@@ -20,6 +20,9 @@
 #include "jhPayneScript.h"
 #include "jhJudgeScript.h"
 #include "jhLarryScript.h"
+#include "jhAudioClip.h"
+#include "jhAudioSource.h"
+#include "jhAudioListener.h"
 
 namespace jh
 {
@@ -243,6 +246,8 @@ namespace jh
 			mr->SetMaterial(material);
 			mr->SetMesh(mesh);
 			obj->AddComponent<PlayerScript>();
+
+			AudioListener* listener = obj->AddComponent<AudioListener>();
 		}
 
 		// 아우치
@@ -277,6 +282,12 @@ namespace jh
 			mr->SetMaterial(material);
 			mr->SetMesh(mesh);
 			obj->AddComponent<PayneScript>();
+
+			AudioSource* source = obj->AddComponent<AudioSource>();
+			std::shared_ptr<AudioClip> clip = Resources::Load<AudioClip>(L"MainBGM", L"Portfolio\\Sound\\test.wav");
+			source->SetClip(clip);
+			source->SetLoop(true);
+			source->Play();
 		}
 
 		// 재판관
