@@ -17,6 +17,12 @@ namespace jh
 		//virtual void OnCollisionStay(Collider2D* collider) override;
 		//virtual void OnCollisionExit(Collider2D* collider) override;
 
+	public:
+		void AnimIdle();
+		void AnimIdleTalk();
+		void AnimSweat();
+		void AnimSweatTalk();
+
 	private:
 		void bindEvent();
 

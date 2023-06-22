@@ -11,7 +11,7 @@ namespace jh::enums
 		Test5,
 		MainTitle,
 		Title,
-		TitleSelect,
+		EpisodeSelect,
 		BeforeTalk,
 		Court,
 		End,

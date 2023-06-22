@@ -26,7 +26,7 @@ namespace jh
 
 	void MiaScript::Update()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
 		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
 		{
@@ -59,67 +59,67 @@ namespace jh
 			Vector3 pos = tr->GetPosition();
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-		}
+		}*/
 
 		if (Input::GetKey(eKeyCode::N_1))
 		{
-			mAnimator->Play(L"MiaFowardIdle", false);
+			AnimFowardIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_2))
 		{
-			mAnimator->Play(L"MiaFowardTalk", true);
+			AnimFowardIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_3))
 		{
-			mAnimator->Play(L"MiaFowardGrin", false);
+			AnimFowardGrin();
 		}
 		if (Input::GetKey(eKeyCode::N_4))
 		{
-			mAnimator->Play(L"MiaFowardSmileIdle", false);
+			AnimFowardSmileIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_5))
 		{
-			mAnimator->Play(L"MiaFowardSmileTalk", true);
+			AnimFowardSmileIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_6))
 		{
-			mAnimator->Play(L"MiaFowardShock", true);
+			AnimFowardShock();
 		}
 		if (Input::GetKey(eKeyCode::N_7))
 		{
-			mAnimator->Play(L"MiaFowardShockTalk", true);
+			AnimFowardShockTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_8))
 		{
-			mAnimator->Play(L"MiaCounselIdle", false);
+			AnimCounselIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_9))
 		{
-			mAnimator->Play(L"MiaCounselIdleTalk", true);
+			AnimCounselIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_0))
 		{
-			mAnimator->Play(L"MiaCounselShock", true);
+			AnimCounselShock();
 		}
 		if (Input::GetKey(eKeyCode::P))
 		{
-			mAnimator->Play(L"MiaCounselShockTalk", true);
+			AnimCounselShockTalk();
 		}
 		if (Input::GetKey(eKeyCode::O))
 		{
-			mAnimator->Play(L"MiaCounselIdleSad", false);
+			AnimCounselSad();
 		}
 		if (Input::GetKey(eKeyCode::I))
 		{
-			mAnimator->Play(L"MiaCounselIdleSadTalk", true);
+			AnimCounselSadTalk();
 		}
 		if (Input::GetKey(eKeyCode::U))
 		{
-			mAnimator->Play(L"MiaCounselExasperateIdle", false);
+			AnimCounselExasperate();
 		}
 		if (Input::GetKey(eKeyCode::Y))
 		{
-			mAnimator->Play(L"MiaCounselExasperateTalk", true);
+			AnimCounselExasperateTalk();
 		}
 	}
 
@@ -194,5 +194,66 @@ namespace jh
 		{
 			mAnimator->Play(L"MiaCounselExasperateIdleBlink", false);
 		}
+	}
+
+	void MiaScript::AnimFowardIdle()
+	{
+		mAnimator->Play(L"MiaFowardIdle", false);
+	}
+	void MiaScript::AnimFowardIdleTalk()
+	{
+		mAnimator->Play(L"MiaFowardIdleTalk", true);
+	}
+	void MiaScript::AnimFowardGrin()
+	{
+		mAnimator->Play(L"MiaFowardGrin", false);
+	}
+	void MiaScript::AnimFowardSmileIdle()
+	{
+		mAnimator->Play(L"MiaFowardSmileIdle", false);
+	}
+	void MiaScript::AnimFowardSmileIdleTalk()
+	{
+		mAnimator->Play(L"MiaFowardSmileTalk", true);
+	}
+	void MiaScript::AnimFowardShock()
+	{
+		mAnimator->Play(L"MiaFowardShock", true);
+	}
+	void MiaScript::AnimFowardShockTalk()
+	{
+		mAnimator->Play(L"MiaFowardShockTalk", true);
+	}
+	void MiaScript::AnimCounselIdle()
+	{
+		mAnimator->Play(L"MiaCounselIdle", false);
+	}
+	void MiaScript::AnimCounselIdleTalk()
+	{
+		mAnimator->Play(L"MiaCounselIdleTalk", true);
+	}
+	void MiaScript::AnimCounselShock()
+	{
+		mAnimator->Play(L"MiaCounselShock", true);
+	}
+	void MiaScript::AnimCounselShockTalk()
+	{
+		mAnimator->Play(L"MiaCounselShockTalk", true);
+	}
+	void MiaScript::AnimCounselSad()
+	{
+		mAnimator->Play(L"MiaCounselIdleSad", false);
+	}
+	void MiaScript::AnimCounselSadTalk()
+	{
+		mAnimator->Play(L"MiaCounselIdleSadTalk", true);
+	}
+	void MiaScript::AnimCounselExasperate()
+	{
+		mAnimator->Play(L"MiaCounselExasperateIdle", false);
+	}
+	void MiaScript::AnimCounselExasperateTalk()
+	{
+		mAnimator->Play(L"MiaCounselExasperateTalk", true);
 	}
 }

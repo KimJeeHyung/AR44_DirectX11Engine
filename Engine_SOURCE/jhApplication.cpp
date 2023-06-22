@@ -6,6 +6,7 @@
 #include "jhResources.h"
 #include "jhCollisionManager.h"
 #include "jhFmod.h"
+#include "jhFontWrapper.h"
 
 namespace jh
 {
@@ -24,6 +25,8 @@ namespace jh
 		Time::Initialize();
 		Input::Initialize();
 		Fmod::Initialize();
+		FontWrapper::Initialize();
+
 		CollisionManager::Initialize();
 		renderer::Initialize();
 		SceneManager::Initialize();
@@ -74,7 +77,9 @@ namespace jh
 
 	void Application::Release()
 	{
+		//Resources::
 		Fmod::Release();
+		FontWrapper::Release();
 	}
 
 	void Application::SetWindow(HWND hwnd, UINT width, UINT height)

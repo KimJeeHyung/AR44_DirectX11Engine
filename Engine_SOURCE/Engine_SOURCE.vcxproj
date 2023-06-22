@@ -132,10 +132,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)fmod.dll" "$(SolutionDir)x64\Debug\"
-copy "$(SolutionDir)fmodL.dll" "$(SolutionDir)x64\Debug\"
-copy "$(SolutionDir)fmodstudio.dll" "$(SolutionDir)x64\Debug\"
-copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
+      <Command>copy "$(SolutionDir)fmodL.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Debug\"
+copy "$(SolutionDir)FW1FontWrapperL.dll" "$(SolutionDir)x64\Debug\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,7 +159,9 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)fmod.dll" "$(SolutionDir)x64\Release\"</Command>
+      <Command>copy "$(SolutionDir)fmod.dll" "$(SolutionDir)x64\Release\"
+copy "$(SolutionDir)fmodstudio.dll" "$(SolutionDir)x64\Release\"
+copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Release\"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -187,6 +189,7 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClInclude Include="jhEnums.h" />
     <ClInclude Include="jhFadeScript.h" />
     <ClInclude Include="jhFmod.h" />
+    <ClInclude Include="jhFontWrapper.h" />
     <ClInclude Include="jhGameObject.h" />
     <ClInclude Include="jhGraphicDevice_DX11.h" />
     <ClInclude Include="jhGraphics.h" />
@@ -208,7 +211,7 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClInclude Include="jhParticleSystem.h" />
     <ClInclude Include="jhPayneScript.h" />
     <ClInclude Include="jhPlayer.h" />
-    <ClInclude Include="jhPlayerScript.h" />
+    <ClInclude Include="jhPhoenixScript.h" />
     <ClInclude Include="jhTest2Scene.h" />
     <ClInclude Include="jhPrefab.h" />
     <ClInclude Include="jhRenderer.h" />
@@ -224,9 +227,10 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClInclude Include="jhTest4Scene.h" />
     <ClInclude Include="jhTest5Scene.h" />
     <ClInclude Include="jhTestScene.h" />
+    <ClInclude Include="jhTextScript.h" />
     <ClInclude Include="jhTexture.h" />
     <ClInclude Include="jhTitleScene.h" />
-    <ClInclude Include="jhTitleSelectScene.h" />
+    <ClInclude Include="jhEpisodeSelectScene.h" />
     <ClInclude Include="jhTransform.h" />
     <ClInclude Include="jhTime.h" />
     <ClInclude Include="jhObject.h" />
@@ -253,6 +257,7 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClCompile Include="jhEntity.cpp" />
     <ClCompile Include="jhFadeScript.cpp" />
     <ClCompile Include="jhFmod.cpp" />
+    <ClCompile Include="jhFontWrapper.cpp" />
     <ClCompile Include="jhGameObject.cpp" />
     <ClCompile Include="jhGraphicDevice_DX11.cpp" />
     <ClCompile Include="jhGridScript.cpp" />
@@ -273,7 +278,7 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClCompile Include="jhParticleSystem.cpp" />
     <ClCompile Include="jhPayneScript.cpp" />
     <ClCompile Include="jhPlayer.cpp" />
-    <ClCompile Include="jhPlayerScript.cpp" />
+    <ClCompile Include="jhPhoenixScript.cpp" />
     <ClCompile Include="jhTest2Scene.cpp" />
     <ClCompile Include="jhPrefab.cpp" />
     <ClCompile Include="jhRenderer.cpp" />
@@ -289,9 +294,10 @@ copy "$(SolutionDir)fmodstudioL.dll" "$(SolutionDir)x64\Debug\"</Command>
     <ClCompile Include="jhTest4Scene.cpp" />
     <ClCompile Include="jhTest5Scene.cpp" />
     <ClCompile Include="jhTestScene.cpp" />
+    <ClCompile Include="jhTextScript.cpp" />
     <ClCompile Include="jhTexture.cpp" />
     <ClCompile Include="jhTitleScene.cpp" />
-    <ClCompile Include="jhTitleSelectScene.cpp" />
+    <ClCompile Include="jhEpisodeSelectScene.cpp" />
     <ClCompile Include="jhTransform.cpp" />
     <ClCompile Include="jhTime.cpp" />
   </ItemGroup>

@@ -3,11 +3,11 @@
 
 namespace jh
 {
-	class TitleSelectScene : public Scene
+	class EpisodeSelectScene : public Scene
 	{
 	public:
-		TitleSelectScene();
-		virtual ~TitleSelectScene();
+		EpisodeSelectScene();
+		virtual ~EpisodeSelectScene();
 
 		virtual void Initialize() override;
 		virtual void Update() override;

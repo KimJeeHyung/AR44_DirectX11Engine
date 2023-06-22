@@ -4,7 +4,7 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
+#include "jhPhoenixScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -88,8 +88,8 @@ namespace jh
 			texture = Resources::Load<Texture>(L"MiaFowardIdleBlink", L"Portfolio\\Mia\\Mia_Foward_Idle_Blink.png");
 			animator->Create(L"MiaFowardIdleBlink", texture, Vector2(0.f, 0.f), Vector2(727.f, 1180.f),
 				Vector2::Zero, 6, 1, 0.05f);
-			texture = Resources::Load<Texture>(L"MiaFowardTalk", L"Portfolio\\Mia\\Mia_Foward_Talk.png");
-			animator->Create(L"MiaFowardTalk", texture, Vector2(0.f, 0.f), Vector2(727.f, 1180.f),
+			texture = Resources::Load<Texture>(L"MiaFowardIdleTalk", L"Portfolio\\Mia\\Mia_Foward_Talk.png");
+			animator->Create(L"MiaFowardIdleTalk", texture, Vector2(0.f, 0.f), Vector2(727.f, 1180.f),
 				Vector2::Zero, 7, 5, 0.05f);
 			texture = Resources::Load<Texture>(L"MiaFowardGrin", L"Portfolio\\Mia\\Mia_Foward_Grin.png");
 			animator->Create(L"MiaFowardGrin", texture, Vector2(0.f, 0.f), Vector2(727.f, 1180.f),
@@ -164,7 +164,7 @@ namespace jh
 		}
 		else if (Input::GetKeyDown(eKeyCode::BACKSPACE))
 		{
-			SceneManager::LoadScene(eSceneType::TitleSelect);
+			SceneManager::LoadScene(eSceneType::EpisodeSelect);
 		}
 
 		Scene::Update();

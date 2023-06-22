@@ -4,7 +4,7 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
+#include "jhPhoenixScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -23,11 +23,14 @@
 #include "jhAudioClip.h"
 #include "jhAudioSource.h"
 #include "jhAudioListener.h"
+#include "jhFontWrapper.h"
+
+//#define FONT_RGBA(r, g, b, a) (((((BYTE)a << 24) | (BYTE)b << 16) | (BYTE)g << 8) | (BYTE)r)
 
 namespace jh
 {
 	CourtScene::CourtScene() :
-		Scene(eSceneType::Test)
+		Scene(eSceneType::Court)
 	{
 	}
 
@@ -245,7 +248,7 @@ namespace jh
 			std::shared_ptr<Material> material = Resources::Find<Material>(L"SpriteMaterial");
 			mr->SetMaterial(material);
 			mr->SetMesh(mesh);
-			obj->AddComponent<PlayerScript>();
+			obj->AddComponent<PhoenixScript>();
 
 			AudioListener* listener = obj->AddComponent<AudioListener>();
 		}
@@ -282,12 +285,6 @@ namespace jh
 			mr->SetMaterial(material);
 			mr->SetMesh(mesh);
 			obj->AddComponent<PayneScript>();
-
-			AudioSource* source = obj->AddComponent<AudioSource>();
-			std::shared_ptr<AudioClip> clip = Resources::Load<AudioClip>(L"MainBGM", L"Portfolio\\Sound\\test.wav");
-			source->SetClip(clip);
-			source->SetLoop(true);
-			source->Play();
 		}
 
 		// ÀçÆÇ°ü
@@ -393,6 +390,7 @@ namespace jh
 
 	void CourtScene::Render()
 	{
+		//FontWrapper::DrawFont(L"Test", 0.f, 0.f, 100, FONT_RGBA(1, 1, 1, 1));
 		Scene::Render();
 	}
 

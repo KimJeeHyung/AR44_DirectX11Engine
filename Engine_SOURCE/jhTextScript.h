@@ -3,11 +3,11 @@
 
 namespace jh
 {
-	class PlayerScript : public Script
+	class TextScript : public Script
 	{
 	public:
-		PlayerScript();
-		~PlayerScript();
+		TextScript();
+		~TextScript();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -17,16 +17,13 @@ namespace jh
 		virtual void OnCollisionStay(Collider2D* collider) override;
 		virtual void OnCollisionExit(Collider2D* collider) override;
 
-	private:
-		void bindEvent();
-
-		void start();
-		void end();
-		void returnIdle();
-		void blink();
-		void think();
+		void SetText(const wchar_t* str, float x, float y, float size, UINT rgba);
 
 	private:
-		class Animator* mAnimator;
+		const wchar_t* mString;
+		float mPosX;
+		float mPosY;
+		float mSize;
+		UINT mRGBA;
 	};
 }

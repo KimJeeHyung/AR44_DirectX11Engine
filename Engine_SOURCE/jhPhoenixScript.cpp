@@ -1,4 +1,4 @@
-#include "jhPlayerScript.h"
+#include "jhPhoenixScript.h"
 #include "jhTransform.h"
 #include "jhGameObject.h"
 #include "jhInput.h"
@@ -7,24 +7,24 @@
 
 namespace jh
 {
-	PlayerScript::PlayerScript() :
+	PhoenixScript::PhoenixScript() :
 		Script(),
 		mAnimator(nullptr)
 	{
 	}
 
-	PlayerScript::~PlayerScript()
+	PhoenixScript::~PhoenixScript()
 	{
 	}
 
-	void PlayerScript::Initialize()
+	void PhoenixScript::Initialize()
 	{
 		mAnimator = GetOwner()->GetComponent<Animator>();
 
 		bindEvent();
 	}
 
-	void PlayerScript::Update()
+	void PhoenixScript::Update()
 	{
 		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 		
@@ -63,134 +63,212 @@ namespace jh
 
 		if (Input::GetKey(eKeyCode::N_1))
 		{
-			mAnimator->Play(L"PhoenixIdle", false);
+			AnimIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_2))
 		{
-			mAnimator->Play(L"PhoenixIdleTalk", false);
+			AnimIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_3))
 		{
-			mAnimator->Play(L"PhoenixIdleNod", true);
+			AnimIdleNod();
 		}
 		if (Input::GetKey(eKeyCode::N_4))
 		{
-			mAnimator->Play(L"PhoenixIdleShake", true);
+			AnimIdleShake();
 		}
 		if (Input::GetKey(eKeyCode::N_5))
 		{
-			mAnimator->Play(L"PhoenixThink", false);
+			AnimThink();
 		}
 		if (Input::GetKey(eKeyCode::N_6))
 		{
-			mAnimator->Play(L"PhoenixThinkTalk", true);
+			AnimThinkTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_7))
 		{
-			mAnimator->Play(L"PhoenixDeskHit", false);
+			AnimDeskHit();
 		}
 		if (Input::GetKey(eKeyCode::N_8))
 		{
-			mAnimator->Play(L"PhoenixDeskTalk", true);
+			AnimDeskTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_9))
 		{
-			mAnimator->Play(L"PhoenixPoint", false);
+			AnimPoint();
 		}
 		if (Input::GetKey(eKeyCode::N_0))
 		{
-			mAnimator->Play(L"PhoenixPointTalk", true);
+			AnimPointTalk();
 		}
 		if (Input::GetKey(eKeyCode::P))
 		{
-			mAnimator->Play(L"PhoenixDocumentTalk", true);
+			AnimDocumentTalk();
 		}
 		if (Input::GetKey(eKeyCode::O))
 		{
-			mAnimator->Play(L"PhoenixSweatTalk", false);
+			AnimSweatTalk();
 		}
 		if (Input::GetKey(eKeyCode::I))
 		{
-			mAnimator->Play(L"PhoenixConfidentIdle", false);
+			AnimConfident();
 		}
 		if (Input::GetKey(eKeyCode::U))
 		{
-			mAnimator->Play(L"PhoenixConfidentTalk", true);
+			AnimConfidentTalk();
 		}
 		if (Input::GetKey(eKeyCode::Y))
 		{
-			mAnimator->Play(L"PhoenixShocked", false);
+			AnimShocked();
 		}
 		if (Input::GetKey(eKeyCode::T))
 		{
-			mAnimator->Play(L"PhoenixAbashedTalk", false);
+			AnimAbashedTalk();
 		}
 		if (Input::GetKey(eKeyCode::G))
 		{
-			mAnimator->Play(L"PhoenixWig", false);
+			AnimWig();
 		}
 	}
 
-	void PlayerScript::Render()
+	void PhoenixScript::Render()
 	{
 	}
 
-	void PlayerScript::OnCollisionEnter(Collider2D* collider)
+	void PhoenixScript::OnCollisionEnter(Collider2D* collider)
 	{
 	}
 
-	void PlayerScript::OnCollisionStay(Collider2D* collider)
+	void PhoenixScript::OnCollisionStay(Collider2D* collider)
 	{
 	}
 
-	void PlayerScript::OnCollisionExit(Collider2D* collider)
+	void PhoenixScript::OnCollisionExit(Collider2D* collider)
 	{
 	}
 
-	void PlayerScript::bindEvent()
+	void PhoenixScript::AnimIdle()
 	{
-		mAnimator->GetCompleteEvent(L"PhoenixIdle") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixIdleBlink") = std::bind(&PlayerScript::returnIdle, this);
-		mAnimator->GetCompleteEvent(L"PhoenixIdleTalk") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixIdleTalkBlink") = std::bind(&PlayerScript::returnIdle, this);
-		mAnimator->GetCompleteEvent(L"PhoenixIdleTalk2") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixThink") = std::bind(&PlayerScript::think, this);
-		mAnimator->GetCompleteEvent(L"PhoenixThink2") = std::bind(&PlayerScript::think, this);
-		mAnimator->GetCompleteEvent(L"PhoenixThink3") = std::bind(&PlayerScript::think, this);
-		mAnimator->GetCompleteEvent(L"PhoenixThink4") = std::bind(&PlayerScript::think, this);
-		mAnimator->GetCompleteEvent(L"PhoenixThink5") = std::bind(&PlayerScript::think, this);
-		mAnimator->GetCompleteEvent(L"PhoenixThink6") = std::bind(&PlayerScript::think, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixDeskHit") = std::bind(&PlayerScript::returnIdle, this);
-		mAnimator->GetCompleteEvent(L"PhoenixDeskIdle") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixDeskIdleBlink") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixPoint") = std::bind(&PlayerScript::returnIdle, this);
-		mAnimator->GetCompleteEvent(L"PhoenixPointIdle") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixPointIdleBlink") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixDocumentTalk") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixSweatTalk") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixConfidentIdle") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixConfidentIdleBlink") = std::bind(&PlayerScript::returnIdle, this);
-
-		mAnimator->GetCompleteEvent(L"PhoenixAbashedIdle") = std::bind(&PlayerScript::blink, this);
-		mAnimator->GetCompleteEvent(L"PhoenixAbashedIdleBlink") = std::bind(&PlayerScript::returnIdle, this);
-		mAnimator->GetCompleteEvent(L"PhoenixAbashedTalk") = std::bind(&PlayerScript::returnIdle, this);
+		mAnimator->Play(L"PhoenixIdle", false);
+	}
+	void PhoenixScript::AnimIdleTalk()
+	{
+		mAnimator->Play(L"PhoenixIdleTalk", false);
+	}
+	void PhoenixScript::AnimIdleNod()
+	{
+		mAnimator->Play(L"PhoenixIdleNod", true);
+	}
+	void PhoenixScript::AnimIdleShake()
+	{
+		mAnimator->Play(L"PhoenixIdleShake", true);
+	}
+	void PhoenixScript::AnimThink()
+	{
+		mAnimator->Play(L"PhoenixThink", false);
+	}
+	void PhoenixScript::AnimThinkTalk()
+	{
+		mAnimator->Play(L"PhoenixThinkTalk", true);
+	}
+	void PhoenixScript::AnimDeskHit()
+	{
+		mAnimator->Play(L"PhoenixDeskHit", false);
+	}
+	void PhoenixScript::AnimDeskTalk()
+	{
+		mAnimator->Play(L"PhoenixDeskTalk", true);
+	}
+	void PhoenixScript::AnimPoint()
+	{
+		mAnimator->Play(L"PhoenixPoint", false);
+	}
+	void PhoenixScript::AnimPointTalk()
+	{
+		mAnimator->Play(L"PhoenixPointTalk", true);
+	}
+	void PhoenixScript::AnimDocument()
+	{
+	}
+	void PhoenixScript::AnimDocumentTalk()
+	{
+		mAnimator->Play(L"PhoenixDocumentTalk", true);
+	}
+	void PhoenixScript::AnimSweat()
+	{
+	}
+	void PhoenixScript::AnimSweatTalk()
+	{
+		mAnimator->Play(L"PhoenixSweatTalk", false);
+	}
+	void PhoenixScript::AnimConfident()
+	{
+		mAnimator->Play(L"PhoenixConfidentIdle", false);
+	}
+	void PhoenixScript::AnimConfidentTalk()
+	{
+		mAnimator->Play(L"PhoenixConfidentTalk", true);
+	}
+	void PhoenixScript::AnimShocked()
+	{
+		mAnimator->Play(L"PhoenixShocked", false);
+	}
+	void PhoenixScript::AnimAbashed()
+	{
+	}
+	void PhoenixScript::AnimAbashedTalk()
+	{
+		mAnimator->Play(L"PhoenixAbashedTalk", false);
+	}
+	void PhoenixScript::AnimWig()
+	{
+		mAnimator->Play(L"PhoenixWig", false);
 	}
 
-	void PlayerScript::start()
+	void PhoenixScript::bindEvent()
+	{
+		mAnimator->GetCompleteEvent(L"PhoenixIdle") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixIdleBlink") = std::bind(&PhoenixScript::returnIdle, this);
+		mAnimator->GetCompleteEvent(L"PhoenixIdleTalk") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixIdleTalkBlink") = std::bind(&PhoenixScript::returnIdle, this);
+		mAnimator->GetCompleteEvent(L"PhoenixIdleTalk2") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixThink") = std::bind(&PhoenixScript::think, this);
+		mAnimator->GetCompleteEvent(L"PhoenixThink2") = std::bind(&PhoenixScript::think, this);
+		mAnimator->GetCompleteEvent(L"PhoenixThink3") = std::bind(&PhoenixScript::think, this);
+		mAnimator->GetCompleteEvent(L"PhoenixThink4") = std::bind(&PhoenixScript::think, this);
+		mAnimator->GetCompleteEvent(L"PhoenixThink5") = std::bind(&PhoenixScript::think, this);
+		mAnimator->GetCompleteEvent(L"PhoenixThink6") = std::bind(&PhoenixScript::think, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixDeskHit") = std::bind(&PhoenixScript::returnIdle, this);
+		mAnimator->GetCompleteEvent(L"PhoenixDeskIdle") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixDeskIdleBlink") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixPoint") = std::bind(&PhoenixScript::returnIdle, this);
+		mAnimator->GetCompleteEvent(L"PhoenixPointIdle") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixPointIdleBlink") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixDocumentTalk") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixSweatTalk") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixConfidentIdle") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixConfidentIdleBlink") = std::bind(&PhoenixScript::returnIdle, this);
+
+		mAnimator->GetCompleteEvent(L"PhoenixAbashedIdle") = std::bind(&PhoenixScript::blink, this);
+		mAnimator->GetCompleteEvent(L"PhoenixAbashedIdleBlink") = std::bind(&PhoenixScript::returnIdle, this);
+		mAnimator->GetCompleteEvent(L"PhoenixAbashedTalk") = std::bind(&PhoenixScript::returnIdle, this);
+	}
+
+	void PhoenixScript::start()
 	{
 	}
 
-	void PlayerScript::end()
+	void PhoenixScript::end()
 	{
 	}
 
-	void PlayerScript::returnIdle()
+	void PhoenixScript::returnIdle()
 	{
 		if (mAnimator->GetActiveAnimation()->AnimationName() == L"PhoenixIdleBlink")
 		{
@@ -233,7 +311,7 @@ namespace jh
 		}
 	}
 
-	void PlayerScript::blink()
+	void PhoenixScript::blink()
 	{
 		if (mAnimator->GetActiveAnimation()->AnimationName() == L"PhoenixIdle")
 		{
@@ -261,7 +339,7 @@ namespace jh
 		}
 	}
 
-	void PlayerScript::think()
+	void PhoenixScript::think()
 	{
 		if (mAnimator->GetActiveAnimation()->AnimationName() == L"PhoenixThink")
 		{

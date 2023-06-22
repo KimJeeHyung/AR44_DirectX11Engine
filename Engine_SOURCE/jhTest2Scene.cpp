@@ -28,10 +28,10 @@ namespace jh
 
 	void Test2Scene::Initialize()
 	{
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		/*GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
 		Camera* cameraComp = cameraObj->AddComponent<Camera>();
 		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		cameraObj->AddComponent<CameraScript>();
+		cameraObj->AddComponent<CameraScript>();*/
 
 		// Directional Light
 		{

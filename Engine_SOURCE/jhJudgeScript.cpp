@@ -26,7 +26,7 @@ namespace jh
 
 	void JudgeScript::Update()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
 		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
 		{
@@ -59,43 +59,43 @@ namespace jh
 			Vector3 pos = tr->GetPosition();
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-		}
+		}*/
 
 		if (Input::GetKey(eKeyCode::N_1))
 		{
-			mAnimator->Play(L"JudgeIdle", true);
+			AnimIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_2))
 		{
-			mAnimator->Play(L"JudgeIdleTalk", true);
+			AnimIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_3))
 		{
-			mAnimator->Play(L"JudgeNod", false);
+			AnimNod();
 		}
 		if (Input::GetKey(eKeyCode::N_4))
 		{
-			mAnimator->Play(L"JudgeShake", false);
+			AnimShake();
 		}
 		if (Input::GetKey(eKeyCode::N_5))
 		{
-			mAnimator->Play(L"JudgeSurprisedIdle", true);
+			AnimSurprisedIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_6))
 		{
-			mAnimator->Play(L"JudgeSurprisedTalk", true);
+			AnimSurprisedIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_7))
 		{
-			mAnimator->Play(L"JudgeSternIdle", true);
+			AnimSternIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_8))
 		{
-			mAnimator->Play(L"JudgeSternTalk", true);
+			AnimSternIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_9))
 		{
-			mAnimator->Play(L"JudgeThink", false);
+			AnimThink();
 		}
 	}
 
@@ -121,25 +121,42 @@ namespace jh
 
 	void JudgeScript::blink()
 	{
-		if (mAnimator->GetActiveAnimation()->AnimationName() == L"MiaFowardIdle")
-		{
-			mAnimator->Play(L"MiaFowardIdleBlink", false);
-		}
-		else if (mAnimator->GetActiveAnimation()->AnimationName() == L"MiaFowardSmileIdle")
-		{
-			mAnimator->Play(L"MiaFowardSmileIdleBlink", false);
-		}
-		else if (mAnimator->GetActiveAnimation()->AnimationName() == L"MiaCounselIdle")
-		{
-			mAnimator->Play(L"MiaCounselIdleBlink", false);
-		}
-		else if (mAnimator->GetActiveAnimation()->AnimationName() == L"MiaCounselIdleSad")
-		{
-			mAnimator->Play(L"MiaCounselIdleSadBlink", false);
-		}
-		else if (mAnimator->GetActiveAnimation()->AnimationName() == L"MiaCounselExasperateIdle")
-		{
-			mAnimator->Play(L"MiaCounselExasperateIdleBlink", false);
-		}
+	}
+
+	void JudgeScript::AnimIdle()
+	{
+		mAnimator->Play(L"JudgeIdle", true);
+	}
+	void JudgeScript::AnimIdleTalk()
+	{
+		mAnimator->Play(L"JudgeIdleTalk", true);
+	}
+	void JudgeScript::AnimNod()
+	{
+		mAnimator->Play(L"JudgeNod", false);
+	}
+	void JudgeScript::AnimShake()
+	{
+		mAnimator->Play(L"JudgeShake", false);
+	}
+	void JudgeScript::AnimSurprisedIdle()
+	{
+		mAnimator->Play(L"JudgeSurprisedIdle", true);
+	}
+	void JudgeScript::AnimSurprisedIdleTalk()
+	{
+		mAnimator->Play(L"JudgeSurprisedTalk", true);
+	}
+	void JudgeScript::AnimSternIdle()
+	{
+		mAnimator->Play(L"JudgeSternIdle", true);
+	}
+	void JudgeScript::AnimSternIdleTalk()
+	{
+		mAnimator->Play(L"JudgeSternTalk", true);
+	}
+	void JudgeScript::AnimThink()
+	{
+		mAnimator->Play(L"JudgeThink", false);
 	}
 }

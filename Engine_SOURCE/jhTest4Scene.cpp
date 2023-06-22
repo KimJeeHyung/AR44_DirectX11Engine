@@ -4,7 +4,6 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"

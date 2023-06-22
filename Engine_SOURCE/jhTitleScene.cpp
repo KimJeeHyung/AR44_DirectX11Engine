@@ -4,7 +4,6 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -95,7 +94,7 @@ namespace jh
 	{
 		if (Input::GetKeyDown(eKeyCode::ENTER))
 		{
-			SceneManager::LoadScene(eSceneType::TitleSelect);
+			SceneManager::LoadScene(eSceneType::EpisodeSelect);
 		}
 		else if (Input::GetKeyDown(eKeyCode::BACKSPACE))
 		{

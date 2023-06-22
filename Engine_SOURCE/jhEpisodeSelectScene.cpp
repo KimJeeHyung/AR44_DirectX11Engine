@@ -1,10 +1,9 @@
-#include "jhTitleSelectScene.h"
+#include "jhEpisodeSelectScene.h"
 #include "jhTransform.h"
 #include "jhMeshRenderer.h"
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -19,16 +18,16 @@
 
 namespace jh
 {
-	TitleSelectScene::TitleSelectScene() :
-		Scene(eSceneType::TitleSelect)
+	EpisodeSelectScene::EpisodeSelectScene() :
+		Scene(eSceneType::EpisodeSelect)
 	{
 	}
 
-	TitleSelectScene::~TitleSelectScene()
+	EpisodeSelectScene::~EpisodeSelectScene()
 	{
 	}
 
-	void TitleSelectScene::Initialize()
+	void EpisodeSelectScene::Initialize()
 	{
 		// 메인 카메라 오브젝트
 		//GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
@@ -90,13 +89,13 @@ namespace jh
 		// 타이틀 선택 프레임
 		{
 			GameObject* selectFrame = object::Instantiate<GameObject>(eLayerType::UI, this);
-			selectFrame->SetName(L"TitleSelectFrame");
+			selectFrame->SetName(L"EpisodeSelectFrame");
 			Transform* sfTr = selectFrame->GetComponent<Transform>();
 			sfTr->SetPosition(Vector3(0.f, 0.f, 0.1f));
 			sfTr->SetScale(Vector3(6.15f, 9.f, 1.f));
 			SpriteRenderer* spriteRenderer = selectFrame->AddComponent<SpriteRenderer>();
 			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
-			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SFMaterial");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"ESFMaterial");
 			spriteRenderer->SetMesh(rectMesh);
 			spriteRenderer->SetMaterial(spriteMaterial);
 		}
@@ -104,7 +103,7 @@ namespace jh
 		Scene::Initialize();
 	}
 
-	void TitleSelectScene::Update()
+	void EpisodeSelectScene::Update()
 	{
 		if (Input::GetKeyDown(eKeyCode::ENTER))
 		{
@@ -118,21 +117,21 @@ namespace jh
 		Scene::Update();
 	}
 
-	void TitleSelectScene::FixedUpdate()
+	void EpisodeSelectScene::FixedUpdate()
 	{
 		Scene::FixedUpdate();
 	}
 
-	void TitleSelectScene::Render()
+	void EpisodeSelectScene::Render()
 	{
 		Scene::Render();
 	}
 
-	void TitleSelectScene::OnEnter()
+	void EpisodeSelectScene::OnEnter()
 	{
 	}
 
-	void TitleSelectScene::OnExit()
+	void EpisodeSelectScene::OnExit()
 	{
 	}
 }

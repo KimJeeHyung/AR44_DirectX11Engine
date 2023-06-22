@@ -130,6 +130,15 @@
     <Filter Include="Resource\Audio">
       <UniqueIdentifier>{d3a49709-e4b5-445d-af76-ae8355e44afc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FontWrapper">
+      <UniqueIdentifier>{0ea048a9-ab26-4eb8-a7d6-5e8b89a9109b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Script\Contents\Animation">
+      <UniqueIdentifier>{cc52fa00-3e4f-4ebc-b871-86b0a4fc73d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Script\Contents\Text">
+      <UniqueIdentifier>{8443c570-e1c2-4f23-851a-b0589c67c915}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jhApplication.cpp">
@@ -176,9 +185,6 @@
     </ClCompile>
     <ClCompile Include="jhTransform.cpp">
       <Filter>Component\Transform</Filter>
-    </ClCompile>
-    <ClCompile Include="jhPlayerScript.cpp">
-      <Filter>Component\Script\Contents</Filter>
     </ClCompile>
     <ClCompile Include="jhCamera.cpp">
       <Filter>Component\Camera</Filter>
@@ -266,12 +272,6 @@
     </ClCompile>
     <ClCompile Include="jhParticleSystem.cpp" />
     <ClCompile Include="jhParticleShader.cpp" />
-    <ClCompile Include="jhMiaScript.cpp">
-      <Filter>Component\Script\Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="jhPayneScript.cpp">
-      <Filter>Component\Script\Contents</Filter>
-    </ClCompile>
     <ClCompile Include="jhTest2Scene.cpp">
       <Filter>Scene\Test</Filter>
     </ClCompile>
@@ -284,16 +284,10 @@
     <ClCompile Include="jhTest4Scene.cpp">
       <Filter>Scene\Test</Filter>
     </ClCompile>
-    <ClCompile Include="jhJudgeScript.cpp">
-      <Filter>Component\Script\Contents</Filter>
-    </ClCompile>
-    <ClCompile Include="jhLarryScript.cpp">
-      <Filter>Component\Script\Contents</Filter>
-    </ClCompile>
     <ClCompile Include="jhTest5Scene.cpp">
       <Filter>Scene\Test</Filter>
     </ClCompile>
-    <ClCompile Include="jhTitleSelectScene.cpp">
+    <ClCompile Include="jhEpisodeSelectScene.cpp">
       <Filter>Scene\Contents</Filter>
     </ClCompile>
     <ClCompile Include="jhBeforeTalkScene.cpp">
@@ -302,17 +296,38 @@
     <ClCompile Include="jhCourtScene.cpp">
       <Filter>Scene\Contents</Filter>
     </ClCompile>
-    <ClCompile Include="jhAudioClip.cpp">
-      <Filter>Component\Audio</Filter>
-    </ClCompile>
     <ClCompile Include="jhAudioListener.cpp">
       <Filter>Component\Audio</Filter>
     </ClCompile>
     <ClCompile Include="jhFmod.cpp">
       <Filter>Component\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="jhAudioSource.cpp">
+    <ClCompile Include="jhFontWrapper.cpp">
+      <Filter>FontWrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAudioClip.cpp">
       <Filter>Resource\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="jhAudioSource.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="jhJudgeScript.cpp">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhLarryScript.cpp">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhMiaScript.cpp">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPayneScript.cpp">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhPhoenixScript.cpp">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="jhTextScript.cpp">
+      <Filter>Component\Script\Contents\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -372,9 +387,6 @@
     </ClInclude>
     <ClInclude Include="jhTransform.h">
       <Filter>Component\Transform</Filter>
-    </ClInclude>
-    <ClInclude Include="jhPlayerScript.h">
-      <Filter>Component\Script\Contents</Filter>
     </ClInclude>
     <ClInclude Include="jhCamera.h">
       <Filter>Component\Camera</Filter>
@@ -465,12 +477,6 @@
     </ClInclude>
     <ClInclude Include="jhParticleSystem.h" />
     <ClInclude Include="jhParticleShader.h" />
-    <ClInclude Include="jhMiaScript.h">
-      <Filter>Component\Script\Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="jhPayneScript.h">
-      <Filter>Component\Script\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="jhTest2Scene.h">
       <Filter>Scene\Test</Filter>
     </ClInclude>
@@ -483,16 +489,10 @@
     <ClInclude Include="jhTest4Scene.h">
       <Filter>Scene\Test</Filter>
     </ClInclude>
-    <ClInclude Include="jhJudgeScript.h">
-      <Filter>Component\Script\Contents</Filter>
-    </ClInclude>
-    <ClInclude Include="jhLarryScript.h">
-      <Filter>Component\Script\Contents</Filter>
-    </ClInclude>
     <ClInclude Include="jhTest5Scene.h">
       <Filter>Scene\Test</Filter>
     </ClInclude>
-    <ClInclude Include="jhTitleSelectScene.h">
+    <ClInclude Include="jhEpisodeSelectScene.h">
       <Filter>Scene\Contents</Filter>
     </ClInclude>
     <ClInclude Include="jhBeforeTalkScene.h">
@@ -501,17 +501,38 @@
     <ClInclude Include="jhCourtScene.h">
       <Filter>Scene\Contents</Filter>
     </ClInclude>
-    <ClInclude Include="jhAudioClip.h">
-      <Filter>Component\Audio</Filter>
-    </ClInclude>
     <ClInclude Include="jhAudioListener.h">
       <Filter>Component\Audio</Filter>
     </ClInclude>
     <ClInclude Include="jhFmod.h">
       <Filter>Component\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="jhAudioSource.h">
+    <ClInclude Include="jhFontWrapper.h">
+      <Filter>FontWrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAudioClip.h">
       <Filter>Resource\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="jhAudioSource.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPhoenixScript.h">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhJudgeScript.h">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhLarryScript.h">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhMiaScript.h">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhPayneScript.h">
+      <Filter>Component\Script\Contents\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="jhTextScript.h">
+      <Filter>Component\Script\Contents\Text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

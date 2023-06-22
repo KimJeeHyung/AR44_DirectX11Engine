@@ -437,6 +437,8 @@ namespace jh::renderer
 				Resources::Load<Texture>(L"SelectBackground", L"Portfolio\\title_select_bg.png");
 				Resources::Load<Texture>(L"MainTitle", L"Portfolio\\titlek.png");
 				Resources::Load<Texture>(L"MainCopy", L"Portfolio\\copy.png");
+				Resources::Load<Texture>(L"SelectButton", L"Portfolio\\select_button.png");
+				Resources::Load<Texture>(L"ButtonSelectFrame", L"Portfolio\\button_select_frame.png");
 
 				// Titles
 				Resources::Load<Texture>(L"gs1Title", L"Portfolio\\titlegs1k.png");
@@ -445,7 +447,7 @@ namespace jh::renderer
 				// Episodes
 				Resources::Load<Texture>(L"ep1Image", L"Portfolio\\storygs1 #2074.png");
 				Resources::Load<Texture>(L"ep1Text", L"Portfolio\\title_textgs1k.png");
-				Resources::Load<Texture>(L"TitleFrame", L"Portfolio\\title_select_frame.png");
+				Resources::Load<Texture>(L"EpisodeFrame", L"Portfolio\\episode_select_frame.png");
 
 				// Court Backgrounds
 				Resources::Load<Texture>(L"WaitingRoom", L"Portfolio\\Backgrounds\\bg002.png");
@@ -549,6 +551,22 @@ namespace jh::renderer
 			mcMaterial->SetShader(uiShader);
 			mcMaterial->SetTexture(eTextureSlot::T0, mcTexture);
 			Resources::Insert<Material>(L"MCMaterial", mcMaterial);
+
+			// Button
+			std::shared_ptr<Texture> sbtnTexture = Resources::Find<Texture>(L"SelectButton");
+			std::shared_ptr<Material> sbtnMaterial = std::make_shared<Material>();
+			sbtnMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			sbtnMaterial->SetShader(uiShader);
+			sbtnMaterial->SetTexture(eTextureSlot::T0, sbtnTexture);
+			Resources::Insert<Material>(L"SBTNMaterial", sbtnMaterial);
+
+			// ButtonFrmae
+			std::shared_ptr<Texture> bsfTexture = Resources::Find<Texture>(L"ButtonSelectFrame");
+			std::shared_ptr<Material> bsfMaterial = std::make_shared<Material>();
+			bsfMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			bsfMaterial->SetShader(uiShader);
+			bsfMaterial->SetTexture(eTextureSlot::T0, bsfTexture);
+			Resources::Insert<Material>(L"BSFMaterial", bsfMaterial);
 		}
 		//GS1
 		{
@@ -569,12 +587,12 @@ namespace jh::renderer
 			Resources::Insert<Material>(L"GS1CMaterial", gs1cMaterial);
 
 			// Episodes
-			std::shared_ptr<Texture> selectFrameTexture = Resources::Find<Texture>(L"TitleFrame");
-			std::shared_ptr<Material> selectFrameMaterial = std::make_shared<Material>();
-			selectFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
-			selectFrameMaterial->SetShader(uiShader);
-			selectFrameMaterial->SetTexture(eTextureSlot::T0, selectFrameTexture);
-			Resources::Insert<Material>(L"SFMaterial", selectFrameMaterial);
+			std::shared_ptr<Texture> episodeSelectFrameTexture = Resources::Find<Texture>(L"EpisodeFrame");
+			std::shared_ptr<Material> episodeSelectFrameMaterial = std::make_shared<Material>();
+			episodeSelectFrameMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			episodeSelectFrameMaterial->SetShader(uiShader);
+			episodeSelectFrameMaterial->SetTexture(eTextureSlot::T0, episodeSelectFrameTexture);
+			Resources::Insert<Material>(L"ESFMaterial", episodeSelectFrameMaterial);
 
 			std::shared_ptr<Texture> ep1iTexture = Resources::Find<Texture>(L"ep1Image");
 			std::shared_ptr<Material> ep1iMaterial = std::make_shared<Material>();

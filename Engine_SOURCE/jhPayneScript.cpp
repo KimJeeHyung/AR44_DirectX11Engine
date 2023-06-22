@@ -26,7 +26,7 @@ namespace jh
 
 	void PayneScript::Update()
 	{
-		Transform* tr = GetOwner()->GetComponent<Transform>();
+		/*Transform* tr = GetOwner()->GetComponent<Transform>();
 
 		if (Input::GetKeyState(eKeyCode::R) == eKeyState::PRESSED)
 		{
@@ -59,28 +59,45 @@ namespace jh
 			Vector3 pos = tr->GetPosition();
 			pos.y += 6.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
-		}
+		}*/
 
 		if (Input::GetKey(eKeyCode::N_1))
 		{
-			mAnimator->Play(L"PayneIdle", false);
+			AnimIdle();
 		}
 		if (Input::GetKey(eKeyCode::N_2))
 		{
-			mAnimator->Play(L"PayneIdleTalk", true);
+			AnimIdleTalk();
 		}
 		if (Input::GetKey(eKeyCode::N_3))
 		{
-			mAnimator->Play(L"PayneSweat", true);
+			AnimSweat();
 		}
 		if (Input::GetKey(eKeyCode::N_4))
 		{
-			mAnimator->Play(L"PayneSweatTalk", true);
+			AnimSweatTalk();
 		}
 	}
 
 	void PayneScript::Render()
 	{
+	}
+
+	void PayneScript::AnimIdle()
+	{
+		mAnimator->Play(L"PayneIdle", false);
+	}
+	void PayneScript::AnimIdleTalk()
+	{
+		mAnimator->Play(L"PayneIdleTalk", true);
+	}
+	void PayneScript::AnimSweat()
+	{
+		mAnimator->Play(L"PayneSweat", true);
+	}
+	void PayneScript::AnimSweatTalk()
+	{
+		mAnimator->Play(L"PayneSweatTalk", true);
 	}
 
 	void PayneScript::bindEvent()

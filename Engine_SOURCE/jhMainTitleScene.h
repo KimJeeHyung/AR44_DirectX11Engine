@@ -18,5 +18,6 @@ namespace jh
 		virtual void OnExit() override;
 
 	private:
+		GameObject* mFadeObj;
 	};
 }

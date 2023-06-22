@@ -4,7 +4,7 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
+#include "jhPhoenixScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -14,7 +14,7 @@
 #include "jhTestScene.h"
 #include "jhMainTitleScene.h"
 #include "jhTitleScene.h"
-#include "jhTitleSelectScene.h"
+#include "jhEpisodeSelectScene.h"
 #include "jhBeforeTalkScene.h"
 #include "jhCourtScene.h"
 #include "jhTest2Scene.h"
@@ -38,7 +38,7 @@ namespace jh
 		mScenes[(UINT)eSceneType::Test5] = new Test5Scene;
 		mScenes[(UINT)eSceneType::MainTitle] = new MainTitleScene;
 		mScenes[(UINT)eSceneType::Title] = new TitleScene;
-		mScenes[(UINT)eSceneType::TitleSelect] = new TitleSelectScene;
+		mScenes[(UINT)eSceneType::EpisodeSelect] = new EpisodeSelectScene;
 		mScenes[(UINT)eSceneType::BeforeTalk] = new BeforeTalkScene;
 		mScenes[(UINT)eSceneType::Court] = new CourtScene;
 

@@ -18,10 +18,18 @@ namespace jh
 		void SetCamera(Camera* camera) { mCamera = camera; }
 		void SetFadeTime(float time) { mFadeTime = time; }
 
+		void SetFadeComplete(bool complete) { mbFadeComplete = complete; }
+		bool GetFadeComplete() { return mbFadeComplete; }
+
+		void FadeIn();
+		void FadeOut();
+
 	private:
 		Camera* mCamera;
 		bool mIsFadeOut;
 		float mDeltaTime;
 		float mFadeTime;
+		bool mbFadeStart;
+		bool mbFadeComplete;
 	};
 }

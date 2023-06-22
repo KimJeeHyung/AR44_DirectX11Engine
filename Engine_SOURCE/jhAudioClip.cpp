@@ -15,7 +15,7 @@ namespace jh
 
 	AudioClip::~AudioClip()
 	{
-		mSound->release();
+		//mSound->release();
 		mSound = nullptr;
 	}
 

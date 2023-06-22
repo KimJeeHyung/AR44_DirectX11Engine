@@ -17,7 +17,9 @@ namespace jh
 		mCamera(nullptr),
 		mIsFadeOut(false),
 		mDeltaTime(0.f),
-		mFadeTime(2.f)
+		mFadeTime(1.f),
+		mbFadeStart(false),
+		mbFadeComplete(false)
 	{
 	}
 
@@ -52,21 +54,33 @@ namespace jh
 
 		if (Input::GetKeyState(eKeyCode::F) == eKeyState::DOWN)
 		{
-			// ¾îµÎ¿öÁü
-			mIsFadeOut = true;
-			mDeltaTime = 0.f;
+			FadeOut();
 		}
 		else if (Input::GetKeyState(eKeyCode::G) == eKeyState::DOWN)
 		{
-			// ¹à¾ÆÁü
-			mIsFadeOut = false;
-			mDeltaTime = 1.f;
+			FadeIn();
 		}
 
-		if(mIsFadeOut == true)
+		if (mIsFadeOut == true)
+		{
 			mDeltaTime += Time::DeltaTime() / mFadeTime;
+
+			if (mDeltaTime >= 1.f)
+			{
+				mbFadeComplete = true;
+				mbFadeStart = false;
+			}
+		}
 		else
+		{
 			mDeltaTime -= Time::DeltaTime() / mFadeTime;
+
+			if (mbFadeStart && mDeltaTime <= 0.f)
+			{
+				//mbFadeComplete = true;
+				mbFadeStart = false;
+			}
+		}
 
 		// »ó¼ö ¹öÆÛ
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)eCBType::Fade];
@@ -88,5 +102,23 @@ namespace jh
 
 	void FadeScript::Render()
 	{
+	}
+
+	// ¹à¾ÆÁü
+	void FadeScript::FadeIn()
+	{
+		mbFadeComplete = false;
+		mbFadeStart = true;
+		mIsFadeOut = false;
+		mDeltaTime = 1.f;
+	}
+
+	// ¾îµÎ¿öÁü
+	void FadeScript::FadeOut()
+	{
+		mbFadeComplete = false;
+		mbFadeStart = true;
+		mIsFadeOut = true;
+		mDeltaTime = 0.f;
 	}
 }

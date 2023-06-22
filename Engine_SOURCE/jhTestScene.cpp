@@ -4,7 +4,7 @@
 #include "jhRenderer.h"
 #include "jhResources.h"
 #include "jhTexture.h"
-#include "jhPlayerScript.h"
+#include "jhPhoenixScript.h"
 #include "jhCamera.h"
 #include "jhCameraScript.h"
 #include "jhSpriteRenderer.h"
@@ -61,20 +61,20 @@ namespace jh
 		}*/
 
 		// 메인 카메라 오브젝트
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
-		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		cameraObj->AddComponent<CameraScript>();
-		//mainCamera = cameraComp;
-		Transform* cameraTr = cameraObj->GetComponent<Transform>();
-		cameraTr->SetPosition(Vector3(-28.7f, 0.f, -7.8f));
+		//GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		//Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		////cameraComp->TurnLayerMask(eLayerType::UI, false);
+		//cameraObj->AddComponent<CameraScript>();
+		////mainCamera = cameraComp;
+		//Transform* cameraTr = cameraObj->GetComponent<Transform>();
+		////cameraTr->SetPosition(Vector3(-28.7f, 0.f, -7.8f));
 
 		// UI 카메라 오브젝트
-		//GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera);
-		//Camera* UICameraComp = UICameraObj->AddComponent<Camera>();
-		//UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
-		//UICameraComp->DisableLayerMasks();
-		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
+		GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		Camera* UICameraComp = UICameraObj->AddComponent<Camera>();
+		UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+		UICameraComp->DisableLayerMasks();
+		UICameraComp->TurnLayerMask(eLayerType::UI, true);
 
 		// SMILE RECT(Player)
 //		{
@@ -249,34 +249,34 @@ namespace jh
 		//sr->SetMesh(mesh);
 
 		// HPBar
-		//GameObject* hpBar = object::Instantiate<GameObject>(eLayerType::UI);
-		//hpBar->SetName(L"HPBAR");
-		//Transform* hpBarTr = hpBar->GetComponent<Transform>();
-		//hpBarTr->SetPosition(Vector3(-5.f, 3.f, 12.f));
-		//hpBarTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		//
-		//SpriteRenderer* hpSr = hpBar->AddComponent<SpriteRenderer>();
-		//std::shared_ptr<Mesh> hpMesh = Resources::Find<Mesh>(L"RectMesh");
-		//std::shared_ptr<Material> hpSpriteMaterial = Resources::Find<Material>(L"UIMaterial");
-		//hpSr->SetMesh(hpMesh);
-		//hpSr->SetMaterial(hpSpriteMaterial);
+		GameObject* hpBar = object::Instantiate<GameObject>(eLayerType::UI, this);
+		hpBar->SetName(L"HPBAR");
+		Transform* hpBarTr = hpBar->GetComponent<Transform>();
+		hpBarTr->SetPosition(Vector3(-5.f, 3.f, 12.f));
+		hpBarTr->SetScale(Vector3(1.f, 1.f, 1.f));
+		
+		SpriteRenderer* hpSr = hpBar->AddComponent<SpriteRenderer>();
+		std::shared_ptr<Mesh> hpMesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Material> hpSpriteMaterial = Resources::Find<Material>(L"UIMaterial");
+		hpSr->SetMesh(hpMesh);
+		hpSr->SetMaterial(hpSpriteMaterial);
 
 		//hpBar->Pause();
 
 		// Fade 오브젝트
-		//GameObject* fadeObj = object::Instantiate<GameObject>(eLayerType::UI);
-		//fadeObj->SetName(L"FADE");
-		//Transform* fadeTr = fadeObj->GetComponent<Transform>();
-		//fadeTr->SetPosition(Vector3(0.f, 0.f, 10.f));
-		//fadeTr->SetScale(Vector3(1.f, 1.f, 1.f));
-		//
-		//SpriteRenderer* fadeSr = fadeObj->AddComponent<SpriteRenderer>();
-		//std::shared_ptr<Mesh> fadeMesh = Resources::Find<Mesh>(L"RectMesh");
-		//std::shared_ptr<Material> fadeMaterial = Resources::Find<Material>(L"FadeMaterial");
-		//fadeSr->SetMesh(fadeMesh);
-		//fadeSr->SetMaterial(fadeMaterial);
-		//FadeScript* fadeScript = fadeObj->AddComponent<FadeScript>();
-		//fadeScript->SetCamera(cameraComp);
+		GameObject* fadeObj = object::Instantiate<GameObject>(eLayerType::UI, this);
+		fadeObj->SetName(L"FADE");
+		Transform* fadeTr = fadeObj->GetComponent<Transform>();
+		fadeTr->SetPosition(Vector3(0.f, 0.f, 10.f));
+		fadeTr->SetScale(Vector3(1.f, 1.f, 1.f));
+		
+		SpriteRenderer* fadeSr = fadeObj->AddComponent<SpriteRenderer>();
+		std::shared_ptr<Mesh> fadeMesh = Resources::Find<Mesh>(L"RectMesh");
+		std::shared_ptr<Material> fadeMaterial = Resources::Find<Material>(L"FadeMaterial");
+		fadeSr->SetMesh(fadeMesh);
+		fadeSr->SetMaterial(fadeMaterial);
+		FadeScript* fadeScript = fadeObj->AddComponent<FadeScript>();
+		fadeScript->SetCamera(UICameraComp);
 
 		// Particle
 		/*{
