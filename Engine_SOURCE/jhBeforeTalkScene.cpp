@@ -33,20 +33,21 @@ namespace jh
 	void BeforeTalkScene::Initialize()
 	{
 		// 메인 카메라 오브젝트
-		GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
-		Camera* cameraComp = cameraObj->AddComponent<Camera>();
-		cameraComp->TurnLayerMask(eLayerType::UI, false);
-		//cameraObj->AddComponent<CameraScript>();
-		Transform* cameraTr = cameraObj->GetComponent<Transform>();
-		cameraTr->SetPosition(Vector3(0.f, 0.f, -7.8f));
+		//GameObject* cameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		//Camera* cameraComp = cameraObj->AddComponent<Camera>();
+		//cameraComp->TurnLayerMask(eLayerType::UI, false);
+		////cameraObj->AddComponent<CameraScript>();
+		//Transform* cameraTr = cameraObj->GetComponent<Transform>();
+		//cameraTr->SetPosition(Vector3(0.f, 0.f, -7.8f));
 
 		// UI 카메라 오브젝트
-		//GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
-		//Camera* UICameraComp = UICameraObj->AddComponent<Camera>();
-		//UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
-		//UICameraComp->DisableLayerMasks();
-		//UICameraComp->TurnLayerMask(eLayerType::UI, true);
-		//UICameraComp->TurnLayerMask(eLayerType::Background, true);
+		GameObject* UICameraObj = object::Instantiate<GameObject>(eLayerType::Camera, this);
+		Camera* UICameraComp = UICameraObj->AddComponent<Camera>();
+		UICameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+		UICameraComp->DisableLayerMasks();
+		UICameraComp->TurnLayerMask(eLayerType::UI, true);
+		UICameraComp->TurnLayerMask(eLayerType::Background, true);
+		UICameraComp->TurnLayerMask(eLayerType::Player, true);
 
 		// Directional Light
 		{
@@ -71,12 +72,26 @@ namespace jh
 			spriteRenderer->SetMaterial(spriteMaterial);
 		}
 
+		// 대사 배경
+		{
+			GameObject* textBackground = object::Instantiate<GameObject>(eLayerType::UI, this);
+			textBackground->SetName(L"TextBackground");
+			Transform* tbTr = textBackground->GetComponent<Transform>();
+			tbTr->SetPosition(Vector3(0.f, -2.95f, 0.f));
+			tbTr->SetScale(Vector3(16.f, 2.3f, 1.f));
+			SpriteRenderer* spriteRenderer = textBackground->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"TBMaterial");
+			spriteRenderer->SetMesh(rectMesh);
+			spriteRenderer->SetMaterial(spriteMaterial);
+		}
+
 		// 치히로
 		{
 			Player* obj = object::Instantiate<Player>(eLayerType::Player, this);
 			obj->SetName(L"Mia");
 			Transform* tr = obj->GetComponent<Transform>();
-			tr->SetPosition(Vector3(-0.15f, 0.35f, 0.f));
+			tr->SetPosition(Vector3(-0.15f, 0.35f, 1.f));
 			tr->SetScale(Vector3(14.f, 14.f, 14.f));
 			Collider2D* collider = obj->AddComponent<Collider2D>();
 			collider->SetType(eColliderType::Rect);

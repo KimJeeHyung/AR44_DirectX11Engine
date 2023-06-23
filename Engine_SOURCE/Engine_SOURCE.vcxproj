@@ -212,7 +212,6 @@ copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Release\"</Command>
     <ClInclude Include="jhPayneScript.h" />
     <ClInclude Include="jhPlayer.h" />
     <ClInclude Include="jhPhoenixScript.h" />
-    <ClInclude Include="jhTest2Scene.h" />
     <ClInclude Include="jhPrefab.h" />
     <ClInclude Include="jhRenderer.h" />
     <ClInclude Include="jhResource.h" />
@@ -223,9 +222,6 @@ copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Release\"</Command>
     <ClInclude Include="jhShader.h" />
     <ClInclude Include="jhSpriteRenderer.h" />
     <ClInclude Include="jhStructedBuffer.h" />
-    <ClInclude Include="jhTest3Scene.h" />
-    <ClInclude Include="jhTest4Scene.h" />
-    <ClInclude Include="jhTest5Scene.h" />
     <ClInclude Include="jhTestScene.h" />
     <ClInclude Include="jhTextScript.h" />
     <ClInclude Include="jhTexture.h" />
@@ -279,7 +275,6 @@ copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Release\"</Command>
     <ClCompile Include="jhPayneScript.cpp" />
     <ClCompile Include="jhPlayer.cpp" />
     <ClCompile Include="jhPhoenixScript.cpp" />
-    <ClCompile Include="jhTest2Scene.cpp" />
     <ClCompile Include="jhPrefab.cpp" />
     <ClCompile Include="jhRenderer.cpp" />
     <ClCompile Include="jhResource.cpp" />
@@ -290,9 +285,6 @@ copy "$(SolutionDir)FW1FontWrapper.dll" "$(SolutionDir)x64\Release\"</Command>
     <ClCompile Include="jhShader.cpp" />
     <ClCompile Include="jhSpriteRenderer.cpp" />
     <ClCompile Include="jhStructedBuffer.cpp" />
-    <ClCompile Include="jhTest3Scene.cpp" />
-    <ClCompile Include="jhTest4Scene.cpp" />
-    <ClCompile Include="jhTest5Scene.cpp" />
     <ClCompile Include="jhTestScene.cpp" />
     <ClCompile Include="jhTextScript.cpp" />
     <ClCompile Include="jhTexture.cpp" />

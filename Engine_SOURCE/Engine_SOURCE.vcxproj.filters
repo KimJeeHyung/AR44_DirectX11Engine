@@ -272,19 +272,7 @@
     </ClCompile>
     <ClCompile Include="jhParticleSystem.cpp" />
     <ClCompile Include="jhParticleShader.cpp" />
-    <ClCompile Include="jhTest2Scene.cpp">
-      <Filter>Scene\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="jhTest3Scene.cpp">
-      <Filter>Scene\Test</Filter>
-    </ClCompile>
     <ClCompile Include="jhTestScene.cpp">
-      <Filter>Scene\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="jhTest4Scene.cpp">
-      <Filter>Scene\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="jhTest5Scene.cpp">
       <Filter>Scene\Test</Filter>
     </ClCompile>
     <ClCompile Include="jhEpisodeSelectScene.cpp">
@@ -477,19 +465,7 @@
     </ClInclude>
     <ClInclude Include="jhParticleSystem.h" />
     <ClInclude Include="jhParticleShader.h" />
-    <ClInclude Include="jhTest2Scene.h">
-      <Filter>Scene\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="jhTest3Scene.h">
-      <Filter>Scene\Test</Filter>
-    </ClInclude>
     <ClInclude Include="jhTestScene.h">
-      <Filter>Scene\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="jhTest4Scene.h">
-      <Filter>Scene\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="jhTest5Scene.h">
       <Filter>Scene\Test</Filter>
     </ClInclude>
     <ClInclude Include="jhEpisodeSelectScene.h">

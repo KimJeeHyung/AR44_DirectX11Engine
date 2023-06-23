@@ -18,3 +18,5 @@
 
 #include "CommonInclude.h"
 #include "jhEnums.h"
+
+#define FONT_RGBA(r, g, b, a) (((((BYTE)a << 24) | (BYTE)b << 16) | (BYTE)g << 8) | (BYTE)r)

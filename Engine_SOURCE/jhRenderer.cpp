@@ -449,6 +449,10 @@ namespace jh::renderer
 				Resources::Load<Texture>(L"ep1Text", L"Portfolio\\title_textgs1k.png");
 				Resources::Load<Texture>(L"EpisodeFrame", L"Portfolio\\episode_select_frame.png");
 
+				// Text
+				Resources::Load<Texture>(L"TextBackground", L"Portfolio\\talk_bg.png");
+				Resources::Load<Texture>(L"TextArrow", L"Portfolio\\select_arrow.png");
+
 				// Court Backgrounds
 				Resources::Load<Texture>(L"WaitingRoom", L"Portfolio\\Backgrounds\\bg002.png");
 				Resources::Load<Texture>(L"Court", L"Portfolio\\Backgrounds\\Court.png");
@@ -560,13 +564,29 @@ namespace jh::renderer
 			sbtnMaterial->SetTexture(eTextureSlot::T0, sbtnTexture);
 			Resources::Insert<Material>(L"SBTNMaterial", sbtnMaterial);
 
-			// ButtonFrmae
+			// ButtonFrame
 			std::shared_ptr<Texture> bsfTexture = Resources::Find<Texture>(L"ButtonSelectFrame");
 			std::shared_ptr<Material> bsfMaterial = std::make_shared<Material>();
 			bsfMaterial->SetRenderingMode(eRenderingMode::Transparent);
 			bsfMaterial->SetShader(uiShader);
 			bsfMaterial->SetTexture(eTextureSlot::T0, bsfTexture);
 			Resources::Insert<Material>(L"BSFMaterial", bsfMaterial);
+
+			// TextBackground
+			std::shared_ptr<Texture> tbTexture = Resources::Find<Texture>(L"TextBackground");
+			std::shared_ptr<Material> tbMaterial = std::make_shared<Material>();
+			tbMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			tbMaterial->SetShader(uiShader);
+			tbMaterial->SetTexture(eTextureSlot::T0, tbTexture);
+			Resources::Insert<Material>(L"TBMaterial", tbMaterial);
+
+			// TextArrow
+			std::shared_ptr<Texture> taTexture = Resources::Find<Texture>(L"TextArrow");
+			std::shared_ptr<Material> taMaterial = std::make_shared<Material>();
+			taMaterial->SetRenderingMode(eRenderingMode::Transparent);
+			taMaterial->SetShader(uiShader);
+			taMaterial->SetTexture(eTextureSlot::T0, taTexture);
+			Resources::Insert<Material>(L"TAMaterial", taMaterial);
 		}
 		//GS1
 		{

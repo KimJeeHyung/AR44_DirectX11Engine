@@ -15,6 +15,7 @@
 #include "jhPlayer.h"
 #include "jhMonster.h"
 #include "jhCollisionManager.h"
+#include "jhTextScript.h"
 
 namespace jh
 {
@@ -85,6 +86,23 @@ namespace jh
 			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"GS1CMaterial");
 			spriteRenderer->SetMesh(rectMesh);
 			spriteRenderer->SetMaterial(spriteMaterial);
+		}
+
+		// 타이틀 선택화면 버튼
+		{
+			GameObject* mainButton = object::Instantiate<GameObject>(eLayerType::UI, this);
+			mainButton->SetName(L"MainButton");
+			Transform* mcTr = mainButton->GetComponent<Transform>();
+			mcTr->SetPosition(Vector3(0.f, -3.f, 0.1f));
+			mcTr->SetScale(Vector3(5.f, 0.45f, 1.f));
+			SpriteRenderer* spriteRenderer = mainButton->AddComponent<SpriteRenderer>();
+			std::shared_ptr<Mesh> rectMesh = Resources::Find<Mesh>(L"RectMesh");
+			std::shared_ptr<Material> spriteMaterial = Resources::Find<Material>(L"SBTNMaterial");
+			spriteRenderer->SetMesh(rectMesh);
+			spriteRenderer->SetMaterial(spriteMaterial);
+
+			TextScript* textScript = mainButton->AddComponent<TextScript>();
+			textScript->SetText(L"이 타이틀로 시작", 690.f, 730.f, 30.f, FONT_RGBA(255, 255, 255, 255));
 		}
 
 		Scene::Initialize();

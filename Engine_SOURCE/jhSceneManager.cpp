@@ -17,10 +17,6 @@
 #include "jhEpisodeSelectScene.h"
 #include "jhBeforeTalkScene.h"
 #include "jhCourtScene.h"
-#include "jhTest2Scene.h"
-#include "jhTest3Scene.h"
-#include "jhTest4Scene.h"
-#include "jhTest5Scene.h"
 
 namespace jh
 {
@@ -32,10 +28,6 @@ namespace jh
 		mScenes.resize((UINT)eSceneType::End);
 
 		mScenes[(UINT)eSceneType::Test] = new TestScene;
-		mScenes[(UINT)eSceneType::Test2] = new Test2Scene;
-		mScenes[(UINT)eSceneType::Test3] = new Test3Scene;
-		mScenes[(UINT)eSceneType::Test4] = new Test4Scene;
-		mScenes[(UINT)eSceneType::Test5] = new Test5Scene;
 		mScenes[(UINT)eSceneType::MainTitle] = new MainTitleScene;
 		mScenes[(UINT)eSceneType::Title] = new TitleScene;
 		mScenes[(UINT)eSceneType::EpisodeSelect] = new EpisodeSelectScene;
